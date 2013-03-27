@@ -1,0 +1,228 @@
+<!doctype html>  
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<title>Broome CMS - Documentation</title>
+	
+	<meta name="description" content="Thank you">
+	<meta name="author" content="Parminder Klair">
+	<meta name="copyright" content="Parminder Klair">
+	<meta name="generator" content="Documenter v1.6 http://rxa.li/documenter">
+	<meta name="date" content="2013-03-19T00:00:00+01:00">
+	
+	<link rel="stylesheet" href="css/documenter_style.css" media="all">
+	
+	
+	<script src="js/jquery.1.6.4.js"></script>
+	
+	<script src="js/jquery.scrollTo-1.4.2-min.js"></script>
+	<script src="js/jquery.easing.js"></script>
+	
+	
+	<script>document.createElement('section');var duration=500,easing='swing';</script>
+	<script src="js/script.js"></script>
+	
+	<style>
+		html{background-color:#FFFFFF;color:#383838;}
+		::-moz-selection{background:#444444;color:#DDDDDD;}
+		::selection{background:#444444;color:#DDDDDD;}
+		#documenter_sidebar #documenter_logo{background-image:url();}
+		a{color:#0066CC;}
+		hr{border-top:1px solid #EBEBEB;border-bottom:1px solid #FFFFFF;}
+		#documenter_sidebar, #documenter_sidebar ol a{background-color:#DDDDDD;color:#222222;}
+		#documenter_sidebar ol a{-webkit-text-shadow:1px 1px 0px #EEEEEE;-moz-text-shadow:1px 1px 0px #EEEEEE;text-shadow:1px 1px 0px #EEEEEE;}
+		#documenter_sidebar ol{border-top:1px solid #AAAAAA;}
+		#documenter_sidebar ol a{border-top:1px solid #EEEEEE;border-bottom:1px solid #AAAAAA;color:#444444;}
+		#documenter_sidebar ol a:hover{background:#444444;color:#DDDDDD;border-top:1px solid #444444;}
+		#documenter_sidebar ol a.current{background:#444444;color:#DDDDDD;border-top:1px solid #444444;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+	
+</head>
+<body>
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ol id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Start</a></li>
+			<li><a href="#creating_pages">Creating Pages</a></li>
+			<li><a href="#creating_blocks">Creating Blocks</a></li>
+			<li><a href="#creating_content">Creating Content</a></li>
+			<li><a href="#get_site_settings">Get Site Settings</a></li>
+			<li><a href="#seo">SEO</a></li>
+			<li><a href="#render_images">Render Images</a></li>
+			<li><a href="#creating_urls">Creating Urls</a></li>
+			<li><a href="#get_post_cookies">Get Post Data and Cookies</a></li>
+			<li><a href="#js_css">JS and CSS</a></li>
+			<li><a href="#extra_references">Extra References</a></li>
+		</ol>
+		<div id="documenter_copyright">Copyright BroomeCMS 2013</a> 
+		</div>
+	</div>
+	<div id="documenter_content">
+	<section id="documenter_cover">
+		<h1>Broome CMS</h1>
+		<h2>Documentation</h2>
+		<hr>
+		<ul>
+			<li>Created: 03/10/2011</li>
+			<li>latest Update: 03/24/2013</li>
+			<li>By: Parminder Klair</li>
+			<li><a href=""></a></li>
+			<li>Email: <a href="mailto:&#112;&#97;&#114;&#109;&#105;&#110;&#100;&#101;&#114;&#64;&#116;&#98;&#108;&#109;&#97;&#114;&#107;&#101;&#116;&#105;&#110;&#103;&#46;&#99;&#111;&#109;">&#112;&#97;&#114;&#109;&#105;&#110;&#100;&#101;&#114;&#64;&#116;&#98;&#108;&#109;&#97;&#114;&#107;&#101;&#116;&#105;&#110;&#103;&#46;&#99;&#111;&#109;</a></li>
+		</ul>
+		<p>Thank you</p>
+	</section>
+	
+	<section id="creating_pages">
+		<h3>Creating Pages</h3>
+		<hr class="notop">
+		<p>To create a page simply use this in your view:</p>
+		<p><code> page('page-name-here'); </code></p>
+	</section>
+	
+	<section id="creating_blocks">
+		<h3>Creating Block</h3><hr class="notop">
+		<p>Before creating a block, give NAME of page as:</p>
+		<blockquote>
+			<p>controllername-methodname</p>
+		</blockquote>
+		<p>To create a block simply use this in your view:</p>
+		<p><code> $this->widget('cms.widgets.CmsBlock', array('blockParent'=>$this->getPageData()->id, 'name'=>'BLOCK-NAME-HERE')) </code></p>
+	</section>
+	
+	<section id="creating_content">
+		<h3>Creating Content</h3>
+		<p>Text Truncate</p>
+		<p><code>
+			$this->widget('ext.XReadMore.XReadMore', array( <br />
+		         'model'=>$model, <br />
+		         'attribute'=>'Content', <br />
+		         'maxChar'=>200, <br />
+		         'showLink'=>false, <br />
+		         'linkUrl' => null, <br />
+		         'stripTags'=>true, <br />
+		         'linkText'=>'Read more...', <br />
+	         ));
+		</code></p>
+	</section>
+
+	<section id="get_site_settings">
+		<h3>Get Site Settings</h3><hr class="notop">
+		<p>To get site settings, use this in views</p>
+		<p><code> gl('SETTING_NAME_HERE');  </code></p>
+	</section>
+	
+	<section id="seo">
+		<h3>SEO</h3>
+		<hr class="notop">
+		<p>In views paste these</p>
+		<p><code>
+			$this->pageTitle='my title'; <br />
+
+			$this->pageDesc='description here'; <br />
+		
+			$this->pageKeywords='keywords, here, like, this'; <br />
+		
+			$this->pageOgTitle = 'my title'; <br />
+		
+			$this->pageOgDesc = 'my title'; <br />
+		
+			$this->pageOgImage = 'my title'; <br />
+		</code></p>
+	</section>
+	
+	<section id="render_images">
+		<h3>Render Images</h3>
+		<hr class="notop">
+		<p>To render Images from model</p>
+		<p><code>
+			 $config = array( <br />
+			 	'file' => 'files/2013-03-12/test.jpg', //only If not from model  <br />
+			 	'height' => '450',  <br />
+			 	'width' => '150',  <br />
+             );
+		</code></p>
+		<p><code>
+			$model = new CmsMedia; <br />
+			$result = $model->render($config);
+		</code></p>
+		<p>if insert img tag is needed instead of render use:</p>
+		<p><code> i('link-to-image', 'alt', array('class'=>'example')) </code></p>
+	</section>
+	
+	<section id="creating_urls">
+		<h3>Creating Urls</h3>
+		<p>To create Urls, paste this in views</p>
+		<p><code> url("/model/method", array('id'=>$id)) </code></p>
+		<p>To Generates a hyperlink tag, go to this page for refference <a href="http://www.yiiframework.com/wiki/48/by-example-chtml/" target="_blank">By Example: CHtml</a></p>
+		<p><code> l('Link Text',array('controller/action', 'param1'=>'value1')); </code></p>
+		<p>To create Base URL (eg: for including static stuff like images)</p>
+		<p><code> baseUrl() </code></p>
+		<p>To create url to Theme base</p>
+		<p><code> themeBase() </code></p>
+		<p>Creating ajax update link <a href="http://www.yiiframework.com/wiki/87/ajax-update/" target="_blank">Ref</a></p>
+		<p><code>
+			CHtml::ajaxLink( // to create button use: ajaxButton<br />
+		    	'Update profile', <br />
+		    	array('profile/ajaxcontent', 'id' => $id), // Yii URL <br />
+		    	array('update' => '#my-profile') // jQuery selector <br />
+		    );
+		</code></p>
+		<p><code>$this->renderPartial('ajaxView', array(), false, true);</code></p>
+	</section>
+	
+	<section id="get_post_cookies">
+		<h3>Get Post Data and Cookies</h3>
+		<p>Get data instead $_GET[], use</p>
+		<p><code> get('key'); </code></p>
+		<p>Get post data instead $_POST[], use</p>
+		<p><code> post('key'); </code></p>
+		<p>To auto save Form data every 10 second on local storage, use this on controller's method</p>
+		<p><code> Yii::app()->cms->sisyphus(); </code></p>
+		<p>Send a Coookie</p>
+		<p><code> sendCookie($name,$value); </code></p>
+		<p>Get a Cookie</p>
+		<p><code> getCookie($name); </code></p>
+	</section>
+	
+	<section id="js_css">
+		<h3>JS and CSS</h3>
+		<p>To include JS file or CSS file</p>
+		<p><code>
+			$cs = Yii::app()->getClientScript(); <br />
+			$cs->registerScriptFile('/js/yourscript.js', CClientScript::POS_END); <br />
+			$cs->registerCssFile('/css/yourcss.css');
+		</code></p>
+		<p>Include JS or jQuery code on page</p>
+		<p><code>
+			$cs->registerScript( <br />
+				'my-js-id', <br />
+				'JS CODE HERE', <br />
+				CClientScript::POS_END ); 
+		</code></p>
+	</section>
+	
+	
+	<section id="extra_references">
+		<h3>Extra References</h3>
+		<hr class="notop">
+		<p><a href="http://www.yiiframework.com/doc/guide/1.1/en/topics.url" target="_blank">The Definitive Guide to Yii</a></p>
+		<p><a href="http://www.yiiframework.com/wiki/152/cookie-management-in-yii/" target="_blank">Cookie management in Yii</a></p>
+		<p><a href="http://www.yiiframework.com/wiki/275/how-to-write-secure-yii-applications/" target="_blank">How to write secure Yii applications</a></p>
+		<p><a href="http://www.yiiframework.com/wiki/129/x-sendfile-serve-large-static-files-efficiently-from-web-applications/" target="_blank">X-Sendfile - serve large static files efficiently from web applications</a></p>
+		<p><a href="http://www.yiiframework.com/wiki/23/how-to-create-a-breadcrumb-widget/" target="_blank">How to create a breadcrumb widget</a></p>
+		<p><a href="http://www.yiiframework.com/wiki/388/ajax-form-submiting-in-yii/" target="_blank">Ajax form submiting in Yii</a></p>
+		<p><a href="http://www.yiiframework.com/wiki/394/javascript-and-ajax-with-yii/" target="_blank">Javascript and AJAX with Yii</a></p>
+		<p><a href="http://www.yiiframework.com/wiki/217/custom-autocomplete-display-and-value-submission/" target="_blank">Custom Autocomplete Display and Value Submission </a></p>
+		<p><a href="http://www.yiiframework.com/wiki/21/how-to-work-with-flash-messages/" target="_blank">How to work with flash messages</a></p>
+		<p><a href="http://www.yiiframework.com/wiki/152/cookie-management-in-yii/" target="_blank">Cookie management in Yii</a></p>
+	</section>
+
+	</div>
+</body>
+</html>
