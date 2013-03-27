@@ -24,5 +24,14 @@ class Controller extends CmsController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-	
+
+	public function bodyClass()
+	{
+		if(Yii::app()->controller->id=='site')
+			$page_name = Yii::app()->controller->action->id;
+		else
+			$page_name = Yii::app()->controller->id.'-'.Yii::app()->controller->action->id;
+			
+		return $page_name;
+	}	
 }

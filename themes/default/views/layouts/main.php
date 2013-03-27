@@ -18,7 +18,7 @@
 
 <body>
 
-<div class="container" id="page">
+<div class="container <?=$this->bodyClass();?>" id="page">
 
 	<div id="header">
 		<div id="logo"><?php echo gl('site_name'); ?></div>
