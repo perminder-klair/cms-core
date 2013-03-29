@@ -50,7 +50,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by <?php echo gl('site_name'); ?>.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by <?php echo gl('site_name'); ?>.
 	</div><!-- footer -->
 
 </div><!-- page -->

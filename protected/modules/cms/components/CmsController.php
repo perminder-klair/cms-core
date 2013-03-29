@@ -61,5 +61,15 @@ class CmsController extends CController
 			return $result;
 		}
 	}
+	
+	public function bodyClass()
+	{
+		if(Yii::app()->controller->id=='site')
+			$page_name = Yii::app()->controller->action->id;
+		else
+			$page_name = Yii::app()->controller->id.'-'.Yii::app()->controller->action->id;
+			
+		return $page_name;
+	}	
 
 }

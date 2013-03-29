@@ -8,9 +8,9 @@ $yii=dirname(__FILE__).'/../../yii/framework/yii.php';
 $extension = pathinfo($_SERVER['SERVER_NAME'], PATHINFO_EXTENSION);
 
 if(($extension == "dev") || (!$extension))
-	$config=dirname(__FILE__).'/protected/config/test.php';
+	$config=dirname(__FILE__).'/protected/config/dev.php';
 else
-	$config=dirname(__FILE__).'/protected/config/main.php';
+	$config=dirname(__FILE__).'/protected/config/web.php';
 
 // remove the following lines when in production mode
 if(($extension == "dev") || (!$extension))

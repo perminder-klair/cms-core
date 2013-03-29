@@ -27,7 +27,11 @@ return array(
 	
 	'aliases' => array(),
     
-    'theme'=>'default', //default or bootstrap
+    /*
+     * choose: default or bootstrap
+     * for bootstrap docs: http://www.cniska.net/yii-bootstrap/ and http://twitter.github.com/bootstrap/
+     */
+    'theme'=>'bootstrap',
 	
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
@@ -95,25 +99,6 @@ return array(
             // change the url
             'baseUrl'=>'/cache/'
         ),
-        
-        /*'cache'=>array(
-            'class'=>'CDbCache',
-        ),*/
-		
-		/*
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-		*/
-		'db'=>array(
-			/*'class'=>'system.db.CDbConnection',
-			'schemaCachingDuration'=>3600,*/
-			'connectionString' => 'mysql:host=localhost;dbname=DATABASE NAME HERE',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
