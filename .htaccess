@@ -1,18 +1,25 @@
-Options +FollowSymLinks
-IndexIgnore */*
-RewriteEngine on
+IndexIgnore *
+Options +followSymlinks
 
-#RewriteBase /
+<ifModule mod_rewrite.c>
 
-# if a directory or a file exists, use it directly
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteEngine on
+    
+    #RewriteBase /
 
-# otherwise forward it to index.php
-RewriteRule . index.php
+    # if a directory or a file exists, use it directly
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # otherwise forward it to index.php
+    RewriteRule ^(.*)$ index.php
+
+    # uncomment to redirect mywebsite.com to www.mywebsite.com
+    #RewriteCond %{HTTP_HOST} !^www\.mynewwebsite\.com$ [NC]
+    #RewriteRule ^(.*)$ http://www.mynewwebsite.com/$1 [L,R=301]
+
+</ifModule>
 
 php_value post_max_size 30M
 php_value upload_max_filesize 30M
 
-#RewriteCond %{HTTP_HOST} !^www\.mynewwebsite\.com$ [NC]
-#RewriteRule ^(.*)$ http://www.mynewwebsite.com/$1 [L,R=301]

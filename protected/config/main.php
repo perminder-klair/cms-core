@@ -8,7 +8,7 @@ Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'',
+	//'name'=>'',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -117,11 +117,13 @@ return array(
 		),
 	),
 
-	// application-level parameters that can be accessed
-	// using Yii::app()->params['paramName']
-	// USE THIS INSTED gl('site_name')); //
-	'params'=>array(
+	/* 
+	 * application-level parameters that can be accessed
+	 * using Yii::app()->params['paramName']
+	 * USE THIS INSTED gl('site_name'));
+	 */
+	/*'params'=>array(
 		// this is used in contact page
-		//'adminEmail'=>'webmaster@example.com',
-	),
+		'adminEmail'=>'webmaster@example.com',
+	),*/
 );
