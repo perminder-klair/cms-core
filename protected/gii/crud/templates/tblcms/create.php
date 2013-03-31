@@ -15,6 +15,7 @@ echo "\$this->breadcrumbs=array(
 	'Create',
 );\n";
 ?>
+<?php echo "?>"; ?>
 
 <h1>Create <?php echo $this->modelClass; ?></h1>
 

@@ -31,7 +31,7 @@ return array(
      * choose: default or bootstrap
      * for bootstrap docs: http://www.cniska.net/yii-bootstrap/ and http://twitter.github.com/bootstrap/
      */
-    'theme'=>'bootstrap',
+    'theme'=>'default',
 	
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
@@ -122,8 +122,9 @@ return array(
 	 * using Yii::app()->params['paramName']
 	 * USE THIS INSTED gl('site_name'));
 	 */
-	/*'params'=>array(
+	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
-	),*/
+		//'adminEmail'=>'webmaster@example.com',
+		'adminMenu'=>array('properties'),
+	),
 );

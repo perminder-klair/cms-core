@@ -13,7 +13,8 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/main';
+	public $defaultAction = 'index';
 
 	/**
 	 * @return array action filters
@@ -22,7 +23,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			//'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -35,19 +36,16 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('*'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','create','update'),
-				'users'=>array('admin'),
+				'actions'=>array('admin', 'create', 'update', 'delete'),
+				'expression'=>'$user->isAdmin()',
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
+				'actions'=>array('admin', 'create', 'update', 'delete'),
 			),
 		);
 	}
@@ -69,7 +67,8 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	 */
 	public function actionCreate()
 	{
-		$this->layout = 'admin';
+		$layout = 'application.modules.cms.views.layouts.admin';
+		$this->layout = $layout;
 		
 		$model=new <?php echo $this->modelClass; ?>;
 
@@ -80,7 +79,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		{
 			$model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('create',array(
@@ -95,7 +94,8 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	 */
 	public function actionUpdate($id)
 	{	
-		$this->layout = 'admin';
+		$layout = 'application.modules.cms.views.layouts.admin';
+		$this->layout = $layout;
 		
 		$model=$this->loadModel($id);
 
@@ -106,7 +106,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		{
 			$model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(
@@ -144,7 +144,8 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	 */
 	public function actionAdmin()
 	{
-		$this->layout = 'admin';
+		$layout = 'application.modules.cms.views.layouts.admin';
+		$this->layout = $layout;
 		
 		$model=new <?php echo $this->modelClass; ?>('search');
 		$model->unsetAttributes();  // clear any default values

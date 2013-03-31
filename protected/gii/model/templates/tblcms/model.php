@@ -155,9 +155,14 @@ foreach($columns as $name=>$column)
 	
 	public function adminActions()
 	{
-		$result = '<a class="btn btn-mini btn-primary" href="'.url("/<?php echo $tableName; ?>/update/".<?php echo "\$this->id"; ?>).'">Edit</a>';
-        $result .= '&nbsp;&nbsp;<a class="btn btn-mini" href="'.url("/<?php echo $tableName; ?>/delete/".$this->id).'">Delete</a>';
+		$result = l('Edit',array('/<?php echo $tableName; ?>/update', 'id'=>$this->id), array('class'=>'btn btn-mini btn-primary'));
+    	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/<?php echo $tableName; ?>/delete",array('id'=>$this->id))));
+
+    	return $result;
+    	
+		//$result = '<a class="btn btn-mini btn-primary" href="'.url("/<?php echo $tableName; ?>/update/".<?php echo "\$this->id"; ?>).'">Edit</a>';
+        //$result .= '&nbsp;&nbsp;<a class="btn btn-mini" href="'.url("/<?php echo $tableName; ?>/delete/".$this->id).'">Delete</a>';
         	
-        return $result;
+        //return $result;
 	}
 }

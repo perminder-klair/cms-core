@@ -1,7 +1,7 @@
 <div class="row-fluid">
 	<h2 class="heading">Manage <?php echo $this->pluralize($this->class2name($this->modelClass)); ?>
 		<div class="btn-group pull-right">
-	        <button class="btn btn-primary" onclick="location.href='create'"><i class="icon-plus"></i> Create New</button>
+	        <button class="btn btn-primary" onclick="location.href='/<?php echo strtolower($this->modelClass);?>/create'"><i class="icon-plus"></i> Create New</button>
 	    </div>
 	</h2>
 </div>
@@ -12,7 +12,6 @@
               <i class="icon-group"></i>
               <h5>Manage <?php echo $this->pluralize($this->class2name($this->modelClass)); ?></h5>
               <div class="widget-buttons">
-                  <a href="http://www.datatables.net/usage/" data-title="Documentation" class="tip" target="_blank"><i class="icon-external-link"></i></a>
                   <a href="#" data-title="Collapse" data-collapsed="false" class="tip collapse"><i class="icon-chevron-up"></i></a>
               </div>
             </div>  
