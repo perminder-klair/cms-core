@@ -67,24 +67,9 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	 */
 	public function actionCreate()
 	{
-		$layout = 'application.modules.cms.views.layouts.admin';
-		$this->layout = $layout;
-		
-		$model=new <?php echo $this->modelClass; ?>;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['<?php echo $this->modelClass; ?>']))
-		{
-			$model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
-			if($model->save())
-				$this->redirect(array('admin'));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$model = new <?php echo $this->modelClass; ?>;
+		if($model->save())
+			$this->redirect(array('update','id'=>$model->id));
 	}
 
 	/**

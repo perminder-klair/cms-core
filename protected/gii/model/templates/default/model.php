@@ -108,6 +108,7 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 <?php foreach($relations as $name=>$relation): ?>
 			<?php echo "'$name' => $relation,\n"; ?>
 <?php endforeach; ?>
+			'media'=>array(self::MANY_MANY, 'CmsMedia', 'cms_content_media(content_id, media_id)', 'condition' => 'type = "<?php echo strtolower($modelClass);?>"'),
 		);
 	}
 
