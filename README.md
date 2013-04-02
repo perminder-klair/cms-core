@@ -15,6 +15,8 @@ Note: Make following directories writable 0777:
 /protected/runtime
 
 For local environment change database config in:
-/protected/config/test.php
+/protected/config/dev.php
+For live environment change database config in:
+/protected/config/web.php
 
-Default logins to admin panel are: admin / admins
+Default logins to admin panel are: admin / admin
