@@ -31,7 +31,7 @@ return array(
      * choose: default or bootstrap
      * for bootstrap docs: http://www.cniska.net/yii-bootstrap/ and http://twitter.github.com/bootstrap/
      */
-    'theme'=>'default',
+    'theme'=>'bootstrap',
 	
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
@@ -75,8 +75,6 @@ return array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-				
-				
 			),
 		),
         

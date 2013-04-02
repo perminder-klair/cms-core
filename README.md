@@ -7,6 +7,8 @@ Read the /documentation/index.html for more information
 
 Setup:
 ------
+Get database from: /protected/data/
+
 Note: Make following directories writable 0777:
 /files
 /cache
@@ -14,3 +16,5 @@ Note: Make following directories writable 0777:
 
 For local environment change database config in:
 /protected/config/test.php
+
+Default logins to admin panel are: admin / admins
