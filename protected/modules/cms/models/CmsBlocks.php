@@ -84,6 +84,15 @@ class CmsBlocks extends CmsActiveRecord
 	 
 	    return parent::beforeSave();
 	}
+	
+	public function scopes()
+    {
+        return array(
+            'published'=>array(
+            	'condition'=>'published = 1 AND deleted = 0',
+            ),
+        );
+    }
 
     /**
      * Returns the body for this node.

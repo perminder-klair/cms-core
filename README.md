@@ -9,14 +9,16 @@ Setup:
 ------
 Get database from: /protected/data/
 
-Note: Make following directories writable 0777:
+Note: Make sure following directories are writable to 0777:
 /files
 /cache
 /protected/runtime
 
 For local environment change database config in:
 /protected/config/dev.php
+
 For live environment change database config in:
 /protected/config/web.php
 
-Default logins to admin panel are: admin / admin
+Login to Admin Panel by visiting: www.yoursite.com/admin/login and
+logins are: admin / admin

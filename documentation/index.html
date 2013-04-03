@@ -194,9 +194,10 @@
 		<h3>JS and CSS</h3>
 		<p>To include JS file or CSS file</p>
 		<p><code>
+			$baseUrl = Yii::app()->theme->baseUrl; <br />
 			$cs = Yii::app()->getClientScript(); <br />
-			$cs->registerScriptFile('/js/yourscript.js', CClientScript::POS_END); <br />
-			$cs->registerCssFile('/css/yourcss.css');
+			$cs->registerScriptFile($baseUrl.'/js/yourscript.js', CClientScript::POS_END); <br />
+			$cs->registerCssFile($baseUrl.'/css/yourcss.css');
 		</code></p>
 		<p>Include JS or jQuery code on page</p>
 		<p><code>

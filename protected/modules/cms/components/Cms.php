@@ -88,7 +88,7 @@ class Cms extends CApplicationComponent
      */
 	public function loadBlock($name, $parent)
 	{
-		$block = CmsBlocks::model()->findByAttributes(array('name'=>$name,'parentId'=>$parent));
+		$block = CmsBlocks::model()->published()->findByAttributes(array('name'=>$name,'parentId'=>$parent));
 		return $block;
 	}
         
