@@ -8,6 +8,7 @@ class CmsBlog extends CmsActiveRecord
 
 	private $_oldTags;
 	public $restore;
+	public $selectedCategories;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -58,6 +59,8 @@ class CmsBlog extends CmsActiveRecord
 			'author' => array(self::BELONGS_TO, 'CmsUser', 'author_id'),
 			'commentCount' => array(self::STAT, 'CmsComment', 'blog_id', 'condition'=>'status='.CmsComment::STATUS_APPROVED),
 			'revisions' => array(self::HAS_MANY, 'CmsBlog', 'parentId', 'condition'=>'type="revision"', 'order'=>'modified DESC'),
+			'categories'=>array(self::MANY_MANY, 'CmsCategories', 'cms_content_categories(content_id, category_id)'),
+																		/*, 'condition' => '"type" = "blog"' //NEED TO BE FIXED*/
 		);
 	}
 
@@ -86,6 +89,9 @@ class CmsBlog extends CmsActiveRecord
 	public function scopes()
     {
         return array(
+        	'type'=>array(
+        		'type'=>'blog',
+        	),
             'recent'=>array(
                 'order'=>'created DESC',
                 'limit'=>10,
@@ -176,7 +182,7 @@ class CmsBlog extends CmsActiveRecord
 					$this->type = 'blog';
 			}
 			else
-			{
+			{	
 				//Copy the blog as revision
 				if($this->restore!==true)
 					$this->copyBlog();
@@ -236,6 +242,39 @@ class CmsBlog extends CmsActiveRecord
 			),
 		));
 	}
+	
+	public function listAllCategories()
+	{
+		$criteria=new CDbCriteria(
+			array("condition"=>"type = ".CmsCategories::TYPE_BLOG)
+		);
+		$blogCategories = CmsCategories::model()->findAll($criteria);
+		
+		$categories = array();
+		foreach ($blogCategories as $category) {
+		    $categories[$category->id] = $category->title;
+		}
+		
+		return $categories;
+	}
+	
+	public function getBlogCategories()
+	{	
+	
+		$categories = Yii::app()->db->createCommand()
+		    ->select('*')
+		    ->from('cms_content_categories')
+		    ->where('content_id=:id', array(':id'=>$this->id))
+		    ->andWhere('type=:type', array(':type'=>'blog'))
+		    ->queryAll();
+		
+	    $ids=array();
+	    foreach($categories as $c)
+	        $ids[]=$c['category_id'];
+	        
+	    return $ids;
+	}
+
 	
 	/*
 	 * Copy the blog as revision

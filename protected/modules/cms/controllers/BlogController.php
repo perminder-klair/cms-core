@@ -91,14 +91,17 @@ class BlogController extends CmsController
 			$model->attributes=$_POST['CmsBlog'];
 			//convert date to system before insert
 			$model->date_start=date("Y-m-d H:i:s", strtotime($_POST['CmsBlog']['date_start']));
-
+			
+			//Update Categories
+			$model->setRelationRecords('categories', $_POST['CmsBlog']['blogCategories'], array('type' => 'blog'));
+			
 			if($model->save()) {
 				Yii::app()->user->setFlash('success', "Blog Updated!");
 				$this->redirect(Yii::app()->user->returnUrl);
 			}
 		}
 
-		Yii::app()->cms->sisyphus();
+		//Yii::app()->cms->sisyphus();
 		//If restored successfully, clear local data created by sisyphus
 		if($_GET['restored']=='true') {
 			$cs = Yii::app()->getClientScript();

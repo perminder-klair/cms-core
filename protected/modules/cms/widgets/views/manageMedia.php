@@ -42,7 +42,8 @@
           </thead>
           <tbody>
           	<? foreach($model->media as $media): ?>
-          		<?php echo Yii::app()->controller->renderPartial('/media/newMedia', array('media'=>$media)); ?>
+          		<?php $view = 'application.modules.cms.views.media.newMedia';
+          		echo Yii::app()->controller->renderPartial($view, array('media'=>$media)); ?>
             <? endforeach; ?>
           </tbody>
         </table>

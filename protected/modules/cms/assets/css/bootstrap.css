@@ -1976,6 +1976,10 @@ legend + .control-group {
 .form-horizontal .form-actions {
   padding-left: 180px;
 }
+.form-horizontal .strong {
+	float: right;
+	margin-top: -22px;
+}
 .btn {
   display: inline-block;
   *display: inline;

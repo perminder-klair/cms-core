@@ -2,10 +2,13 @@
 date_default_timezone_set('UTC');
 //ini_set("memory_limit","128M");
 
-// change the following paths if necessary
-$yii=dirname(__FILE__).'/../../yii/framework/yii.php';
-
 $extension = pathinfo($_SERVER['SERVER_NAME'], PATHINFO_EXTENSION);
+
+// change the following paths if necessary
+if(($extension == "dev") || (!$extension))
+	$yii=dirname(__FILE__).'/../../yii/framework/yii.php';
+else
+	$yii=dirname(__FILE__).'/../../../yii/framework/yii.php';
 
 if(($extension == "dev") || (!$extension))
 	$config=dirname(__FILE__).'/protected/config/dev.php';
