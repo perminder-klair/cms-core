@@ -42,7 +42,7 @@ class CmsCategories extends SiteActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, parent, type', 'required'),
+			array('title, type', 'required'),
 			array('parent, type', 'numerical', 'integerOnly'=>true),
 			array('title, url', 'length', 'max'=>255),
 			// The following rule is used by search().
