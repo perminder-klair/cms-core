@@ -101,7 +101,7 @@ class BlogController extends CmsController
 			}
 		}
 
-		//Yii::app()->cms->sisyphus();
+		Yii::app()->cms->sisyphus();
 		//If restored successfully, clear local data created by sisyphus
 		if($_GET['restored']=='true') {
 			$cs = Yii::app()->getClientScript();
@@ -141,11 +141,28 @@ class BlogController extends CmsController
 		$this->pageKeywords='blogs, news, updates';
 		
 		$criteria=new CDbCriteria();
+		$criteria->order='date_start DESC';
+	    $criteria->condition='status = '.CmsBlog::STATUS_PUBLISHED.' AND type = "blog" AND date_start <= NOW()';
 		
+		//if tag is selected
 		if(isset($_GET['tag'])) {
 			$criteria->addSearchCondition('tags',$_GET['tag']);
-			$this->pageTitle=$_GET['tag'];
+			$this->pageTitle.=" - ".$_GET['tag'];
 			$this->pageKeywords=$_GET['tag'];
+		}
+		
+		//if category is selectedd
+		if(isset($_GET['category'])) {
+			if($category = CmsCategories::model()->findByPk($_GET['id'])) {
+
+			    $criteria->with='categories';
+			    $criteria->together=true;
+			    $criteria->condition='category_id=:category_id';
+			    $criteria->params=array(':category_id'=>$category->id);
+			    
+			    $this->pageTitle.=" - ".$category->title;
+				$this->pageKeywords=$category->title;
+			}
 		}
 		
 	    $count=CmsBlog::model()->published()->count($criteria);
@@ -154,7 +171,7 @@ class BlogController extends CmsController
 	    $pages->pageSize=10; // results per page
 	    $pages->applyLimit($criteria);
 	    
-	    $dataProvider=CmsBlog::model()->published()->findAll($criteria);
+	    $dataProvider=CmsBlog::model()->findAll($criteria);
 		
 		$this->render('//blog/index',array(
 			'dataProvider'=>$dataProvider,

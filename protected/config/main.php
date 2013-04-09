@@ -31,7 +31,7 @@ return array(
      * choose: default or bootstrap
      * for bootstrap docs: http://www.cniska.net/yii-bootstrap/ and http://twitter.github.com/bootstrap/
      */
-    'theme'=>'bootstrap',
+     'theme'=>'default',
 	
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
@@ -67,7 +67,8 @@ return array(
 				'admin/login'=>'cms/admin/login',
 				'logout'=>'cms/admin/logout',
 				'blog/<id:\d+>/<title:.*?>'=>'cms/blog/view',
-				'blog/<tag:.*?>'=>'cms/blog/index',
+				'blog/tag/<tag:.*?>'=>'cms/blog/index',
+				'blog/category/<category:.*?>'=>'cms/blog/index',
 				'blog'=>'cms/blog/index',
 				'<action>'=>'site/<action>',
 				'<id:\d+>/<name>'=>'cms/pages/view', // clean URLs for pages

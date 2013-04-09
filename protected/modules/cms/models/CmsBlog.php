@@ -97,8 +97,7 @@ class CmsBlog extends CmsActiveRecord
                 'limit'=>10,
             ),
             'published'=>array(
-            	'order'=>'created DESC',
-            	'condition'=>'status = 2 AND type = "blog" AND date_start <= NOW()',
+            	'condition'=>'status = '.self::STATUS_PUBLISHED.' AND type = "blog" AND date_start <= NOW()',
             ),
         );
     }
@@ -274,7 +273,26 @@ class CmsBlog extends CmsActiveRecord
 	        
 	    return $ids;
 	}
-
+	
+	/*
+	 * Load list of categories for frontend
+	 */
+	public function listActiveCategories($limit)
+	{
+		$sql = "SELECT category.*, count(cat.category_id) as category_count FROM cms_content_categories as cat, cms_blog as blog, cms_categories as category";
+		$sql .= " WHERE cat.content_id = blog.id";
+		$sql .= " AND cat.category_id = category.id";
+		$sql .= " AND cat.type = 'blog'";
+		$sql .= " AND blog.status = 2";
+		$sql .= " AND blog.deleted = 0";
+		$sql .= " GROUP BY category.id";
+		$sql .= " ORDER BY category_count DESC";
+		$sql .= " LIMIT ".$limit;
+		
+		$result = Yii::app()->db->createCommand($sql);
+		
+		return $result;
+	}
 	
 	/*
 	 * Copy the blog as revision

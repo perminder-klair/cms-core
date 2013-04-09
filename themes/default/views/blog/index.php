@@ -32,3 +32,7 @@ $this->breadcrumbs=array(
 <?php $this->widget('CLinkPager', array(
     'pages' => $pages,
 )) ?>
+
+<div id="categories">
+	<? $this->widget('BlogCategories'); ?>
+</div>
