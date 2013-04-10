@@ -113,7 +113,7 @@ class CmsPage extends CmsActiveRecord
     public function getParentOptionTree()
     {
         $pages = CmsPage::model()->findAll();
-//echo 'hi'; die();
+
         if (!$this->isNewRecord)
         { 
             $children = $this->getChildren($pages, true);
@@ -424,13 +424,17 @@ class CmsPage extends CmsActiveRecord
     public function beforeSave() {
 	    $this->name = strtolower(preg_replace("/[^A-Za-z0-9]/", "-", $this->name));
 	 
+	    if($this->type==1)
+	    	$this->name = strtolower(preg_replace("/[^A-Za-z0-9]/", "-", $this->heading));
+	    	
 	    return parent::beforeSave();
 	}
 		
     public function adminActions()
     {
     	$result = l('Edit',array('/cms/pages/update', 'id'=>$this->id), array('class'=>'btn btn-small btn-primary'));
-    	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-small delete_dialog', 'data-url'=>url("/cms/pages/delete",array('id'=>$this->id))));
+    	if($this->type==1) $result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-small delete_dialog', 'data-url'=>url("/cms/pages/delete",array('id'=>$this->id))));
+    	else $result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-small disabled'));
     	
     	return $result;
     }
@@ -456,5 +460,21 @@ class CmsPage extends CmsActiveRecord
         else
         	return false;
     }	
+    
+    /*
+     * Creates items list for menu
+     * use it as: 'items'=>CmsPage::createChildernMenu('services'),
+     */
+    public function createChildernMenu($page)
+    {
+		$page = CmsPage::model()->findByAttributes(array('name'=>$page));
+		
+		$array = array();
+		if($page)
+			foreach($page->children as $child)
+				$array[] = array('label'=>$child->heading, 'url'=>$child->getUrl());
+		
+		return $array; 
+    }
 
 }

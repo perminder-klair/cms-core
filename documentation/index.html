@@ -83,6 +83,13 @@
 		<hr class="notop">
 		<p>To create a page simply use this in your view:</p>
 		<p><code> page('page-name-here'); </code></p>
+		<p>Create Navigation of children pages</p>
+		<p><code>
+			$this->widget('zii.widgets.CMenu',array( <br />
+					'htmlOptions'=>array('class'=>'navigation'), <br />
+					'items'=>CmsPage::createChildernMenu('aboutus'), <br />
+				));
+		</code></p>
 	</section>
 	
 	<section id="creating_blocks">

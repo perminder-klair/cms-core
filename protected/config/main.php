@@ -56,9 +56,10 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		
 		'cms'=>array('class'=>'cms.components.Cms'),
 	    'setting'=>array('class'=>'cms.components.CmsSetting'),
-		
+	    
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'showScriptName'=>false,
@@ -70,6 +71,7 @@ return array(
 				'blog/tag/<tag:.*?>'=>'cms/blog/index',
 				'blog/category/<category:.*?>'=>'cms/blog/index',
 				'blog'=>'cms/blog/index',
+				'blog/feed'=>'cms/blog/feed',
 				'<action>'=>'site/<action>',
 				'<id:\d+>/<name>'=>'cms/pages/view', // clean URLs for pages
 				'cms/<controller:\w+>/<action:\w+>/<id:\d+>'=>'cms/<controller>/<action>',
