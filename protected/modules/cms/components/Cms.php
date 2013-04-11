@@ -182,4 +182,19 @@ class Cms extends CApplicationComponent
 		CClientScript::POS_END ); 
 	}
 
+    public function scanPagesDir()
+    {
+		$pages_dir = 'themes' . DIRECTORY_SEPARATOR . Yii::app()->theme->name . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'cms_pages' . DIRECTORY_SEPARATOR;
+		
+		$handle = opendir($pages_dir);
+		while (false !== ($file = readdir($handle))) {
+		    if ($file != "." && $file != ".." && ($pages_dir . $file)) { //is_dir
+		    	$file = explode(".", $file);
+		    	$array[$file[0]] = ucfirst($file[0]);
+		    }
+		}
+		closedir($handle);
+		
+		return $array;
+    }
 }

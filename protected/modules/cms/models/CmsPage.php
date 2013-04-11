@@ -35,10 +35,10 @@ class CmsPage extends CmsActiveRecord
         	array('name, heading, body, status', 'required'),
         	array('status', 'in', 'range'=>array(1,2,3)),
             array('id, parentId, status, deleted, type', 'numerical', 'integerOnly'=>true),
-            array('level', 'length', 'max'=>25),
+            array('layout', 'length', 'max'=>25),
             array('heading, name', 'length', 'max'=>70),
 			array('metaDescription', 'length', 'max'=>160),
-            array('updated, body, status, type, tags', 'safe'),
+            array('updated, body, status, type, tags, layout', 'safe'),
             array('id, created, updated, parentId, name, deleted, type', 'safe', 'on'=>'search'),
         );
     }
@@ -67,7 +67,7 @@ class CmsPage extends CmsActiveRecord
             'updated' => Yii::t('CmsModule.core', 'Updated'),
             'name' => Yii::t('CmsModule.core', 'Url'),
             'parentId' => Yii::t('CmsModule.core', 'Parent'),
-            'level' => '',
+            'layout' => 'Layout',
             'heading' => Yii::t('CmsModule.core', 'Title'),
             'body' => Yii::t('CmsModule.core', 'Body'),
             'metaDescription' => Yii::t('CmsModule.core', 'Short Description'),
@@ -423,9 +423,6 @@ class CmsPage extends CmsActiveRecord
         
     public function beforeSave() {
 	    $this->name = strtolower(preg_replace("/[^A-Za-z0-9]/", "-", $this->name));
-	 
-	    if($this->type==1)
-	    	$this->name = strtolower(preg_replace("/[^A-Za-z0-9]/", "-", $this->heading));
 	    	
 	    return parent::beforeSave();
 	}

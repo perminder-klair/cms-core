@@ -36,8 +36,9 @@
                 <? if($model->isCmsPage()): ?>
 	                <li><a href="#validate_tab2" data-toggle="tab">Media</a></li>
 	                <li><a href="#validate_tab3" data-toggle="tab">Parent</a>
+	                <li><a href="#validate_tab4" data-toggle="tab">Style</a></li>
                 <? endif; ?>
-                <li><a href="#validate_tab4" data-toggle="tab">SEO</a></li>
+                <li><a href="#validate_tab5" data-toggle="tab">SEO</a></li>
               </ul>
             </div>
             <div class="widget-body">
@@ -113,7 +114,19 @@
 				        </div>
                   </div>
                   
-                  <div class="tab-pane" id="validate_tab4">                   
+                  <div class="tab-pane" id="validate_tab4">      
+                  		<? if($model->isCmsPage()): ?>
+			          	<div class="control-group">
+				          	<?php echo $form->labelEx($model,'layout'); ?>
+				          	<div class="controls">
+				          		<?php echo $form->dropDownList($model,'layout', Yii::app()->cms->scanPagesDir()); ?>
+				          		<span class="help-inline"><?php echo $form->error($model,'layout'); ?></span>
+				          	</div>
+				        </div>
+				        <? endif; ?>
+                  </div>
+                  
+                  <div class="tab-pane" id="validate_tab5">                   
 
 			          <div class="control-group">
 			          	<?php echo $form->labelEx($model,'metaDescription'); ?>

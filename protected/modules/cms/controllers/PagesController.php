@@ -104,8 +104,8 @@ class PagesController extends CmsController
         }
 
         //$this->layout = $app->cms->appLayout;
-
-        $this->render('//cms_pages/page', array(
+        $pageView = $model->layout;
+        $this->render('//cms_pages/'.$pageView, array(
             'model'=>$model,
             'content'=>$model->render(),
             'children'=>$model->children(array( 'scopes'=>array( 'published' ) )),
@@ -172,4 +172,5 @@ class PagesController extends CmsController
 
             return $model;
     }
+
 }
