@@ -134,9 +134,21 @@
           
           <div class="accordion-group">
             <div class="accordion-heading">
+              <a class="accordion-toggle b_F6F1A2 collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse4"><i class="icon-user"></i> <span>Users</span></a>
+            </div>
+            <div id="collapse4" class="accordion-body collapse <?=$this->getId()=='user'?'in':'';?><?=$this->getId()=='auth'?'in':'';?>">
+              <div class="accordion-inner">
+                <a class="accordion-toggle <? if(($this->getAction()->getId()=='admin') && ($this->getId()=='user')) { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/user/admin')?>"><i class="icon-align-justify"></i> All Users</a>
+                <a class="accordion-toggle <? if($this->getId()=='auth') { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/auth/roles')?>"><i class="icon-group"></i> Manage Roles</a>
+              </div>
+            </div>
+          </div>
+          
+          <!--<div class="accordion-group">
+            <div class="accordion-heading">
               <a class="accordion-toggle b_F5C294 <?=$this->getId()=='user'?'active':'';?>" href="<?=$this->createAbsoluteUrl('/cms/user/admin')?>"><i class="icon-user"></i> <span>Users</span></a>
             </div>
-          </div>  
+          </div>-->
           
           <? if(count(Yii::app()->params['adminMenu'])>0) { ?>
 	          <? foreach(Yii::app()->params['adminMenu'] as $key=>$value): ?>

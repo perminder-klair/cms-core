@@ -42,7 +42,7 @@ class CmsUser extends CmsActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, email, level', 'required'),
+			array('username, email', 'required'),
 			array('firstname, lastname', 'length', 'max'=>50),
 			array('username', 'length', 'max'=>20, 'min' => 3,'message' => "Incorrect username (length between 3 and 20 characters)."),
 			array('email', 'email'),
@@ -52,11 +52,11 @@ class CmsUser extends CmsActiveRecord
 			array('status', 'in', 'range'=>array(1,2,3)),
             //array('created', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
             //array('modified', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
-            array('level, status', 'numerical', 'integerOnly'=>true),
+            array('status', 'numerical', 'integerOnly'=>true),
             array('new_password, new_password_repeat', 'length', 'max'=>50),
-		    array('new_password', 'compare', 'compareAttribute'=>'new_password_repeat', 'on'=>'create, changePassword'),
-		    array('new_password', 'required', 'on'=>'create'),
-		    array('username, email, status, level, password, new_password, new_password_repeat', 'safe'),
+		    array('new_password', 'compare', 'compareAttribute'=>'new_password_repeat', 'on'=>'changePassword'),
+		    //array('new_password', 'required', 'on'=>'create'),
+		    array('username, email, status, password, new_password, new_password_repeat, userRole', 'safe'),
 		);
 	}
 
@@ -69,6 +69,7 @@ class CmsUser extends CmsActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'posts' => array(self::HAS_MANY, 'CmsBlog', 'author_id'),
+			//'role' => array(self::HAS_ONE, 'Authassignment', 'userid'),
 		);
 	}
 
@@ -82,7 +83,6 @@ class CmsUser extends CmsActiveRecord
 			'username' => 'Username',
 			'password' => 'Password',
 			'email' => 'Email',
-			'level' => 'Level',
 			'status' => 'Status',
 			'created' => 'Created Date',
 			'modified' => 'Modified Date',
@@ -98,7 +98,10 @@ class CmsUser extends CmsActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('email',$this->email);
-		$criteria->compare('level',$this->level);
+		
+		//use roles property
+		//$criteria->compare('role.itemname', $this->role, true, 'OR');
+		//$criteria->with = array('role');
 
 		return new CActiveDataProvider('CmsUser', array(
 			'criteria'=>$criteria,
@@ -117,7 +120,19 @@ class CmsUser extends CmsActiveRecord
 	        //dump($this->password); dump($this->hashPassword($this->new_password)); die();
 	    }
 	    
+	    //$this->setUserRole();
+	    
 	    return parent::beforeSave();
+	}
+	
+    /**
+	 * This is invoked after the record is deleted.
+	 */
+	protected function afterDelete()
+	{
+		parent::afterDelete();
+
+		$this->revokeRole();
 	}
 	
 	/**
@@ -206,4 +221,55 @@ class CmsUser extends CmsActiveRecord
     	
     	return $result;
     }
+    
+    /*
+     * Role management
+     */
+	public function getUserRole($id=null) 
+	{
+		if($id)
+			$this->id=$id;
+			
+        $role = Yii::app()->db->createCommand()
+                ->select('itemname')
+                ->from('AuthAssignment')
+                ->where('userid=:id', array(':id'=>$this->id))
+                ->queryScalar();
+
+        return $role;
+	}
+	
+	public function setUserRole($role=null)
+	{
+		if($role!==$this->getUserRole($this->id)) {
+			$this->revokeRole(); //to delete old role
+			$auth=Yii::app()->authManager;
+			$auth->assign($role, $this->id); //create new role
+		}
+	}
+	
+	protected function revokeRole()
+	{
+		$auth=Yii::app()->authManager;
+		$auth->revoke($this->getUserRole($this->id), $this->id);
+	}
+
+    public function getRolesAsListData()
+	{
+		$roles = Yii::app()->authManager->getRoles();
+		return CHtml::listData($roles,'name','description');    
+	}
+	
+	public function getOperationsAsListData()
+	{
+		$roles = Yii::app()->authManager->getOperations();
+		return CHtml::listData($roles,'name','description');    
+	}
+	
+	public function getAllOperations()
+	{
+		$operations = Yii::app()->authManager->getOperations();
+		return CHtml::listData($operations,'name','description'); 
+	}
+	
 }

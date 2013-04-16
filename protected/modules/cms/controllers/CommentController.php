@@ -13,25 +13,7 @@ class CommentController extends CmsController
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',
-				'actions'=>array('admin', 'approve', 'update', 'delete'),
-				'expression'=>'$user->isAdmin()'
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
+			array('cms.filters.AuthFilter'),
 		);
 	}
 	
@@ -60,29 +42,6 @@ class CommentController extends CmsController
 		));
 	}
 
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 */
-	/*public function actionUpdate()
-	{
-		$model=$this->loadModel();
-		if(isset($_POST['ajax']) && $_POST['ajax']==='comment-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-		if(isset($_POST['Comment']))
-		{
-			$model->attributes=$_POST['Comment'];
-			if($model->save())
-				$this->redirect(array('index'));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}*/
 	public function actionUpdate()
 	{
 		$this->layout = 'admin';

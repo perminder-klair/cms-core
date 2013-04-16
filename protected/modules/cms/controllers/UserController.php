@@ -2,32 +2,13 @@
 
 class UserController extends CmsController
 {
-
 	/**
 	 * @return array action filters
 	 */
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',
-				'actions'=>array('admin', 'create', 'update', 'delete'),
-				'expression'=>'$user->isAdmin()'
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
+			array('cms.filters.AuthFilter'),
 		);
 	}
 
@@ -55,24 +36,11 @@ class UserController extends CmsController
 	 */
 	public function actionCreate()
 	{ 
-		$this->layout = 'admin';
-		
-		$model=new CmsUser('create');
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['CmsUser']))
-		{
-		
-			$model->attributes=$_POST['CmsUser'];
-			if($model->save())
-				$this->redirect(array('admin'));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$model=new CmsUser();
+		$model->username='new_user';
+		$model->email='user@user.com';
+		if($model->save())
+			$this->redirect(array('update', 'id'=>$model->id));
 	}
 	
 	/**
@@ -90,12 +58,15 @@ class UserController extends CmsController
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['CmsUser']))
-		{
+		{ //dump($_POST['CmsUser']); die();
 			$model->attributes=$_POST['CmsUser'];
 			
 			// if a new password has been entered
 		    if ($model->new_password !== '') 
 		    	$model->setScenario('changePassword'); // set scenario 'changePassword' in order for the compare validator to be called
+		    	
+		    //update user role
+		    $model->setUserRole($_POST['CmsUser']['userRole']);
 
 			if($model->save())
 				$this->redirect(array('admin'));
@@ -104,6 +75,15 @@ class UserController extends CmsController
 		$this->render('update',array(
 			'model'=>$model,
 		));
+	}
+	
+	public function actionDelete($id)
+	{
+		$this->loadModel($id)->delete();
+
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect('/cms/user/admin');
 	}
 	
 	/**
@@ -133,4 +113,5 @@ class UserController extends CmsController
 			Yii::app()->end();
 		}
 	}
+	
 }

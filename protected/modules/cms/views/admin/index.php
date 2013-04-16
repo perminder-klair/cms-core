@@ -129,7 +129,7 @@
             <div class="widget-body" style="height:310px;overflow:hidden">
               <div class="widget-tickets clearfix slimscroll">
           		<? if(count($blogs)<=0) { ?>
-          			<h5>No blogs to display.</h5>
+          			<h5>&nbsp;&nbsp;No blogs to display.</h5>
           		<? } else { ?>
                 <ul>
                 	<? foreach($blogs as $blog): ?>
@@ -161,7 +161,7 @@
             <div class="widget-body" style="height:310px;overflow:hidden">
               <div class="widget-comments clearfix slimscroll">
           		<? if(count($comments)<=0) { ?>
-          			<h5>No comments to display.</h5>
+          			<h5>&nbsp;&nbsp;No comments to display.</h5>
           		<? } else { ?>
                 <ul>
                 	<? foreach($comments as $comment): ?>

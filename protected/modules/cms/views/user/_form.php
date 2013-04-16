@@ -70,12 +70,13 @@
 			          </div>
 			          
 			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'level'); ?>
+			          	<?php echo $form->labelEx($model,'userRole'); ?>
 			          	<div class="controls">
-		                    <?=$form->dropDownList($model,'level',CmsLookup::items('UserLevel'), array('class'=>'span7'));?>
-			          		<span class="help-inline"><?php echo $form->error($model,'level'); ?></span>
+		                    <?=$form->dropDownList($model,'userRole',$model->getRolesAsListData(), array('class'=>'span7'));?>
+			          		<span class="help-inline"><?php echo $form->error($model,'userRole'); ?></span>
 			          	</div>
 			          </div>
+			          
                   </div>
                   
 

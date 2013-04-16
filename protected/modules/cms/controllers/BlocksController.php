@@ -8,25 +8,7 @@ class BlocksController extends CmsController
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',
-				'actions'=>array('admin', 'create', 'update', 'delete'),
-				'expression'=>'$user->isAdmin()'
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
+			array('cms.filters.AuthFilter'),
 		);
 	}
 	

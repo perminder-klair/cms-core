@@ -33,8 +33,12 @@ class CmsWebUser extends CWebUser{
  
     function isAdmin(){ 
         $user = $this->loadUser();
-        if ($user->level==1)
+        /*if ($user->level==1)
         	return true; //return $user->level==CmsLookup::item('UserStatus', $user->level); //LevelLookUp::ADMIN
+        return false;*/
+        
+        if (($user->getUserRole()=='admin') || ($user->getUserRole()=='super'))
+        	return true;
         return false;
     }
  

@@ -40,14 +40,15 @@
 							'type'=>'raw',
 						),
 						array(
-							'header'=>'Level',
-							'value'=>'CmsLookup::item("UserLevel", $data->level)',
-						),
-						array(
 							'header'=>'Status',
 							'value'=>'$data->adminStatus()',
 							'type'=>'raw',
 						),
+						array(
+							'header' => 'Role',
+							'value' => 'ucfirst($data->getUserRole($data->id))',
+						),
+
 						array(
 							'header'=>'Actions',
 							'value'=>'$data->adminActions()',

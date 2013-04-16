@@ -13,30 +13,7 @@ class BlogController extends CmsController
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to access 'index' and 'view' actions.
-				'actions'=>array('*'),
-				'users'=>array('*'),
-			),
-			array('allow',
-				'actions'=>array('admin', 'create', 'update', 'delete', 'tags', 'restore'),
-				'expression'=>'$user->isAdmin()'
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-				'actions'=>array('admin', 'create', 'update', 'delete', 'tags', 'restore'),
-			),
+			array('cms.filters.AuthFilter'),
 		);
 	}
 
@@ -125,7 +102,7 @@ class BlogController extends CmsController
 	public function actionDelete($id)
 	{ 
 		$this->loadModel($id)->delete();
-//dump('hi'); die();
+
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
@@ -184,6 +161,12 @@ class BlogController extends CmsController
 	 */
 	public function actionAdmin()
 	{
+		/*if(Yii::app()->user->checkAccess('createPost')) {
+			dump('yes'); die();
+		} else {
+			dump('no'); die();
+		}*/
+		
 		$this->layout = 'admin';
 		
 		$model=new CmsBlog('search');

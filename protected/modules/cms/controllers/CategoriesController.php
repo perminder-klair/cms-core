@@ -1,13 +1,7 @@
 <?php
 
-class CategoriesController extends Controller
+class CategoriesController extends CmsController
 {
-	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='//layouts/main';
-	public $defaultAction = 'index';
 
 	/**
 	 * @return array action filters
@@ -15,31 +9,7 @@ class CategoriesController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-			//'postOnly + delete', // we only allow deletion via POST request
-		);
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('*'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('admin', 'create', 'update', 'delete'),
-				'expression'=>'$user->isAdmin()',
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-				'actions'=>array('admin', 'create', 'update', 'delete'),
-			),
+			array('cms.filters.AuthFilter'),
 		);
 	}
 

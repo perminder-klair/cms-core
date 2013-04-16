@@ -55,11 +55,21 @@ return array(
 			'class'=>'application.modules.cms.components.CmsWebUser',
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+			'loginUrl'=>array('/cms/admin/login'),
 		),
 		
 		'cms'=>array('class'=>'cms.components.Cms'),
 	    'setting'=>array('class'=>'cms.components.CmsSetting'),
 	    
+	    'authManager'=>array(
+            'class'=>'CDbAuthManager',
+            'connectionID'=>'db',
+            //'defaultRoles'=>array('authenticated', 'admin'),
+            'behaviors' => array(
+            	'class' => 'cms.components.AuthBehavior',
+            ),
+        ),
+        
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'showScriptName'=>false,
