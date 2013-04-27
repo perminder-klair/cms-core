@@ -62,6 +62,15 @@ function userId()
 {
     return Yii::app()->user->id;
 }
+
+/**
+ * This is the shortcut to get user details.
+ * user it as: userDetails()->email;
+ */
+function userDetails($column)
+{
+	return Yii::app()->user->getDetails()->$column;
+}
  
 /**
  * This is the shortcut to Yii::app()->user->isAdmin().

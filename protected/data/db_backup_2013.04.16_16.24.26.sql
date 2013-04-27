@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   `bizrule` text,
   `data` text,
   PRIMARY KEY (`itemname`,`userid`),
-  CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `AuthItemChild` (
   `child` varchar(64) NOT NULL,
   PRIMARY KEY (`parent`,`child`),
   KEY `child` (`child`),
-  CONSTRAINT `authitemchild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `authitemchild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `AuthItem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `authitemchild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `authitemchild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
@@ -237,9 +237,9 @@ CREATE TABLE IF NOT EXISTS `cms_user` (
 -- TABLE DATA AuthAssignment
 -- -------------------------------------------
 INSERT INTO `AuthAssignment` (`itemname`,`userid`,`bizrule`,`data`) VALUES
-('admin','1','','N;');
-INSERT INTO `AuthAssignment` (`itemname`,`userid`,`bizrule`,`data`) VALUES
 ('super','2','','N;');
+INSERT INTO `AuthAssignment` (`itemname`,`userid`,`bizrule`,`data`) VALUES
+('user','1','','N;');
 
 
 
@@ -299,6 +299,14 @@ INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
 INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
 ('cms.pages.admin','0','Pages Manage','','N;');
 INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
+('cms.pages.create','0','Page Create','','N;');
+INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
+('cms.pages.delete','0','Page Delete','','N;');
+INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
+('cms.pages.update','0','Page Update','','N;');
+INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
+('cms.pages.view','0','Page View','','N;');
+INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
 ('cms.user.admin','0','Users Manage','','N;');
 INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
 ('cms.user.create','0','User Create','','N;');
@@ -350,6 +358,14 @@ INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
 ('admin','cms.comment.delete');
 INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
 ('admin','cms.comment.update');
+INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
+('admin','cms.pages.admin');
+INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
+('admin','cms.pages.create');
+INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
+('admin','cms.pages.update');
+INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
+('user','cms.pages.view');
 INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
 ('admin','cms.user.admin');
 INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
@@ -473,7 +489,7 @@ INSERT INTO `cms_tag` (`id`,`name`,`frequency`) VALUES
 -- TABLE DATA cms_user
 -- -------------------------------------------
 INSERT INTO `cms_user` (`id`,`username`,`password`,`email`,`firstname`,`lastname`,`created`,`modified`,`status`,`activkey`) VALUES
-('1','demo','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','webmaster@example.com','','','2013-03-01 12:21:41','2013-04-16 13:21:14','2','');
+('1','demo','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','webmaster@example.com','','','2013-03-01 12:21:41','2013-04-16 16:17:21','2','');
 INSERT INTO `cms_user` (`id`,`username`,`password`,`email`,`firstname`,`lastname`,`created`,`modified`,`status`,`activkey`) VALUES
 ('2','admin','$2a$10$TaMCcwXsT.JsDlIWztuOo.xDJ9uSH5hfqad.Ui5YxNgtQYV1wrG8.','parminder@tblmarketing.com','','','2013-03-21 17:18:53','2013-04-16 12:51:23','2','');
 

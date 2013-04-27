@@ -119,6 +119,8 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('<?php echo $this->modelClass; ?>');
+		//$dataProvider = <?php echo $this->modelClass; ?>::model()->findAll();
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

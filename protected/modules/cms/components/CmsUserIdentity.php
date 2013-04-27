@@ -16,6 +16,9 @@ class CmsUserIdentity extends CUserIdentity
 	public function authenticate()
 	{ 
 		$user=CmsUser::model()->find('LOWER(username)=?',array(strtolower($this->username)));
+		//try with email
+		if($user===null)
+			$user=CmsUser::model()->find('LOWER(email)=?',array(strtolower($this->username)));
 
 		if($user===null)
 			$this->errorCode=self::ERROR_USERNAME_INVALID;

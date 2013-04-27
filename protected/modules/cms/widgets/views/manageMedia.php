@@ -13,7 +13,7 @@
 	        ),
 	        'validation' => array(
 	            'allowedExtensions' => array('jpg', 'jpeg', 'png', 'bmp'),
-	            'sizeLimit' => 1048576, // max file size in bytes
+	            'sizeLimit' => 20971520, // max file size in bytes
 	            'minSizeLimit' => 256, // min file size in bytes
 	        ),
 	        'callbacks' => array(

@@ -32,6 +32,9 @@ class CmsWebUser extends CWebUser{
     protected $_model;
  
     function isAdmin(){ 
+    	if(Yii::app()->user->isGuest)
+    		return false;
+    		
         $user = $this->loadUser();
         /*if ($user->level==1)
         	return true; //return $user->level==CmsLookup::item('UserStatus', $user->level); //LevelLookUp::ADMIN
@@ -40,6 +43,16 @@ class CmsWebUser extends CWebUser{
         if (($user->getUserRole()=='admin') || ($user->getUserRole()=='super'))
         	return true;
         return false;
+    }
+
+    /**
+     * get details from user model
+     * use it: Yii::app()->user->getDetails()->email
+     */
+    public function getDetails()
+    {
+        if($user = $this->loadUser())
+        	return $user;
     }
  
     // Load user model.

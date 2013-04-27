@@ -1,5 +1,6 @@
 <?php
 require(dirname(__FILE__).'/../helpers/globals.php');
+require(dirname(__FILE__).'/../helpers/site.php');
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
@@ -56,6 +57,7 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 			'loginUrl'=>array('/cms/admin/login'),
+			'returnUrl'=>array('/site/index'),
 		),
 		
 		'cms'=>array('class'=>'cms.components.Cms'),
