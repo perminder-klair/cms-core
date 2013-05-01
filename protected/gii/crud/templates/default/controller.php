@@ -165,10 +165,15 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='<?php echo $this->class2id($this->modelClass); ?>-form')
+		/*if(isset($_POST['ajax']) && $_POST['ajax']==='<?php echo $this->class2id($this->modelClass); ?>-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
+		}*/
+		
+		if(Yii::app()->getRequest()->getIsAjaxRequest()) {
+			echo CActiveForm::validate( array( $model)); 
+			Yii::app()->end(); 
 		}
 	}
 }

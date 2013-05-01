@@ -68,6 +68,7 @@ class CmsUser extends CmsActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'profile'=>array(self::HAS_ONE, 'CmsUserProfile', 'user_id'),
 			'posts' => array(self::HAS_MANY, 'CmsBlog', 'author_id'),
 			//'role' => array(self::HAS_ONE, 'Authassignment', 'userid'),
 		);
@@ -125,6 +126,25 @@ class CmsUser extends CmsActiveRecord
 	    return parent::beforeSave();
 	}
 	
+	public function afterSave() {
+	    parent::afterSave();
+	    
+	    if ($this->isNewRecord) {
+	        //create profile row
+			$profile = new CmsUserProfile;
+			$profile->user_id = $this->id;
+			$profile->save();
+	    }
+	}
+	
+    public function afterDelete()
+    {
+    	parent::afterDelete();
+    	
+    	//deletes profile row
+    	$this->profile->delete();
+    }
+    
     /**
 	 * This is invoked after the record is deleted.
 	 */

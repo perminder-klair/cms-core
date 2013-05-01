@@ -41,9 +41,9 @@
             </tr>
           </thead>
           <tbody>
+          	<? $mediaView = 'application.modules.cms.views.media.newMedia'; ?>
           	<? foreach($model->media as $media): ?>
-          		<?php $view = 'application.modules.cms.views.media.newMedia';
-          		echo Yii::app()->controller->renderPartial($view, array('media'=>$media)); ?>
+          		<?php echo Yii::app()->controller->renderPartial($mediaView, array('media'=>$media)); ?>
             <? endforeach; ?>
           </tbody>
         </table>
