@@ -2,7 +2,6 @@
 
 class SiteController extends Controller
 {
-
 	/**
 	 * Declares class-based actions.
 	 */
@@ -38,45 +37,34 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
-		if($error=Yii::app()->errorHandler->error)
-		{
-			if(Yii::app()->request->isAjaxRequest)
-				echo $error['message'];
-			else
-				$this->render('error', $error);
-		}
+	    if($error=Yii::app()->errorHandler->error)
+	    {
+	    	if(Yii::app()->request->isAjaxRequest)
+	    		echo $error['message'];
+	    	else
+	        	$this->render('error', $error);
+	    }
 	}
 
 	/**
 	 * Displays the contact page
 	 */
 	public function actionContact()
-	{		
+	{
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
 		{
 			$model->attributes=$_POST['ContactForm'];
 			if($model->validate())
 			{
-				/*$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-type: text/plain; charset=UTF-8";
-
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);*/
-				
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
 				//use 'contact' view from views/mail
-				$mail = new YiiMailer('contact', array('message' => $model->body, 'name' => $name, 'description' => 'Contact form'));
+				$mail = new YiiMailer('contact', array('message' => $model->body, 'name' => $model->name, 'description' => 'Contact form'));
 				//render HTML mail, layout is set from config file or with $mail->setLayout('layoutName')
 				$mail->render();
 				//set properties as usually with PHPMailer
 				$mail->From = $model->email;
 				$mail->FromName = $model->name;
-				$mail->Subject = $subject;
+				$mail->Subject = $model->subject;
 				$mail->AddAddress(Yii::app()->params['adminEmail']);
 				//send
 				if ($mail->Send()) {
@@ -91,20 +79,13 @@ class SiteController extends Controller
 		}
 		$this->render('contact',array('model'=>$model));
 	}
-	
+
 	/**
 	 * Displays the login page
 	 */
 	public function actionLogin()
 	{
-		//Check if visitor is not guest then redirect to index page
-		if(!Yii::app()->user->isGuest)
-			$this->redirect(array('index'));
-	
-		if (!defined('CRYPT_BLOWFISH')||!CRYPT_BLOWFISH)
-			throw new CHttpException(500,"This application requires that PHP was compiled with Blowfish support for crypt().");
-		
-		$model=new CmsLogin;
+		$model=new LoginForm;
 
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
@@ -114,16 +95,23 @@ class SiteController extends Controller
 		}
 
 		// collect user input data
-		if(isset($_POST['CmsLogin']))
+		if(isset($_POST['LoginForm']))
 		{
-			$model->attributes=$_POST['CmsLogin'];
+			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login()) {
-				$this->redirect('/index');	//Yii::app()->user->returnUrl
-			}
+			if($model->validate() && $model->login())
+				$this->redirect(Yii::app()->user->returnUrl);
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}
-	
+
+	/**
+	 * Logs out the current user and redirect to homepage.
+	 */
+	public function actionLogout()
+	{
+		Yii::app()->user->logout();
+		$this->redirect(Yii::app()->homeUrl);
+	}
 }

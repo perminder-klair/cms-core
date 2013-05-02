@@ -24,6 +24,7 @@ return array(
 		'application.modules.cms.components.CmsActiveRecord',
 		'application.modules.cms.components.CmsUserIdentity',
 		'application.extensions.CAdvancedArBehavior',
+		'application.extensions.YiiMailer.YiiMailer',
 	),
 	
 	'aliases' => array(),

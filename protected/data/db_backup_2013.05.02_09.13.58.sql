@@ -17,8 +17,7 @@ CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   `userid` varchar(64) NOT NULL,
   `bizrule` text,
   `data` text,
-  PRIMARY KEY (`itemname`,`userid`),
-  CONSTRAINT `authassignment_ibfk_1` FOREIGN KEY (`itemname`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`itemname`,`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
@@ -42,9 +41,7 @@ CREATE TABLE IF NOT EXISTS `AuthItemChild` (
   `parent` varchar(64) NOT NULL,
   `child` varchar(64) NOT NULL,
   PRIMARY KEY (`parent`,`child`),
-  KEY `child` (`child`),
-  CONSTRAINT `authitemchild_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `authitemchild_ibfk_2` FOREIGN KEY (`child`) REFERENCES `authitem` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `child` (`child`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
@@ -234,6 +231,19 @@ CREATE TABLE IF NOT EXISTS `cms_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- -------------------------------------------
+-- TABLE cms_user_profile
+-- -------------------------------------------
+DROP TABLE IF EXISTS cms_user_profile;
+CREATE TABLE IF NOT EXISTS `cms_user_profile` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `postcode` varchar(20) DEFAULT NULL,
+  `telehphone` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- -------------------------------------------
 -- TABLE DATA AuthAssignment
 -- -------------------------------------------
 INSERT INTO `AuthAssignment` (`itemname`,`userid`,`bizrule`,`data`) VALUES
@@ -313,6 +323,8 @@ INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
 INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
 ('cms.user.update','0','User Update','','N;');
 INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
+('guest','2','Guest','','N;');
+INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
 ('super','2','Super Administrator','','N;');
 INSERT INTO `AuthItem` (`name`,`type`,`description`,`bizrule`,`data`) VALUES
 ('user','2','User','','N;');
@@ -336,6 +348,8 @@ INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
 ('admin','cms.blog.delete');
 INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
 ('user','cms.blog.feed');
+INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
+('guest','cms.blog.index');
 INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
 ('user','cms.blog.index');
 INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
@@ -374,6 +388,8 @@ INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
 ('admin','cms.user.update');
 INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
 ('admin','user');
+INSERT INTO `AuthItemChild` (`parent`,`child`) VALUES
+('guest','user');
 
 
 
