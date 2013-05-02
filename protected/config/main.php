@@ -66,7 +66,7 @@ return array(
 	    'authManager'=>array(
             'class'=>'CDbAuthManager',
             'connectionID'=>'db',
-            //'defaultRoles'=>array('authenticated', 'admin'),
+            'defaultRoles'=>array('guest', 'user', 'admin', 'super'),
             'behaviors' => array(
             	'class' => 'cms.components.AuthBehavior',
             ),

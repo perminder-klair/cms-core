@@ -143,17 +143,10 @@ class CmsUser extends CmsActiveRecord
     	
     	//deletes profile row
     	$this->profile->delete();
+    	
+    	//This is invoked after the record is deleted.
+    	$this->revokeRole();
     }
-    
-    /**
-	 * This is invoked after the record is deleted.
-	 */
-	protected function afterDelete()
-	{
-		parent::afterDelete();
-
-		$this->revokeRole();
-	}
 	
 	/**
 	 * Checks if the given password is correct.

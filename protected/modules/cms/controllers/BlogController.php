@@ -142,7 +142,7 @@ class BlogController extends CmsController
 			}
 		}
 		
-	    $count=CmsBlog::model()->published()->count($criteria);
+	    $count=CmsBlog::model()->count($criteria);
 	    
 	    $pages=new CPagination($count);
 	    $pages->pageSize=10; // results per page

@@ -88,6 +88,9 @@ class CmsMedia extends CmsActiveRecord
         
     public function beforeSave() {
 	    if ($this->isNewRecord)	$this->published = self::STATUS_PUBLISHED;
+	    
+	    //empty cache folder
+        $this->empty_cache();
 	 
 	    return parent::beforeSave();
 	}
@@ -105,6 +108,16 @@ class CmsMedia extends CmsActiveRecord
 		//remove from join table
 		$this->deleteContentJoin($this->id);
 		
+		//empty cache folder
+        $this->empty_cache();
+		
+	}
+	
+	//empty cache folder
+	private function empty_cache()
+	{
+		$cache_dir = 'files/cache/';
+        if(file_exists($cache_dir)) deleteDirectory($cache_dir, true);
 	}
 
 	private function deleteContentJoin($id)
@@ -173,7 +186,10 @@ class CmsMedia extends CmsActiveRecord
 			if($array['width']) $path_parts['filename'] .= '_'.$array['width'];
 			if($array['height']) $path_parts['filename'] .= '_'.$array['height'];
 			
-			$new_path = $path_parts['dirname'].'/'.$path_parts['filename'].'.'.$path_parts['extension'];
+			$cache_dir = 'files/cache';
+			if(!is_dir($cache_dir)) mkdir($cache_dir, 0777, true);
+			
+			$new_path = $cache_dir.'/'.$path_parts['filename'].'.'.$path_parts['extension'];
 			
 			$image->save($new_path);
 		}

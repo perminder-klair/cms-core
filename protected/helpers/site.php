@@ -11,14 +11,17 @@
 	/**
 	 * delete directory recursivly
 	 */
-	function deleteDirectory($dir) {
+	function deleteDirectory($dir, $keepDir=false) {
 		if (!file_exists($dir)) return true;
 		if (!is_dir($dir)) return unlink($dir);
 		foreach (scandir($dir) as $item) {
 			if ($item == '.' || $item == '..') continue;
 			if (!deleteDirectory($dir.DIRECTORY_SEPARATOR.$item)) return false;
 		}
-		return rmdir($dir);
+		if($keepDir)
+			return true;
+		else
+			return rmdir($dir);
 	}
 	
 	/**

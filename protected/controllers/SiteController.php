@@ -106,5 +106,113 @@ class SiteController extends Controller
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}
+	
+	/*public function actionTest()
+	{
+		$auth=Yii::app()->authManager;
+	    
+	    // remove all operations, roles, child relationships, and assignments
+	    $auth->clearAll();
+	
+	    // create operations for User
+	    $auth->createOperation("readUser","Read existing User");
+	    $auth->createOperation("adminUser","Manage Users");
+	    $auth->createOperation("createUser","Create a new User");
+	    $auth->createOperation("updateUser","Update a User");
+	    $auth->createOperation("deleteUser","Delete a User");
+	    $auth->createOperation("updateOwnUser","Update own User"); // needs bizRule
+	    // create operations for Author
+	    $auth->createOperation("readAuthor","Read existing Author");
+	    $auth->createOperation("adminAuthor","Manage Authors");
+	    $auth->createOperation("createAuthor","Create a new Author");
+	    $auth->createOperation("updateAuthor","Update an Author");
+	    $auth->createOperation("deleteAuthor","Delete an Author");
+	    // create operations for Quote
+	    $auth->createOperation("readQuote","Read existing Quote");
+	    $auth->createOperation("adminQuote","Manage Quotes");
+	    $auth->createOperation("createQuote","Create a new Quote");
+	    $auth->createOperation("updateQuote","Update a Quote");
+	    $auth->createOperation("deleteQuote","Delete a Quote");
+	    // create operations for Drink
+	    $auth->createOperation("readDrink","Read existing Drink");
+	    $auth->createOperation("adminDrink","Manage Drinks");
+	    $auth->createOperation("createDrink","Create a new Drink");
+	    $auth->createOperation("updateDrink","Update a Drink");
+	    $auth->createOperation("deleteDrink","Delete a Drink");
+	    // create operations for Product
+	    $auth->createOperation("readProduct","Read existing Product");
+	    $auth->createOperation("adminProduct","Manage Products");
+	    $auth->createOperation("createProduct","Create a new Product");
+	    $auth->createOperation("updateProduct","Update an Product");
+	    $auth->createOperation("deleteProduct","Delete an Product");
+	    // create operations for Ingredient
+	    $auth->createOperation("readIngredient","Read existing Ingredient");
+	    $auth->createOperation("adminIngredient","Manage Ingredients");
+	    $auth->createOperation("createIngredient","Create a new Ingredient");
+	    $auth->createOperation("updateIngredient","Update an Ingredient");
+	    $auth->createOperation("deleteIngredient","Delete an Ingredient");
+	    // create operations for Unit
+	    $auth->createOperation("readUnit","Read existing Unit");
+	    $auth->createOperation("adminUnit","Manage Units");
+	    $auth->createOperation("createUnit","Create a new Unit");
+	    $auth->createOperation("updateUnit","Update an Unit");
+	    $auth->createOperation("deleteUnit","Delete an Unit");
+	    
+	    // create guest role and add read operations
+	    $bizRule="return Yii::app()->user->isGuest;";
+	    $role=$auth->createRole("guest", "guest user", $bizRule);
+	    $role->addChild("readAuthor");
+	    $role->addChild("readQuote");
+	    $role->addChild("readDrink");
+	    $role->addChild("readProduct");
+	    $role->addChild("readIngredient");
+	    $role->addChild("readUnit");
+	    
+	    // create authenticated role and add guest role and update own user permission
+	    $bizRule="return !Yii::app()->user->isGuest;";
+	    $role=$auth->createRole("authenticated", "authenticated user", $bizRule);
+	    $role->addChild("guest");
+	    $role->addChild("UpdateOwnUser");
+	
+	    // create owner role and assign all create, update, and delete permissions
+	    $role=$auth->createRole("owner", "owner user");
+	    //$role->addChild("authenticated"); // should not be necessary, owner will be authenticated
+	    $role->addChild("readUser");
+	    $role->addChild("adminUser");
+	    $role->addChild("createUser");
+	    $role->addChild("updateUser");
+	    $role->addChild("deleteUser");
+	    $role->addChild("adminQuote");
+	    $role->addChild("createQuote");
+	    $role->addChild("updateQuote");
+	    $role->addChild("deleteQuote");
+	    $role->addChild("adminAuthor");
+	    $role->addChild("createAuthor");
+	    $role->addChild("updateAuthor");
+	    $role->addChild("deleteAuthor");
+	    $role->addChild("adminDrink");
+	    $role->addChild("createDrink");
+	    $role->addChild("updateDrink");
+	    $role->addChild("deleteDrink");
+	    $role->addChild("adminProduct");
+	    $role->addChild("createProduct");
+	    $role->addChild("updateProduct");
+	    $role->addChild("deleteProduct");
+	    $role->addChild("adminIngredient");
+	    $role->addChild("createIngredient");
+	    $role->addChild("updateIngredient");
+	    $role->addChild("deleteIngredient");
+	    $role->addChild("adminUnit");
+	    $role->addChild("createUnit");
+	    $role->addChild("updateUnit");
+	    $role->addChild("deleteUnit");
+	
+	    // assign owner role
+	    $auth->assign("owner","1");
+	
+	    // success message
+	    echo "Authorization hierarchy successfully generated.";
+
+	}*/
 
 }
