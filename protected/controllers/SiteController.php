@@ -57,16 +57,7 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['ContactForm'];
 			if($model->validate())
-			{
-				/*$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-type: text/plain; charset=UTF-8";
-
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);*/
-				
+			{	
 				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
 				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
 				//use 'contact' view from views/mail

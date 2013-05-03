@@ -245,7 +245,7 @@ class CmsBlog extends CmsActiveRecord
 	public function listAllCategories()
 	{
 		$criteria=new CDbCriteria(
-			array("condition"=>"type = ".CmsCategories::TYPE_BLOG)
+			array("condition"=>"category_type = ".CmsCategories::TYPE_BLOG)
 		);
 		$blogCategories = CmsCategories::model()->findAll($criteria);
 		

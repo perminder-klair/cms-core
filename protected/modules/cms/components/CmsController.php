@@ -34,12 +34,21 @@ class CmsController extends CController
 	}
 	
 	public function getMetaData()
-    {
-    	if(empty($this->pageTitle)) $this->pageTitle = Yii::app()->setting->getValue('site_name');
+    { 
+    	$controllerName = ucfirst(Yii::app()->controller->id);
+    	$methodName = ucfirst(Yii::app()->controller->action->id);
+    	
+    	if(empty($this->pageTitle))
+    	{
+    		$this->pageTitle = '';
+	    	if(Yii::app()->controller->id!=='site') $this->pageTitle .= $controllerName.' - ';
+	    	if(Yii::app()->controller->action->id!=='index') $this->pageTitle .= $methodName.' - ';
+	    	$this->pageTitle .= Yii::app()->setting->getValue('site_name');
+    	}
 		else $this->pageTitle=$this->pageTitle.' - '.Yii::app()->setting->getValue('site_name');
 		
-		if(empty($this->pageDescription)) $this->pageDescription=Yii::app()->setting->getValue('home_meta_description');
-		if(empty($this->pageKeywords)) $this->pageKeywords=Yii::app()->setting->getValue('home_meta_keywords');
+		if(empty($this->pageDescription)) $this->pageDescription= $controllerName.' - '.$methodName.' - '.Yii::app()->setting->getValue('home_meta_description');
+		if(empty($this->pageKeywords)) $this->pageKeywords = $controllerName.', '.$methodName.', '.Yii::app()->setting->getValue('home_meta_keywords');
 		
         echo '<title>'.CHtml::encode($this->pageTitle).'</title>';
         Yii::app()->clientScript->registerMetaTag($this->pageDescription, 'description');

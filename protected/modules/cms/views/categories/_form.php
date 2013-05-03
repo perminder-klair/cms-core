@@ -65,10 +65,10 @@
 	          	</div>
 	          
 	          	<div class="control-group">
-	          		<?php echo $form->labelEx($model,'type'); ?>
+	          		<?php echo $form->labelEx($model,'category_type'); ?>
 	          		<div class="controls">
-	          			<?=$form->dropDownList($model,'type',CmsLookup::items('CategoryType'), array('class'=>'span7'));?>
-	          			<span class="help-inline"><?php echo $form->error($model,'type'); ?></span>
+	          			<?=$form->dropDownList($model,'category_type',CmsLookup::items('CategoryType'), array('class'=>'span7'));?>
+	          			<span class="help-inline"><?php echo $form->error($model,'category_type'); ?></span>
 	          		</div>
 	          	</div>
 	          	

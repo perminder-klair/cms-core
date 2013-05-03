@@ -154,10 +154,23 @@ foreach($columns as $name=>$column)
 		));
 	}
 	
+	/**
+	 * This is invoked after the record is deleted.
+	 */
+	public function afterDelete()
+	{	
+		parent::afterDelete();
+		
+		//remove all related media
+		foreach($this->media as $media) {
+			$media->delete();
+		}
+	}
+	
 	public function adminActions()
 	{
-		$result = l('Edit',array('/<?php echo $tableName; ?>/update', 'id'=>$this->id), array('class'=>'btn btn-mini btn-primary'));
-    	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/<?php echo $tableName; ?>/delete",array('id'=>$this->id))));
+		$result = l('Edit',array('/<?php echo $modelClass; ?>/update', 'id'=>$this->id), array('class'=>'btn btn-mini btn-primary'));
+    	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/<?php echo $modelClass; ?>/delete",array('id'=>$this->id))));
 
     	return $result;
 	}

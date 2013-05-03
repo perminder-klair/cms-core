@@ -22,3 +22,12 @@ For live environment change database config in:
 
 Login to Admin Panel by visiting: www.yoursite.com/admin/login and
 logins are: admin / admin
+
+Know Issues / ToDo
+------------------
+- solution for sysphus for multi editors
+- png files not uploading
+- upload limit more then 1mb
+- media to have categories
+- on new model generate categories
+- fix htaccess with some servers

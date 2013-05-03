@@ -33,7 +33,7 @@ class CategoriesController extends CmsController
 		$model = new CmsCategories;
 		$model->title='Category Title';
 		$model->parent=1;
-		$model->type=1;
+		$model->category_type=1;
 		if($model->save())
 			$this->redirect(array('update','id'=>$model->id));
 	}

@@ -42,12 +42,12 @@ class CmsCategories extends SiteActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, type', 'required'),
-			array('parent, type', 'numerical', 'integerOnly'=>true),
+			array('title, category_type', 'required'),
+			array('parent, category_type', 'numerical', 'integerOnly'=>true),
 			array('title, url', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, url, parent, type', 'safe', 'on'=>'search'),
+			array('id, title, url, parent, category_type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,7 +73,7 @@ class CmsCategories extends SiteActiveRecord
 			'title' => 'Title',
 			'url' => 'Url',
 			'parent' => 'Parent',
-			'type' => 'Type',
+			'category_type' => 'Type',
 		);
 	}
 
@@ -116,10 +116,5 @@ class CmsCategories extends SiteActiveRecord
     	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/cms/categories/delete",array('id'=>$this->id))));
 
     	return $result;
-    	
-		//$result = '<a class="btn btn-mini btn-primary" href="'.url("/cms_categories/update/".$this->id).'">Edit</a>';
-        //$result .= '&nbsp;&nbsp;<a class="btn btn-mini" href="'.url("/cms_categories/delete/".$this->id).'">Delete</a>';
-        	
-        //return $result;
 	}
 }

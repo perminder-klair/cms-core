@@ -31,7 +31,7 @@
 						),
 						array(
 							'header'=>'Type',
-							'value'=>'CmsLookup::item("CategoryType", $data->type);',
+							'value'=>'CmsLookup::item("CategoryType", $data->category_type);',
 						),
 						array(
 							'header'=>'Actions',
