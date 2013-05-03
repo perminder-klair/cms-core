@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `cms_categories` (
   `title` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `parent` tinyint(4) DEFAULT NULL,
-  `type` tinyint(4) DEFAULT NULL,
+  `category_type` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -241,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `cms_user_profile` (
   `postcode` varchar(20) DEFAULT NULL,
   `telehphone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE DATA AuthAssignment
@@ -508,6 +508,16 @@ INSERT INTO `cms_user` (`id`,`username`,`password`,`email`,`firstname`,`lastname
 ('1','demo','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','webmaster@example.com','','','2013-03-01 12:21:41','2013-04-16 16:17:21','2','');
 INSERT INTO `cms_user` (`id`,`username`,`password`,`email`,`firstname`,`lastname`,`created`,`modified`,`status`,`activkey`) VALUES
 ('2','admin','$2a$10$TaMCcwXsT.JsDlIWztuOo.xDJ9uSH5hfqad.Ui5YxNgtQYV1wrG8.','parminder@tblmarketing.com','','','2013-03-21 17:18:53','2013-04-16 12:51:23','2','');
+
+
+
+-- -------------------------------------------
+-- TABLE DATA cms_user_profile
+-- -------------------------------------------
+INSERT INTO `cms_user_profile` (`id`,`user_id`,`address`,`postcode`,`telehphone`) VALUES
+('1','1','','','');
+INSERT INTO `cms_user_profile` (`id`,`user_id`,`address`,`postcode`,`telehphone`) VALUES
+('2','2','','','');
 
 
 
