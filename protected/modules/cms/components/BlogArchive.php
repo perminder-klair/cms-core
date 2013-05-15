@@ -26,7 +26,8 @@ class BlogArchive extends CPortlet
 
 	protected function renderContent()
 	{
-		$this->render('blogArchive', array(
+		$view = 'webroot.themes.'.Yii::app()->theme->name.'.views.blog._archive';
+		$this->render($view, array(
 			'data'=>$this->getEntries(),
 		));
 	}
