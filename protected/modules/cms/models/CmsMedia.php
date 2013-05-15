@@ -4,6 +4,9 @@ class CmsMedia extends CmsActiveRecord
 {
 	const STATUS_NOT_PUBLISHED=0;
 	const STATUS_PUBLISHED=1;
+	const TYPE_OTHER=0;
+	const TYPE_FEATURED=1;
+	const TYPE_CONTENT=2;
 	
 	public $media_id = 'id';
           
@@ -197,4 +200,8 @@ class CmsMedia extends CmsActiveRecord
 		return Yii::app()->request->baseUrl.'/'.$new_path;
     }
     
+    public function getMedia($id)
+    {
+	    return CmsMedia::model()->findByPk($id);
+    }
 }

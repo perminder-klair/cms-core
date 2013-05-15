@@ -12,6 +12,12 @@
 			$this->endWidget();
 		?>
 	</div>
+	<div class="media">
+		<? if($media = $data->mediaType(CmsMedia::TYPE_FEATURED)) {
+			$image=CmsMedia::getMedia($media['id']);
+			dump($image->render());
+		} ?>
+	</div>
 	<div class="nav">
 		<b>Tags:</b>
 		<?php echo implode(', ', $data->tagLinks); ?>

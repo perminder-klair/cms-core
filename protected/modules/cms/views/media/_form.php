@@ -37,16 +37,21 @@
     <div class="widget-body">
       <div class="widget-forms clearfix">
 	          	
-	          </div>
-          		          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'published'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->dropDownList($model,'published', CmsLookup::items('MediaStatus')); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'published'); ?>
-</span>
-	          	</div>
-	          	
-	          </div>
+			<div class="control-group">
+				<?php echo $form->labelEx($model,'published'); ?>
+				<div class="controls">
+					<?php echo $form->dropDownList($model,'published', CmsLookup::items('MediaStatus')); ?>
+					<span class="help-inline"><?php echo $form->error($model,'published'); ?></span>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<?php echo $form->labelEx($model,'media_type'); ?>
+				<div class="controls">
+					<?php echo $form->dropDownList($model,'media_type', CmsLookup::items('MediaType')); ?>
+					<span class="help-inline"><?php echo $form->error($model,'media_type'); ?></span>
+				</div>
+			</div>	
 	          
           	      
       </div>

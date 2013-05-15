@@ -323,4 +323,34 @@ class CmsBlog extends CmsActiveRecord
 
     	return $result;
     }
+          
+    /**
+     * Returns media in array
+     * $rowCount=$command->execute();   // execute the non-query SQL
+     * $dataReader=$command->query();   // execute a query SQL
+     * $rows=$command->queryAll();      // query and return all rows of result
+     * $row=$command->queryRow();       // query and return the first row of result
+     * $column=$command->queryColumn(); // query and return the first column of result
+     * $value=$command->queryScalar();  // query and return the first field in the first 
+     * Usage:
+	 * if($media = $data->mediaType(CmsMedia::TYPE_OTHER)) {
+	 * 	$image=CmsMedia::getMedia($media['id']);
+	 *	dump($image->render());
+	 * }
+     */
+    public function mediaType($type, $count=null)
+    {
+    	$sql = "SELECT md.* FROM cms_content_media AS cm, cms_media as md";
+    	$sql .= " WHERE cm.media_id=md.id";
+    	$sql .= " AND cm.type='blog'";
+    	$sql .= " AND cm.content_id=".$this->id;
+    	$sql .= " AND md.media_type=".$type;
+    	
+	    $result = Yii::app()->db->createCommand($sql);
+	    
+	    if($count=='all')
+	    	return $result->queryAll();
+	    else
+	    	return $result->queryRow();
+    }
 }

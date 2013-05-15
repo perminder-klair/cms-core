@@ -37,6 +37,7 @@
             <tr>
               <th>File Name</th>
               <th>Published</th>
+              <th>Type</th>
               <th>Actions</th>
             </tr>
           </thead>
