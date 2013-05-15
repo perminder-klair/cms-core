@@ -142,6 +142,12 @@ class BlogController extends CmsController
 			}
 		}
 		
+		//show archive
+		if(isset($_GET['archive'])) {
+			$criteria->addCondition('MONTH(date_start) = '.$_GET['month']);
+			$criteria->addCondition('YEAR(date_start) = '.$_GET['year']);
+		}
+		
 	    $count=CmsBlog::model()->count($criteria);
 	    
 	    $pages=new CPagination($count);

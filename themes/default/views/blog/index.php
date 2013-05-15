@@ -36,3 +36,7 @@ $this->breadcrumbs=array(
 <div id="categories">
 	<? $this->widget('BlogCategories'); ?>
 </div>
+
+<div id="archive">
+	<? $this->widget('BlogArchive'); ?>
+</div>
