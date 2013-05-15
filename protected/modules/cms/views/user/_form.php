@@ -34,6 +34,7 @@
               <ul class="nav nav-tabs">
                 <li><a href="#validate_tab1" data-toggle="tab">Basic Info</a></li>
                 <li><a href="#validate_tab2" data-toggle="tab">Password</a></li>
+                <li><a href="#validate_tab3" data-toggle="tab">Media</a></li>
               </ul>
             </div>
             <div class="widget-body">
@@ -41,8 +42,6 @@
                 
                 
                   <div class="tab-pane" id="validate_tab1">
-                    <h4>Wizard w/ simple validation</h4>
-                    <hr>
 			          <div class="control-group">
 			          	<?php echo $form->labelEx($model,'username'); ?>
 			          	<div class="controls">
@@ -98,6 +97,11 @@
 			          	</div>
 			          </div>
 			          
+                  </div>
+                  
+                  <div class="tab-pane" id="validate_tab3"> 
+                  	<!-- Media manager here -->
+                  	<?php $this->widget('cms.widgets.CmsMediaManager', array('model'=>$model, 'type'=>'user')) ?>
                   </div>
                   
                 </div>  

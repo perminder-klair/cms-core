@@ -34,7 +34,7 @@ class CmsMedia extends CmsActiveRecord
     public function rules()
     {
         return array(
-    		array('id, published', 'numerical', 'integerOnly'=>true),
+    		array('id, published, media_type', 'numerical', 'integerOnly'=>true),
             array('extension, filename, mimeType, byteSize, source', 'required'),
             array('byteSize', 'length', 'max'=>10),
             array('extension', 'length', 'max'=>50),
@@ -67,6 +67,7 @@ class CmsMedia extends CmsActiveRecord
             'byteSize' => Yii::t('CmsModule.core', 'Size (bytes)'),
             'source' => Yii::t('CmsModule.core', 'Source'),
             'published' => Yii::t('CmsModule.core', 'Published'),
+            'media_type' => Yii::t('CmsModule.core', 'Media Type'),
         );
     }
 
@@ -90,7 +91,10 @@ class CmsMedia extends CmsActiveRecord
     }
         
     public function beforeSave() {
-	    if ($this->isNewRecord)	$this->published = self::STATUS_PUBLISHED;
+	    if ($this->isNewRecord){
+	    	$this->published = self::STATUS_PUBLISHED;
+			$this->media_type=0;  
+	    }
 	    
 	    //empty cache folder
         $this->empty_cache();
