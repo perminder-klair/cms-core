@@ -299,6 +299,7 @@ class CmsUser extends CmsActiveRecord
 	 *	dump($image->render());
 	 * }
      */
+    public function mediaType($type, $count=null)
     {
     	$sql = "SELECT md.* FROM cms_content_media AS cm, cms_media as md";
     	$sql .= " WHERE cm.media_id=md.id";
