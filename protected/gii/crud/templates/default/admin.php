@@ -21,6 +21,7 @@
 					'id'=>'<?php echo $this->class2id($this->modelClass); ?>-grid',
 					'itemsCssClass'=>'table table-striped table-bordered dataTable',
 					//'enablePagination'=>false,
+					'ajaxUpdate' => false,
 					'dataProvider'=>$model->search(),
 					//'filter'=>$model,
 					'cssFile'=>false,

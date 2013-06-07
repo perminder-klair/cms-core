@@ -75,7 +75,7 @@ class Image {
 
 		// Check to make sure the image exists
 		if ( ! is_file($image))
-			throw new CException('image file not found');
+			throw new CException('image file not found: '.$image);
 
 		// Disable error reporting, to prevent PHP warnings
 		$ER = error_reporting(0);

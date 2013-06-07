@@ -84,7 +84,7 @@ $(function() {
     if ( didresize ) {
         didresize = false;
 
-        if($('#analytics_page').length > 0){ 
+        /*if($('#analytics_page').length > 0){ 
           redraw_analytics();
         }
         if($('#tickets_page').length > 0){ 
@@ -92,7 +92,7 @@ $(function() {
         }
         if($('#dashboard_page').length > 0){ 
           redraw_dashboard_analytics();
-        }
+        }*/
     }
   }, 3000);
 

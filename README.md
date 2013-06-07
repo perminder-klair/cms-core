@@ -1,7 +1,7 @@
-BroomeCMS
+TBL CMS
 =========
 
-Broome Cms based on Yii Framework
+TBL Cms based on Yii Framework
 
 Read the /documentation/index.html for more information
 
@@ -28,6 +28,4 @@ Know Issues / ToDo
 - solution for sysphus for multi editors
 - png files not uploading
 - upload limit more then 1mb
-- media to have categories
-- on new model generate categories
 - fix htaccess with some servers

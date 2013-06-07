@@ -3,7 +3,7 @@
  * Cms base active record class that provides various base functionality.
  * All cms active records should be extended from this class.
  */
-Yii::import('cms.components.ManyManyActiveRecord');
+Yii::import('application.modules.cms.components.ManyManyActiveRecord');
  
 class CmsActiveRecord extends ManyManyActiveRecord
 {
@@ -37,7 +37,11 @@ class CmsActiveRecord extends ManyManyActiveRecord
                 if (parent::beforeSave())
                 {
                         $now = date('Y-m-d H:i:s', time());
-                        $userId = Yii::app()->user->id;
+                        if (Yii::app() instanceof CConsoleApplication) {
+                        	$userId = 1;
+                        } else {
+	                        $userId = Yii::app()->user->id;
+                        }
 
                         if ($this->isNewRecord)
                         {
