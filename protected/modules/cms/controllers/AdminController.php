@@ -8,7 +8,8 @@ class AdminController extends CmsController
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
+			//'accessControl', // perform access control for CRUD operations
+			array('cms.filters.AuthFilter'),
 		);
 	}
 
@@ -17,7 +18,7 @@ class AdminController extends CmsController
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	public function accessRules()
+	/*public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to access 'index' and 'view' actions.
@@ -35,13 +36,13 @@ class AdminController extends CmsController
 			array('deny',  // deny all users
 				'users'=>array('*'),
 				//'actions'=>array('index', 'settings'),
-			),
+			),*/
 			/*array('deny',  // deny all users
 				'users'=>array('@'),
 				//'actions'=>array('admin'),
 			),*/
-		);
-	}
+		/*);
+	}*/
 	
 	public function actionIndex()
 	{

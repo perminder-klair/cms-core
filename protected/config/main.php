@@ -67,10 +67,12 @@ return array(
 	    'authManager'=>array(
             'class'=>'CDbAuthManager',
             'connectionID'=>'db',
-            'defaultRoles'=>array('guest', 'user', 'admin', 'super'),
+            'defaultRoles'=>array('guest', 'user'),
             'behaviors' => array(
             	'class' => 'cms.components.AuthBehavior',
             ),
+            //'class'=>'auth.components.CachedDbAuthManager',
+            //'cachingDuration'=>3600,
         ),
         
 		'urlManager'=>array(
