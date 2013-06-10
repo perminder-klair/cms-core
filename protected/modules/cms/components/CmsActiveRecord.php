@@ -24,6 +24,17 @@ class CmsActiveRecord extends ManyManyActiveRecord
                         else
                                 $scope['condition'] = $condition;
                 }
+                
+                if ($this->hasAttribute('active'))
+                {
+                        $prefix = $this->getTableAlias(true, false);
+                        $condition = $prefix . '.active=1';
+
+                        if (isset($scope['condition']))
+                                $scope['condition'] .= ' AND ' . $condition;
+                        else
+                                $scope['condition'] = $condition;
+                }
 
                 return $scope;
         }
@@ -60,12 +71,18 @@ class CmsActiveRecord extends ManyManyActiveRecord
                                         
                                 if ($this->hasAttribute('deleted'))
                                 		$this->deleted = 0;
+                                		
+                                if ($this->hasAttribute('active'))
+                                		$this->active = 1;
                         }
                         else
                         {
                                 // We are updating an existing record.
                                 if ($this->hasAttribute('modified'))
                                         $this->modified = $now;
+                                        
+                                if ($this->hasAttribute('updated'))
+                                		$this->updated = $now;
 
                                 if ($this->hasAttribute('modifierId') && $userId !== null)
                                         $this->modifierId = $userId;

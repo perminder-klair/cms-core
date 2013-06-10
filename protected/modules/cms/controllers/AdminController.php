@@ -44,16 +44,15 @@ class AdminController extends CmsController
 	}
 	
 	public function actionIndex()
-	{ //dump(isAdmin()); die();
+	{
 		$this->layout = 'admin';
 		
 		$criteria=new CDbCriteria(array(
-			//'condition' => 'type = "blog"',
 			'limit'=>'10'
 		));
-		$blogs = CmsBlog::model()->published()->recent()->findAll();
+		$blogs = CmsBlog::model()->published()->findAll($criteria);
 		
-		$comments = CmsComment::model()->recent()->findAll($criteria);
+		$comments = CmsComment::model()->findAll($criteria);
 		
 		$this->render('index', array(
 			'blogs'=>$blogs,

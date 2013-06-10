@@ -1,83 +1,35 @@
 <?php
-/**
- * This is the template for generating the model class of a specified table.
- * - $this: the ModelCode object
- * - $tableName: the table name for this class (prefix is already removed if necessary)
- * - $modelClass: the model class name
- * - $columns: list of table columns (name=>CDbColumnSchema)
- * - $labels: list of attribute labels (name=>label)
- * - $rules: list of validation rules
- * - $relations: list of relations (name=>relation declaration)
- */
-?>
-<?php echo "<?php\n"; ?>
 
 /**
- * This is the model class for table "<?php echo $tableName; ?>".
+ * This is the model class for table "people".
  *
- * The followings are the available columns in table '<?php echo $tableName; ?>':
-<?php foreach($columns as $column): ?>
- * @property <?php echo $column->type.' $'.$column->name."\n"; ?>
-<?php endforeach; ?>
-<?php if(!empty($relations)): ?>
- *
- * The followings are the available model relations:
-<?php foreach($relations as $name=>$relation): ?>
- * @property <?php
-	if (preg_match("~^array\(self::([^,]+), '([^']+)', '([^']+)'\)$~", $relation, $matches))
-    {
-        $relationType = $matches[1];
-        $relationModel = $matches[2];
-
-        switch($relationType){
-            case 'HAS_ONE':
-                echo $relationModel.' $'.$name."\n";
-            break;
-            case 'BELONGS_TO':
-                echo $relationModel.' $'.$name."\n";
-            break;
-            case 'HAS_MANY':
-                echo $relationModel.'[] $'.$name."\n";
-            break;
-            case 'MANY_MANY':
-                echo $relationModel.'[] $'.$name."\n";
-            break;
-            default:
-                echo 'mixed $'.$name."\n";
-        }
-	}
-    ?>
-<?php endforeach; ?>
-<?php endif; ?>
+ * The followings are the available columns in table 'people':
+ * @property string $id
+ * @property string $title
+ * @property string $created
+ * @property string $updated
+ * @property integer $listing_order
+ * @property integer $active
+ * @property integer $deleted
  */
-class <?php echo $modelClass; ?> extends SiteActiveRecord
+class People extends SiteActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return <?php echo $modelClass; ?> the static model class
+	 * @return People the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-<?php if($connectionId!='db'):?>
-
-	/**
-	 * @return CDbConnection database connection
-	 */
-	public function getDbConnection()
-	{
-		return Yii::app()-><?php echo $connectionId ?>;
-	}
-<?php endif?>
 
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return '<?php echo $tableName; ?>';
+		return 'people';
 	}
 
 	/**
@@ -88,12 +40,12 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-<?php foreach($rules as $rule): ?>
-			<?php echo $rule.",\n"; ?>
-<?php endforeach; ?>
+			array('listing_order, active, deleted', 'numerical', 'integerOnly'=>true),
+			array('title', 'length', 'max'=>255),
+			array('created, updated', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('<?php echo implode(', ', array_keys($columns)); ?>', 'safe', 'on'=>'search'),
+			array('id, title, created, updated, listing_order, active, deleted', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -105,10 +57,7 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-<?php foreach($relations as $name=>$relation): ?>
-			<?php echo "'$name' => $relation,\n"; ?>
-<?php endforeach; ?>
-			'media'=>array(self::MANY_MANY, 'CmsMedia', 'cms_content_media(content_id, media_id)', 'condition' => 'type = "<?php echo strtolower($modelClass);?>"'),
+			'media'=>array(self::MANY_MANY, 'CmsMedia', 'cms_content_media(content_id, media_id)', 'condition' => 'type = "people"'),
 		);
 	}
 
@@ -118,9 +67,13 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-<?php foreach($labels as $name=>$label): ?>
-			<?php echo "'$name' => '$label',\n"; ?>
-<?php endforeach; ?>
+			'id' => 'ID',
+			'title' => 'Title',
+			'created' => 'Created',
+			'updated' => 'Updated',
+			'listing_order' => 'Listing Order',
+			'active' => 'Active',
+			'deleted' => 'Deleted',
 		);
 	}
 
@@ -136,19 +89,13 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->order='id DESC';
 
-<?php
-foreach($columns as $name=>$column)
-{
-	if($column->type==='string')
-	{
-		echo "\t\t\$criteria->compare('$name',\$this->$name,true);\n";
-	}
-	else
-	{
-		echo "\t\t\$criteria->compare('$name',\$this->$name);\n";
-	}
-}
-?>
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('title',$this->title,true);
+		$criteria->compare('created',$this->created,true);
+		$criteria->compare('updated',$this->updated,true);
+		$criteria->compare('listing_order',$this->listing_order);
+		$criteria->compare('active',$this->active);
+		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -221,7 +168,7 @@ foreach($columns as $name=>$column)
     {
     	$sql = "SELECT md.* FROM cms_content_media AS cm, cms_media as md";
     	$sql .= " WHERE cm.media_id=md.id";
-    	$sql .= " AND cm.type='<?php echo strtolower($modelClass);?>'";
+    	$sql .= " AND cm.type='people'";
     	$sql .= " AND cm.content_id=".$this->id;
     	$sql .= " AND md.media_type=".$type;
     	
@@ -240,7 +187,7 @@ foreach($columns as $name=>$column)
 		
 		$result =  CHtml::ajaxLink(
 				        $currentStatus,
-				        url('/<?php echo $modelClass; ?>/toggleActive'),
+				        url('/People/toggleActive'),
 				        array(
 			                'update'=>'.btn-hide-'.$this->id,
 			                'method'=>'post',
@@ -254,8 +201,8 @@ foreach($columns as $name=>$column)
 				        	'class'=>"btn btn-mini btn-{$statusButton} btn-hide-".$this->id,
 				        )
 					);	
-		$result .= '&nbsp;&nbsp;'.l('Edit',array('/<?php echo $modelClass; ?>/update', 'id'=>$this->id), array('class'=>'btn btn-mini btn-primary'));
-    	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/<?php echo $modelClass; ?>/delete",array('id'=>$this->id))));
+		$result .= '&nbsp;&nbsp;'.l('Edit',array('/People/update', 'id'=>$this->id), array('class'=>'btn btn-mini btn-primary'));
+    	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/People/delete",array('id'=>$this->id))));
 
     	return $result;
 	}
