@@ -9,6 +9,11 @@ class CmsMedia extends CmsActiveRecord
 	const TYPE_CONTENT=2;
 	
 	public $media_id = 'id';
+	
+	public function allowedFileTypes()
+	{
+		return array('jpg', 'jpeg', 'png', 'bmp', 'pdf', 'doc', 'docx', 'txt');
+	}
           
     /**
      * Returns the static model of the specified AR class.

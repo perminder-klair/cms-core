@@ -133,7 +133,7 @@ class Cms extends CApplicationComponent
     	if(!is_dir($upload_path)) mkdir($upload_path, 0777, true);
  
         $folder=$upload_path;// folder for uploaded files
-        $allowedExtensions = array("jpg");//array("jpg","jpeg","gif","exe","mov" and etc...
+        $allowedExtensions = CmsMedia::allowedFileTypes();//array("jpg","jpeg","gif","exe","mov" and etc...
         $sizeLimit = 10 * 1024 * 1024;// maximum file size in bytes
         $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
         $result = $uploader->handleUpload($folder);

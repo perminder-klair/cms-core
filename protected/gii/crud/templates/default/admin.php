@@ -12,7 +12,15 @@
               <i class="icon-group"></i>
               <h5>Manage <?php echo $this->pluralize($this->class2name($this->modelClass)); ?></h5>
               <div class="widget-buttons">
-                  <a href="#" data-title="Collapse" data-collapsed="false" class="tip collapse"><i class="icon-chevron-up"></i></a>
+                  <?php echo "<?php"; ?> $form=$this->beginWidget('CActiveForm', array(
+					'action'=>Yii::app()->createUrl($this->route),
+					'method'=>'get',
+				)); ?>
+
+              		<div class="input-append">
+              			<?php echo "<?php echo"; ?> $form->textField($model,'title',array('size'=>60,'maxlength'=>128, 'class'=>'select2-input', 'placeholder'=>'Search people')); ?>
+              		</div>
+              	<?php echo "<?php"; ?> $this->endWidget(); ?>
               </div>
             </div>  
             <div class="widget-body">

@@ -12,7 +12,7 @@
 	            'params' => array('index' => 'value'),
 	        ),
 	        'validation' => array(
-	            'allowedExtensions' => array('jpg', 'jpeg', 'png', 'bmp'),
+	            'allowedExtensions' => CmsMedia::allowedFileTypes(),
 	            'sizeLimit' => 20971520, // max file size in bytes
 	            'minSizeLimit' => 256, // min file size in bytes
 	        ),
