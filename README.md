@@ -26,6 +26,4 @@ logins are: admin / admin
 Know Issues / ToDo
 ------------------
 - solution for sysphus for multi editors
-- png files not uploading
-- upload limit more then 1mb
 - fix htaccess with some servers
