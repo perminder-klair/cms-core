@@ -1562,3 +1562,10 @@ table.table thead .sorting_desc_disabled { background: url('../img/sort_desc_dis
       margin: 0 90px 0 15px;
     }    
 }
+
+.navbar-Scroll {
+	border-bottom: 125px solid;
+    height: 100%;
+    margin-bottom: 20px;
+    overflow-y: scroll;
+}
