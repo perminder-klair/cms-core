@@ -18,7 +18,7 @@
 				)); ?>
 
               		<div class="input-append">
-              			<?php echo "<?php echo"; ?> $form->textField($model,'title',array('size'=>60,'maxlength'=>128, 'class'=>'select2-input', 'placeholder'=>'Search people')); ?>
+              			<?php echo "<?php echo"; ?> $form->textField($model,'title',array('size'=>60,'maxlength'=>128, 'class'=>'select2-input', 'placeholder'=>'Search <?php echo $this->pluralize($this->class2name($this->modelClass)); ?>')); ?>
               		</div>
               	<?php echo "<?php"; ?> $this->endWidget(); ?>
               </div>

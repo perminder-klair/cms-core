@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `cms_content_media` (
   `tag` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_lookup
@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `cms_media` (
   `published` tinyint(5) DEFAULT NULL,
   `media_type` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_page
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `demo` (
   `active` tinyint(4) DEFAULT NULL,
   `deleted` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE DATA AuthAssignment
@@ -556,6 +556,16 @@ INSERT INTO `cms_user_profile` (`id`,`user_id`,`address`,`postcode`,`telehphone`
 ('1','1','','','');
 INSERT INTO `cms_user_profile` (`id`,`user_id`,`address`,`postcode`,`telehphone`) VALUES
 ('2','2','','','');
+
+
+
+-- -------------------------------------------
+-- TABLE DATA demo
+-- -------------------------------------------
+INSERT INTO `demo` (`id`,`title`,`created`,`updated`,`listing_order`,`active`,`deleted`) VALUES
+('1','test','2013-06-10 14:49:17','2013-06-10 16:26:18','1','0','1');
+INSERT INTO `demo` (`id`,`title`,`created`,`updated`,`listing_order`,`active`,`deleted`) VALUES
+('2','test 2','2013-06-10 14:49:40','2013-06-11 09:21:35','2','1','0');
 
 
 

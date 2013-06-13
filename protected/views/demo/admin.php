@@ -17,7 +17,7 @@
 				)); ?>
 
               		<div class="input-append">
-              			<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128, 'class'=>'select2-input', 'placeholder'=>'Search people')); ?>
+              			<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>128, 'class'=>'select2-input', 'placeholder'=>'Search Demos')); ?>
               		</div>
               	<?php $this->endWidget(); ?>
               </div>
