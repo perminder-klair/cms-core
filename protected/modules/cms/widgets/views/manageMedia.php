@@ -5,7 +5,7 @@
     	var type = "<?=$type?>";
     </script>
     <? $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
-	    'id' => 'media_' + content_id,
+	    'id' => 'media',
 	    'config' => array(
 	        'request' => array(
 	            'endpoint' => '/cms/media/upload',

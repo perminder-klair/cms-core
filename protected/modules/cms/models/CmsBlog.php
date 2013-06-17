@@ -41,8 +41,8 @@ class CmsBlog extends CmsActiveRecord
 			array('metaDescription', 'length', 'max'=>160),
 			array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/', 'message'=>'Tags can only contain word characters.'),
 			array('tags', 'normalizeTags'),
-			array('media, metaDescription, type, parentId', 'safe'), 
-			array('title, status, type, date_start', 'safe', 'on'=>'search'),
+			array('media, metaDescription, blog_type, parentId', 'safe'), 
+			array('title, status, blog_type, date_start', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,9 +58,9 @@ class CmsBlog extends CmsActiveRecord
 			'comments' => array(self::HAS_MANY, 'CmsComment', 'blog_id', 'condition'=>'comments.status="2"', 'order'=>'comments.created DESC'),
 			'author' => array(self::BELONGS_TO, 'CmsUser', 'author_id'),
 			'commentCount' => array(self::STAT, 'CmsComment', 'blog_id', 'condition'=>'status='.CmsComment::STATUS_APPROVED),
-			'revisions' => array(self::HAS_MANY, 'CmsBlog', 'parentId', 'condition'=>'type="revision"', 'order'=>'modified DESC'),
+			'revisions' => array(self::HAS_MANY, 'CmsBlog', 'parentId', 'condition'=>'blog_type="revision"', 'order'=>'modified DESC'),
 			'categories'=>array(self::MANY_MANY, 'CmsCategories', 'cms_content_categories(content_id, category_id)'),
-																		/*, 'condition' => '"type" = "blog"' //NEED TO BE FIXED*/
+																		/*, 'condition' => '"blog_type" = "blog"' //NEED TO BE FIXED*/
 		);
 	}
 
@@ -80,7 +80,7 @@ class CmsBlog extends CmsActiveRecord
 			'author_id' => 'Author',
 			'metaDescription' => 'Short Description',
 			'slug' => 'Slug (URL)',
-			'type' => 'Type',
+			'blog_type' => 'Type',
 			'parentId' => 'Parent Id',
 			'date_start' => 'Date Start',
 		);
@@ -90,14 +90,14 @@ class CmsBlog extends CmsActiveRecord
     {
         return array(
         	'type'=>array(
-        		'type'=>'blog',
+        		'blog_type'=>'blog',
         	),
             'recent'=>array(
                 'order'=>'created DESC',
                 'limit'=>10,
             ),
             'published'=>array(
-            	'condition'=>'status = '.self::STATUS_PUBLISHED.' AND type = "blog" AND date_start <= NOW()',
+            	'condition'=>'status = '.self::STATUS_PUBLISHED.' AND blog_type = "blog" AND date_start <= NOW()',
             ),
         );
     }
@@ -177,8 +177,8 @@ class CmsBlog extends CmsActiveRecord
 			{
 				$this->date_start=date('Y-m-d', time());
 				
-				if(empty($this->type))
-					$this->type = 'blog';
+				if(empty($this->blog_type))
+					$this->blog_type = 'blog';
 			}
 			else
 			{	
@@ -232,7 +232,7 @@ class CmsBlog extends CmsActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('type','blog');
+		$criteria->compare('blog_type','blog');
 
 		return new CActiveDataProvider('CmsBlog', array(
 			'criteria'=>$criteria,
@@ -282,7 +282,7 @@ class CmsBlog extends CmsActiveRecord
 		$sql = "SELECT category.*, count(cat.category_id) as category_count FROM cms_content_categories as cat, cms_blog as blog, cms_categories as category";
 		$sql .= " WHERE cat.content_id = blog.id";
 		$sql .= " AND cat.category_id = category.id";
-		$sql .= " AND cat.type = 'blog'";
+		$sql .= " AND cat.blog_type = 'blog'";
 		$sql .= " AND blog.status = 2";
 		$sql .= " AND blog.deleted = 0";
 		$sql .= " GROUP BY category.id";
@@ -304,7 +304,7 @@ class CmsBlog extends CmsActiveRecord
 		$model->id = null;
 		$model->isNewRecord = true;
 		$model->parentId = $this->id;
-		$model->type = 'revision';
+		$model->blog_type = 'revision';
 		$model->author_id=Yii::app()->user->id;
 		if($model->save()){
 			//duplicated

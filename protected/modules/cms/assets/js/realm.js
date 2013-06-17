@@ -1,12 +1,10 @@
 $(function() {
-  // put scroll to navbar, if screen hight is smaller
+  // put scroll to navbar, if screen hight is smaller OR more items in menu
   var sidebarHeight = $(".sidebar-nav").height();
-  var sidebarMenusHeight = $(".sidebar-nav #accordion2").height();
   if(sidebarHeight<550) {
   	$(".sidebar-nav #accordion2").addClass("navbar-Scroll");
-  	//$('.sidebar-nav').attr('style', 'height: ' + mainContainerHeight + 'px !important');
-  	
   }
+  var sidebarMenusHeight = $(".sidebar-nav #accordion2").height();
   if(sidebarMenusHeight>550) {
 	  $(".sidebar-nav #accordion2").addClass("navbar-Scroll");
   }

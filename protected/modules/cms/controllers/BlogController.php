@@ -78,7 +78,8 @@ class BlogController extends CmsController
 			}
 		}
 
-		Yii::app()->cms->sisyphus();
+		//Yii::app()->cms->sisyphus(); //TODO! NEED TO FIND SOLUTION
+		
 		//If restored successfully, clear local data created by sisyphus
 		if($_GET['restored']=='true') {
 			$cs = Yii::app()->getClientScript();
@@ -119,7 +120,7 @@ class BlogController extends CmsController
 		
 		$criteria=new CDbCriteria();
 		$criteria->order='date_start DESC';
-	    $criteria->condition='status = '.CmsBlog::STATUS_PUBLISHED.' AND type = "blog" AND date_start <= NOW()';
+	    $criteria->condition='status = '.CmsBlog::STATUS_PUBLISHED.' AND blog_type = "blog" AND date_start <= NOW()';
 		
 		//if tag is selected
 		if(isset($_GET['tag'])) {
@@ -130,11 +131,11 @@ class BlogController extends CmsController
 		
 		//if category is selectedd
 		if(isset($_GET['category'])) {
-			if($category = CmsCategories::model()->findByPk($_GET['id'])) {
+			if($category = CmsCategories::model()->findByPk($_GET['category'])) {
 
 			    $criteria->with='categories';
 			    $criteria->together=true;
-			    $criteria->condition='category_id=:category_id';
+			    $criteria->addCondition('category_id=:category_id');
 			    $criteria->params=array(':category_id'=>$category->id);
 			    
 			    $this->pageTitle.=" - ".$category->title;
