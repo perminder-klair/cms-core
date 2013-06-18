@@ -350,7 +350,9 @@ class CmsBlog extends CmsActiveRecord
 	    
 	    if($count=='all')
 	    	return $result->queryAll();
-	    else
-	    	return $result->queryRow();
+	    else {
+	    	$row = $result->queryRow();
+	    	return CmsMedia::model()->findByPk($row['id']);
+	    }
     }
 }
