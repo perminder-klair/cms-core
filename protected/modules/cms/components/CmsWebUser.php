@@ -36,11 +36,8 @@ class CmsWebUser extends CWebUser{
     		return false;
     		
         $user = $this->loadUser();
-        /*if ($user->level==1)
-        	return true; //return $user->level==CmsLookup::item('UserStatus', $user->level); //LevelLookUp::ADMIN
-        return false;*/
         
-        if (($user->getUserRole()=='admin') || ($user->getUserRole()=='super'))
+        if (($user->userRole=='admin') || ($user->userRole=='super'))
         	return true;
         return false;
     }

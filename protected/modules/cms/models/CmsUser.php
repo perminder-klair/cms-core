@@ -12,6 +12,7 @@ class CmsUser extends CmsActiveRecord
 	 */
 	public $new_password;
 	public $new_password_repeat;
+	public $defaultRole='user';
 	
 	const STATUS_INACTIVE=1;
 	const STATUS_ACTIVE=2;
@@ -118,10 +119,7 @@ class CmsUser extends CmsActiveRecord
 	    {
 	        //hash new password
 	        $this->password = $this->hashPassword($this->new_password); 
-	        //dump($this->password); dump($this->hashPassword($this->new_password)); die();
 	    }
-	    
-	    //$this->setUserRole();
 	    
 	    return parent::beforeSave();
 	}
@@ -134,6 +132,9 @@ class CmsUser extends CmsActiveRecord
 			$profile = new CmsUserProfile;
 			$profile->user_id = $this->id;
 			$profile->save();
+			
+			//update user role
+		    $this->setUserRole($this->defaultRole);
 	    }
 	}
 	

@@ -282,7 +282,7 @@ class CmsBlog extends CmsActiveRecord
 		$sql = "SELECT category.*, count(cat.category_id) as category_count FROM cms_content_categories as cat, cms_blog as blog, cms_categories as category";
 		$sql .= " WHERE cat.content_id = blog.id";
 		$sql .= " AND cat.category_id = category.id";
-		$sql .= " AND cat.blog_type = 'blog'";
+		$sql .= " AND cat.type = 'blog'";
 		$sql .= " AND blog.status = 2";
 		$sql .= " AND blog.deleted = 0";
 		$sql .= " GROUP BY category.id";
