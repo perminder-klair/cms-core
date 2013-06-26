@@ -135,6 +135,7 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 
 		$criteria=new CDbCriteria;
 		$criteria->order='id DESC';
+		$criteria->condition='deleted = 0';
 
 <?php
 foreach($columns as $name=>$column)

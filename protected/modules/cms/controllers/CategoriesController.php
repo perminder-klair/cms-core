@@ -62,7 +62,6 @@ class CategoriesController extends CmsController
 
 		$this->render('update',array(
 			'model'=>$model,
-			'categories'=>$categories,
 		));
 	}
 
