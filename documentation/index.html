@@ -71,7 +71,7 @@
 		<hr>
 		<ul>
 			<li>Created: 03/10/2011</li>
-			<li>latest Update: 06/10/2013</li>
+			<li>latest Update: 06/27/2013</li>
 			<li>By: Parminder Klair</li>
 			<li><a href=""></a></li>
 			<li>Email: <a href="mailto:&#112;&#97;&#114;&#109;&#105;&#110;&#100;&#101;&#114;&#64;&#116;&#98;&#108;&#109;&#97;&#114;&#107;&#101;&#116;&#105;&#110;&#103;&#46;&#99;&#111;&#109;">&#112;&#97;&#114;&#109;&#105;&#110;&#100;&#101;&#114;&#64;&#116;&#98;&#108;&#109;&#97;&#114;&#107;&#101;&#116;&#105;&#110;&#103;&#46;&#99;&#111;&#109;</a></li>
@@ -197,10 +197,14 @@
 		<p><code> post('key'); </code></p>
 		<p>To auto save Form data every 10 second on local storage, use this on controller's method</p>
 		<p><code> Yii::app()->cms->sisyphus(); </code></p>
-		<p>Send a Coookie</p>
-		<p><code> sendCookie($name,$value); </code></p>
+		<p>Send a Coookie<br />
+			The option parameter is internally passed to the public method CHttpCookie::configure() which accepts an array with the following keys:<br />
+			domain,  expire, secure, path, httpOnly</p>
+		<p><code> sendCookie($name,$value,$cookieConfig); </code></p>
 		<p>Get a Cookie</p>
 		<p><code> getCookie($name); </code></p>
+		<p>Delete a Cookie</p>
+		<p><code> deleteCookie($name); </code></p>
 	</section>
 	
 	<section id="js_css">

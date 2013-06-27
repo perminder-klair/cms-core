@@ -189,9 +189,9 @@ function dump($target)
 /*
  * Send a cookie
  */
-function sendCookie($name,$value)
+function sendCookie($name,$value,$options=array())
 {
-	$cookie=new CHttpCookie($name,$value);
+	$cookie=new CHttpCookie($name,$value, $options);
 	Yii::app()->request->cookies[$name]=$cookie;
 }
 
@@ -204,6 +204,14 @@ function getCookie($name)
 	$value=$cookie->value;
 	
 	return $value;
+}
+
+/*
+ * Delete the cookie with the specified name
+ */
+function deleteCookie($name)
+{
+	unset(Yii::app()->request->cookies[$name]);
 }
 
 /*
