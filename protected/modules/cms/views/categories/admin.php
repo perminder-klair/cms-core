@@ -20,6 +20,7 @@
 					'id'=>'cms-categories-grid',
 					'itemsCssClass'=>'table table-striped table-bordered dataTable',
 					//'enablePagination'=>false,
+					'ajaxUpdate' => false,
 					'dataProvider'=>$model->search(),
 					//'filter'=>$model,
 					'cssFile'=>false,
