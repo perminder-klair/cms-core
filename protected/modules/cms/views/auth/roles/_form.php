@@ -1,8 +1,10 @@
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'role-form',
-	'enableAjaxValidation'=>false,
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+'id'=>'roles-form',
+'type'=>'horizontal',
+'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
+
 	<? if($form->errorSummary($model)): ?>
 	<div class="row-fluid">
       <div class="widget widget-padding span12">
@@ -38,23 +40,11 @@
     </div>
     <div class="widget-body">
       <div class="widget-forms clearfix">
-        <form class="form-horizontal">
-	          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'name'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'name',array('size'=>80,'maxlength'=>128)); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'name'); ?></span>
-	          	</div>
-	          </div>
-	          
-	          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'description'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'description',array('size'=>80,'maxlength'=>128)); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'description'); ?></span>
-	          	</div>
-	          </div>
-        </form>
+      
+      	<?php echo $form->textFieldRow($model, 'name'); ?>
+        	 
+        <?php echo $form->textFieldRow($model, 'description'); ?>
+
       </div>
     </div>
     <div class="widget-footer">

@@ -1,6 +1,7 @@
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'role-form',
-	'enableAjaxValidation'=>false,
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+'id'=>'operations-form',
+'type'=>'horizontal',
+'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
 	<? if($form->errorSummary($model)): ?>
@@ -38,27 +39,15 @@
     </div>
     <div class="widget-body">
       <div class="widget-forms clearfix">
-        <form class="form-horizontal">
-	          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'name'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'name',array('size'=>80,'maxlength'=>128)); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'name'); ?></span>
-	          	</div>
-	          </div>
+      
+        	 <?php echo $form->textFieldRow($model, 'name'); ?>
+        	 
+        	 <?php echo $form->textFieldRow($model, 'description'); ?>
 	          
-	          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'description'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'description',array('size'=>80,'maxlength'=>128)); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'description'); ?></span>
-	          	</div>
-	          </div>
-        </form>
       </div>
     </div>
     <div class="widget-footer">
-       <?php echo CHtml::submitButton('Save', array('class'=>'btn btn-primary')); ?>
+       <?php echo CHtml::submitButton('Add', array('class'=>'btn btn-primary')); ?>
     </div>
   </div>
 </div>

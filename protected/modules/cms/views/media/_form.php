@@ -1,13 +1,10 @@
-<?php
-/* @var $this BlocksController */
-/* @var $model Blocks */
-/* @var $form CActiveForm */
-?>
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'film-form',
-	'enableAjaxValidation'=>false,
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+'id'=>'media-form',
+'type'=>'horizontal',
+'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
+
 	<? if($form->errorSummary($model)): ?>
 	<div class="row-fluid">
       <div class="widget widget-padding span12">
@@ -37,28 +34,14 @@
     <div class="widget-body">
       <div class="widget-forms clearfix">
 	          	
-			<div class="control-group">
-				<?php echo $form->labelEx($model,'published'); ?>
-				<div class="controls">
-					<?php echo $form->dropDownList($model,'published', CmsLookup::items('MediaStatus')); ?>
-					<span class="help-inline"><?php echo $form->error($model,'published'); ?></span>
-				</div>
-			</div>
-
-			<div class="control-group">
-				<?php echo $form->labelEx($model,'media_type'); ?>
-				<div class="controls">
-					<?php echo $form->dropDownList($model,'media_type', CmsLookup::items('MediaType')); ?>
-					<span class="help-inline"><?php echo $form->error($model,'media_type'); ?></span>
-				</div>
-			</div>	
+	        <?php echo $form->dropDownListRow($model, 'published', CmsLookup::items('MediaStatus')); ?>
+	        
+	        <?php echo $form->dropDownListRow($model, 'media_type', CmsLookup::items('MediaType')); ?>
 	          
-          	      
       </div>
     </div>
     <div class="widget-footer">
-    	<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary')); ?>
-    	<a href="<?=$model->getUrl();?>"><button class="btn" type="button">Preview</button></a>
+    	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Create' : 'Save')); ?>
     </div>
   </div>
 </div>  

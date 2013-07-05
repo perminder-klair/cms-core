@@ -1,6 +1,7 @@
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'blog-form-'.$model->id,
-	'enableAjaxValidation'=>false,
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+'id'=>'blog-form-'.$model->id,
+'type'=>'horizontal',
+'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
 	<? if($form->errorSummary($model)): ?>
@@ -44,13 +45,7 @@
                 
                   <div class="tab-pane" id="validate_tab1">
                   
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'title'); ?>
-			          	<div class="controls">
-			          		<?php echo $form->textField($model,'title',array('size'=>80,'maxlength'=>70)); ?>
-			          		<span class="help-inline"><?php echo $form->error($model,'title'); ?></span>
-			          	</div>			          	
-			          </div>
+			          <?php echo $form->textFieldRow($model, 'title'); ?>
 			          
 		          	  <div class="control-group">
 			          	<?php echo $form->labelEx($model,'content'); ?>
@@ -68,13 +63,7 @@
 			          	
 			          </div>
 		          		
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'status'); ?>
-			          	<div class="controls">
-		                    <?=$form->dropDownList($model,'status',CmsLookup::items('PostStatus'), array('class'=>'span7'));?>
-			          		<span class="help-inline"><?php echo $form->error($model,'status'); ?></span>
-			          	</div>
-			          </div>
+		          	  <?php echo $form->dropDownListRow($model, 'status', CmsLookup::items('PostStatus')); ?> 
 			          
 			          <div class="control-group">
 			          	<?php echo $form->labelEx($model,'tags'); ?>
@@ -110,22 +99,10 @@
                   </div>
                   
                    <div class="tab-pane" id="validate_tab3"> 
-                   
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'slug'); ?>
-			          	<div class="controls">
-			          		<?php echo $form->textField($model,'slug',array('size'=>80,'maxlength'=>70)); ?>
-			          		<span class="help-inline"><?php echo $form->error($model,'slug'); ?></span>
-			          	</div>   	
-			          </div>
+
+			          <?php echo $form->textFieldRow($model, 'slug'); ?>
 			          
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'metaDescription'); ?>
-			          	<div class="controls">
-			          		<?php echo $form->textField($model,'metaDescription',array('size'=>80,'maxlength'=>160)); ?>
-			          		<span class="help-inline"><?php echo $form->error($model,'metaDescription'); ?></span>
-			          	</div>   	
-			          </div>
+			          <?php echo $form->textFieldRow($model, 'metaDescription'); ?>
 			          
                   </div>
                   
@@ -163,16 +140,9 @@
 		                    <div class="controls" style="width: 250px;">
 		                    	
 		                    	<? echo $form->checkBoxList($model, "blogCategories", $model->listAllCategories(), 
-		                    								array(
-		                    									'labelOptions'=>array('class'=>'checkbox strong')
-		                    								)); ?>
-		                    
-		                    	<!--<? //foreach($model->listAllCategories() as $category): ?>
-			                      <label class="checkbox" style="width: 220px;">
-			                        <input type="checkbox" name="categories" value="<?=$category->id;?>">
-			                        <?=$category->title;?>
-			                      </label>
-		                      	<? //endforeach; ?>-->
+        								array(
+        									'labelOptions'=>array('class'=>'checkbox strong')
+        								)); ?>
 		                    </div>
 		                </div>
                   		
@@ -182,7 +152,7 @@
 
             </div>
             <div class="widget-footer">
-              <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary')); ?>
+              <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Create' : 'Save')); ?>
               <a href="<?=$model->getUrl();?>" target="_blank"><button class="btn" type="button">Preview</button></a>
             </div>
           </div>

@@ -1,8 +1,10 @@
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'blog-form',
-	'enableAjaxValidation'=>false,
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+'id'=>'user-form',
+'type'=>'horizontal',
+'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
+
 	<? if($form->errorSummary($model)): ?>
 	<div class="row-fluid">
       <div class="widget widget-padding span12">
@@ -40,62 +42,24 @@
             <div class="widget-body">
                 <div class="tab-content">
                 
-                
                   <div class="tab-pane" id="validate_tab1">
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'username'); ?>
-			          	<div class="controls">
-			          		<?php echo $form->textField($model,'username',array('size'=>80,'maxlength'=>128)); ?>
-			          		<span class="help-inline"><?php echo $form->error($model,'username'); ?></span>
-			          	</div>
-			          	
-			          </div>
-			          
-		          	  <div class="control-group">
-			          	<?php echo $form->labelEx($model,'email'); ?>
-			          	<div class="controls">
-			          		<?php echo $form->textField($model,'email',array('size'=>80,'maxlength'=>128)); ?>
-			          		<span class="help-inline"><?php echo $form->error($model,'email'); ?></span>
-			          	</div>
-			          	
-			          </div>
-		          		
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'status'); ?>
-			          	<div class="controls">
-		                    <?=$form->dropDownList($model,'status',CmsLookup::items('UserStatus'), array('class'=>'span7'));?>
-			          		<span class="help-inline"><?php echo $form->error($model,'status'); ?></span>
-			          	</div>
-			          </div>
-			          
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'userRole'); ?>
-			          	<div class="controls">
-		                    <?=$form->dropDownList($model,'userRole',$model->getRolesAsListData(), array('class'=>'span7'));?>
-			          		<span class="help-inline"><?php echo $form->error($model,'userRole'); ?></span>
-			          	</div>
-			          </div>
+
+	              		<?php echo $form->textFieldRow($model, 'username'); ?>
+                	
+	              		<?php echo $form->textFieldRow($model, 'email'); ?>
+                	
+	              		<?php echo $form->dropDownListRow($model, 'status', CmsLookup::items('UserStatus')); ?>
+	              		
+	              		<?php echo $form->dropDownListRow($model, 'userRole', $model->getRolesAsListData()); ?>
 			          
                   </div>
                   
 
                   <div class="tab-pane" id="validate_tab2">
                   
-                	  <div class="control-group">
-			          	<?php echo $form->labelEx($model,'new_password'); ?>
-			          	<div class="controls">
-			          		<?php echo $form->passwordField($model,'new_password',array('size'=>80,'maxlength'=>128)); ?>
-			          		<span class="help-inline"><?php echo $form->error($model,'new_password'); ?></span>
-			          	</div>
-			          </div>
-			          
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'new_password_repeat'); ?>
-			          	<div class="controls">
-			          		<?php echo $form->passwordField($model,'new_password_repeat',array('size'=>80,'maxlength'=>128)); ?>
-			          		<span class="help-inline"><?php echo $form->error($model,'new_password_repeat'); ?></span>
-			          	</div>
-			          </div>
+                  		<?php echo $form->passwordFieldRow($model, 'new_password', array('class'=>'span3')); ?>
+                  		
+                  		<?php echo $form->passwordFieldRow($model, 'new_password_repeat', array('class'=>'span3')); ?>
 			          
                   </div>
                   
@@ -107,7 +71,7 @@
                 </div>  
             </div>
             <div class="widget-footer">
-              <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary')); ?>
+            	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Create' : 'Save')); ?>
             </div>
           </div>
      </div>

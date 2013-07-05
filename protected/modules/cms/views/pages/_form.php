@@ -1,6 +1,7 @@
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'page-form-'.$model->id,
-	'enableAjaxValidation'=>false,
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+'id'=>'page-form-'.$model->id,
+'type'=>'horizontal',
+'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
 	<? if($form->errorSummary($model)): ?>
@@ -47,13 +48,7 @@
                 
                   <div class="tab-pane" id="validate_tab1">			          	
 
-				          <div class="control-group">
-				          	<?php echo $form->labelEx($model,'heading'); ?>
-				          	<div class="controls">
-				          		<?php echo $form->textField($model,'heading',array('size'=>80,'maxlength'=>70)); ?>
-				          		<span class="help-inline"><?php echo $form->error($model,'heading'); ?></span>
-				          	</div>   	
-				          </div>
+				          <?php echo $form->textFieldRow($model, 'heading'); ?>
 			          		
 			          	  <? if($model->isCmsPage()): ?>
 				          <div class="control-group">
@@ -73,13 +68,7 @@
 				          <? endif; ?>
 				          
 			          	<? if($model->isCmsPage()): ?>
-			          	<div class="control-group">
-				          	<?php echo $form->labelEx($model,'status'); ?>
-				          	<div class="controls">
-				          		<?php echo $form->dropDownList($model,'status', CmsLookup::items('PageStatus')); ?>
-				          		<span class="help-inline"><?php echo $form->error($model,'status'); ?></span>
-				          	</div>
-				        </div>
+			          		<?php echo $form->dropDownListRow($model, 'status', CmsLookup::items('PageStatus')); ?> 
 				        <? endif; ?>
 				          
 			          <div class="control-group">
@@ -104,54 +93,27 @@
                   	<?php $this->widget('cms.widgets.CmsMediaManager', array('model'=>$model, 'type'=>'page')) ?>	               
                   </div>
                   
-                  <div class="tab-pane" id="validate_tab3">      
-                  		<div class="control-group">
-				          	<?php echo $form->labelEx($model,'parentId'); ?>
-				          	<div class="controls">
-				          		<?php echo $form->dropDownList($model,'parentId', $model->getParentOptionTree()); ?>
-				          		<span class="help-inline"><?php echo $form->error($model,'parentId'); ?></span>
-				          	</div>
-				        </div>
+                  <div class="tab-pane" id="validate_tab3">  
+                  		<?php echo $form->dropDownListRow($model, 'parentId', $model->getParentOptionTree()); ?>     
                   </div>
                   
                   <div class="tab-pane" id="validate_tab4">      
                   		<? if($model->isCmsPage()): ?>
-			          	<div class="control-group">
-				          	<?php echo $form->labelEx($model,'layout'); ?>
-				          	<div class="controls">
-				          		<?php echo $form->dropDownList($model,'layout', Yii::app()->cms->scanPagesDir()); ?>
-				          		<span class="help-inline"><?php echo $form->error($model,'layout'); ?></span>
-				          	</div>
-				        </div>
+                  			<?php echo $form->dropDownListRow($model, 'layout', Yii::app()->cms->scanPagesDir()); ?>
 				        <? endif; ?>
                   </div>
                   
                   <div class="tab-pane" id="validate_tab5">                   
 
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'metaDescription'); ?>
-			          	<div class="controls">
-			          		<?php echo $form->textField($model,'metaDescription',array('size'=>80,'maxlength'=>160)); ?>
-			          		<span class="help-inline"><?php echo $form->error($model,'metaDescription'); ?></span>
-			          	</div>   	
-			          </div>
-			          
-			          	<div class="control-group">
-							<?php echo $form->labelEx($model,'name'); ?>
-							<div class="controls">
-								<?php echo $form->textField($model,'name',array('size'=>80,'maxlength'=>70)); ?>
-								<span class="help-inline"><?php echo $form->error($model,'name'); ?></span>
-							</div>
-						</div>
-				                         
-                  </div>
-                  
+	                  <?php echo $form->textFieldRow($model, 'metaDescription'); ?>
+	                  
+	                  <?php echo $form->textFieldRow($model, 'name'); ?>
                   
                 </div>  
 
             </div>
             <div class="widget-footer">
-              <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary')); ?>
+            	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Create' : 'Save')); ?>
               <? if($model->isCmsPage()): ?>
               	<a href="<?=$model->getUrl();?>" target="_blank"><button class="btn" type="button">Preview</button></a>
               <? endif; ?>

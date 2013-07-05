@@ -1,12 +1,7 @@
-<?php
-/* @var $this CategoriesController */
-/* @var $model CmsCategories */
-/* @var $form CActiveForm */
-?>
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'cms-categories-form',
-	'enableAjaxValidation'=>false,
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+'id'=>'categories-form',
+'type'=>'horizontal',
+'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
 
@@ -48,36 +43,18 @@
         
       	<div class="tab-pane" id="validate_tab1">
       	
-        		<div class="control-group">
-	          		<?php echo $form->labelEx($model,'title'); ?>
-	          		<div class="controls">
-	          			<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
-	          			<span class="help-inline"><?php echo $form->error($model,'title'); ?></span>
-	          		</div>
-	          	</div>
-	          	
-          		<div class="control-group">
-	          		<?php echo $form->labelEx($model,'parent'); ?>
-	          		<div class="controls">
-	          			<?=$form->dropDownList($model,'parent',CmsLookup::items('CategoryStatus'), array('class'=>'span7'));?>
-	          			<span class="help-inline"><?php echo $form->error($model,'parent'); ?></span>
-	          		</div>	
-	          	</div>
-	          
-	          	<div class="control-group">
-	          		<?php echo $form->labelEx($model,'category_type'); ?>
-	          		<div class="controls">
-	          			<?=$form->dropDownList($model,'category_type',CmsLookup::items('CategoryType'), array('class'=>'span7'));?>
-	          			<span class="help-inline"><?php echo $form->error($model,'category_type'); ?></span>
-	          		</div>
-	          	</div>
+      			<?php echo $form->textFieldRow($model, 'title'); ?>
+      			
+      			<?php echo $form->dropDownListRow($model, 'parent', CmsLookup::items('CategoryStatus')); ?>
+      			
+      			<?php echo $form->dropDownListRow($model, 'category_type', CmsLookup::items('CategoryType')); ?>
 	          	
         </div>
       	 
       </div>
     </div>
     <div class="widget-footer">
-    	<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary')); ?>
+    	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Create' : 'Save')); ?>
     </div>
     
   </div>

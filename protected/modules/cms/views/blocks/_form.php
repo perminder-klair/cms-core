@@ -1,14 +1,10 @@
-<?php
-/* @var $this BlocksController */
-/* @var $model Blocks */
-/* @var $form CActiveForm */
-?>
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'blocks-form',
-	'enableAjaxValidation'=>false,
+<?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+'id'=>'blocks-form',
+'type'=>'horizontal',
+'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
+
 	<? if($form->errorSummary($model)): ?>
 	<div class="row-fluid">
       <div class="widget widget-padding span12">
@@ -47,41 +43,16 @@
   
       			<?php echo $form->hiddenField($model,'parentId',array('value'=>$page_id)); ?>
       			
-          		<div class="control-group">
-	          		<?php echo $form->labelEx($model,'published'); ?>
-		          	<div class="controls">
-		          		<?php echo $form->dropDownList($model,'published', CmsLookup::items('BlockStatus')); ?>
-		          		<span class="help-inline"><?php echo $form->error($model,'published'); ?></span>
-		          	</div>
-		        </div>
+      			<?php echo $form->dropDownListRow($model, 'published', CmsLookup::items('BlockStatus')); ?>
+      			
+      			<?php echo $form->html5EditorRow($model, 'body', array('class'=>'span4', 'rows'=>5, 'height'=>'200', 'options'=>array('color'=>true))); ?>
 		        
-          		<div class="control-group">
-		          	<?php echo $form->labelEx($model,'body'); ?>
-		          	<div class="controls">
-		          		<?php $this->widget('ext.tinymce.TinyMce', array(
-									    'model' => $model,
-									    'attribute' => 'body',
-									    'htmlOptions' => array(
-									        'rows' => 6,
-									        'cols' => 60,
-									    ),
-									)); ?>
-		          		<span class="help-inline"><?php echo $form->error($model,'body'); ?></span>
-		          	</div>
-		        </div>
-	          
-      			<div class="control-group">
-		          	<?php echo $form->labelEx($model,'name'); ?>
-		          	<div class="controls">
-		          		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-		          		<span class="help-inline"><?php echo $form->error($model,'name'); ?></span>
-		          	</div>
-	          	</div>
+      			<?php echo $form->textFieldRow($model, 'name'); ?>
         
       </div>
     </div>
     <div class="widget-footer">
-    	<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary')); ?>
+    	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Create' : 'Save')); ?>
     </div>
   </div>
 </div>  
