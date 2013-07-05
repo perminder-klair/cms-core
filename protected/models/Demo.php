@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'demo':
  * @property string $id
  * @property string $title
+ * @property string $description
  * @property string $created
  * @property string $updated
  * @property integer $listing_order
@@ -42,10 +43,10 @@ class Demo extends SiteActiveRecord
 		return array(
 			array('listing_order, active, deleted', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>255),
-			array('created, updated', 'safe'),
+			array('description, created, updated', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, created, updated, listing_order, active, deleted', 'safe', 'on'=>'search'),
+			array('id, title, description, created, updated, listing_order, active, deleted', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +70,7 @@ class Demo extends SiteActiveRecord
 		return array(
 			'id' => 'ID',
 			'title' => 'Title',
+			'description' => 'Description',
 			'created' => 'Created',
 			'updated' => 'Updated',
 			'listing_order' => 'Listing Order',
@@ -88,9 +90,11 @@ class Demo extends SiteActiveRecord
 
 		$criteria=new CDbCriteria;
 		$criteria->order='id DESC';
+		$criteria->condition='deleted = 0';
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('title',$this->title,true);
+		$criteria->compare('description',$this->description,true);
 		$criteria->compare('created',$this->created,true);
 		$criteria->compare('updated',$this->updated,true);
 		$criteria->compare('listing_order',$this->listing_order);
@@ -179,8 +183,10 @@ class Demo extends SiteActiveRecord
 	    
 	    if($count=='all')
 	    	return $result->queryAll();
-	    else
-	    	return $result->queryRow();
+	    else {
+	    	$row = $result->queryRow();
+	    	return CmsMedia::model()->findByPk($row['id']);
+	    }
     }
 	
 	public function adminActions()

@@ -13,6 +13,10 @@
 	<?php echo CHtml::encode($data->title); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
+	<?php echo CHtml::encode($data->description); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('created')); ?>:</b>
 	<?php echo CHtml::encode($data->created); ?>
 	<br />
@@ -29,9 +33,11 @@
 	<?php echo CHtml::encode($data->active); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('deleted')); ?>:</b>
 	<?php echo CHtml::encode($data->deleted); ?>
 	<br />
 
+	*/ ?>
 
 </div>

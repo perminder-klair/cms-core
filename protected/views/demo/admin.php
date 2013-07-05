@@ -35,9 +35,10 @@
 					'columns'=>array(
 						'id',
 		'title',
+		'description',
 		'created',
-		'updated',
 		/*
+		'updated',
 		'listing_order',
 		'active',
 		'deleted',

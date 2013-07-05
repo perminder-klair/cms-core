@@ -50,8 +50,9 @@
         
       	<div class="tab-pane" id="validate_tab1">
         		          <?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>255)); ?>
-          		          <?php echo $form->textFieldRow($model,'created',array('class'=>'span5')); ?>
-          		          <?php echo $form->textFieldRow($model,'updated',array('class'=>'span5')); ?>
+          		          <?php echo $form->html5EditorRow($model, 'description', array('class'=>'span8', 'rows'=>5, 'height'=>'200', 'options'=>array('color'=>true))); ?>
+          		          <?php echo $form->datepickerRow($model, 'created', array('prepend'=>'<i class="icon-calendar"></i>')); ?>
+          		          <?php echo $form->datepickerRow($model, 'updated', array('prepend'=>'<i class="icon-calendar"></i>')); ?>
           		          <?php echo $form->textFieldRow($model,'listing_order',array('class'=>'span5')); ?>
           		          <?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
           		          <?php echo $form->textFieldRow($model,'deleted',array('class'=>'span5')); ?>
