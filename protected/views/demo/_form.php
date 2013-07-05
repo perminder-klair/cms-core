@@ -4,9 +4,10 @@
 /* @var $form CActiveForm */
 ?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'demo-form',
 	'enableAjaxValidation'=>false,
+	'type'=>'horizontal',
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
 
@@ -48,60 +49,12 @@
       <div class="tab-content">     
         
       	<div class="tab-pane" id="validate_tab1">
-        		          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'title'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'title'); ?>
-</span>
-	          	</div>
-	          	
-	          </div>
-          		          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'created'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'created'); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'created'); ?>
-</span>
-	          	</div>
-	          	
-	          </div>
-          		          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'updated'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'updated'); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'updated'); ?>
-</span>
-	          	</div>
-	          	
-	          </div>
-          		          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'listing_order'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'listing_order'); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'listing_order'); ?>
-</span>
-	          	</div>
-	          	
-	          </div>
-          		          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'active'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'active'); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'active'); ?>
-</span>
-	          	</div>
-	          	
-	          </div>
-          		          <div class="control-group">
-	          	<?php echo $form->labelEx($model,'deleted'); ?>
-	          	<div class="controls">
-	          		<?php echo $form->textField($model,'deleted'); ?>
-	          		<span class="help-inline"><?php echo $form->error($model,'deleted'); ?>
-</span>
-	          	</div>
-	          	
-	          </div>
+        		          <?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>255)); ?>
+          		          <?php echo $form->textFieldRow($model,'created',array('class'=>'span5')); ?>
+          		          <?php echo $form->textFieldRow($model,'updated',array('class'=>'span5')); ?>
+          		          <?php echo $form->textFieldRow($model,'listing_order',array('class'=>'span5')); ?>
+          		          <?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
+          		          <?php echo $form->textFieldRow($model,'deleted',array('class'=>'span5')); ?>
           	      	</div>
       	
       	<div class="tab-pane" id="validate_tab2"> 
