@@ -60,18 +60,20 @@ class SiteController extends Controller
 			{	
 				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
 				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				//use 'contact' view from views/mail
-				$mail = new YiiMailer('contact', array('message' => $model->body, 'name' => $name, 'description' => 'Contact form'));
-				//render HTML mail, layout is set from config file or with $mail->setLayout('layoutName')
-				$mail->render();
-				//set properties as usually with PHPMailer
-				$mail->From = $model->email;
-				$mail->FromName = $model->name;
-				$mail->Subject = $subject;
-				$mail->AddAddress(Yii::app()->params['adminEmail']);
-				//send
-				if ($mail->Send()) {
-					$mail->ClearAddresses();
+
+				$emailData = array(
+					'view'=>'contact',
+					'mailData'=>array(
+						'model'=>$model, 
+						'name' => $name,
+					),
+					'fromEmail'=>gl('admin_email'),
+					'fromName'=>gl('site_name'),
+					'subject'=>$subject,
+					'toEmail'=>gl('admin_email'),
+				);
+				
+				if(Mail::sendEmail($emailData)) {
 					Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
 				} else {
 					Yii::app()->user->setFlash('error','Error while sending email: '.$mail->ErrorInfo);

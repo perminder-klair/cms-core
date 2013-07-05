@@ -7,9 +7,10 @@
 
 	<?php $this->getMetaData(); ?>
 	
-	<?php Yii::app()->setting->loadCss(array('styles')); ?>
-
 	<?php Yii::app()->bootstrap->register(); ?>
+	
+	<?php Yii::app()->setting->loadCss(array('styles')); ?>
+	<?php Yii::app()->setting->loadJs(array('')); ?>
 </head>
 
 <body>

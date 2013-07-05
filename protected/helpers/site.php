@@ -26,13 +26,13 @@
 	
 	/**
 	* merges new Get into current url
-	* use it as: url("/model/action", mergeGet('limit', '50'));
+	* use it as: url("/model/action", mergeGet($_GET, 'limit', '50'));
 	*/
-	function mergeGet($key, $value) {
-		if (array_key_exists($key, $_GET)) {
-			$_GET[$key]=$value;
+	function mergeGet($get, $key, $value) {
+		if (array_key_exists($key, $get)) {
+			$get[$key]=$value;
 		}
-		$array = array_merge(array($key => $value), $_GET);
+		$array = array_merge(array($key => $value), $get);
 		
 		return $array;
 	}
@@ -78,4 +78,24 @@
 	    }
 	
 	    return $str;
+	}
+	
+	/**
+	 * returns array containg: lat, lng, postcode 
+	 * Usage: pass in postcode
+	 */
+	function getPostcodeData($postcode) {
+		$trim_postcode = str_replace(' ', '', preg_replace("/[^a-zA-Z0-9\s]/", "", strtolower($postcode)));
+
+		$q_center = "http://maps.googleapis.com/maps/api/geocode/json?address=".$trim_postcode."&sensor=false";
+		$json_center = file_get_contents($q_center);
+		$details_center = json_decode($json_center, TRUE);
+		       
+		$center_lat = $details_center['results'][0]['geometry']['location']['lat'];
+		$center_lng = $details_center['results'][0]['geometry']['location']['lng'];
+		return array(
+			'postcode'=>$trim_postcode,
+			'lat'=>$center_lat,
+			'lng'=>$center_lng,
+		);
 	}
