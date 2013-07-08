@@ -32,8 +32,7 @@
 <?php if(\Yii::app()->user->hasFlash('success')):?>
 <div class="alert alert-success">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Success!</strong>  
-</div>
+    <strong>Success!</strong> <?php echo Yii::app()->user->getFlash('success'); ?></div>
 <?php endif; ?>
 
 <div class="row-fluid">
@@ -43,7 +42,7 @@
       <ul class="nav nav-tabs">
         <li><a href="#validate_tab1" data-toggle="tab">Basic Info</a></li>
         <li><a href="#validate_tab2" data-toggle="tab">Media</a></li>
-        <li><a href="#validate_tab3" data-toggle="tab">Categories</a></li>
+        <!--<li><a href="#validate_tab3" data-toggle="tab">Categories</a></li>-->
       </ul>
     </div>
     <div class="widget-body">
@@ -69,10 +68,10 @@
 	      	<div class="control-group">
                 <div class="controls" style="width: 250px;">
                 	
-                	<?php echo $form->checkBoxList($model, 'activeCategories', CmsCategories::getAllCategories('2'), 
+                	<?php /*echo $form->checkBoxList($model, 'activeCategories', CmsCategories::getAllCategories('TYPE_HERE'), 
 							array(
 								'labelOptions'=>array('class'=>'checkbox strong')
-							)); ?>
+							));*/ ?>
                 </div>
             </div>
 	      	

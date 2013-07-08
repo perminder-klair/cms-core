@@ -87,8 +87,10 @@ class DemoController extends Controller
 			//Update Categories
 			$model->setRelationRecords('categories', $_POST['Demo']['activeCategories'], array('type' => 'demo'));
 			
-			if($model->save())
-				$this->redirect(array('admin'));
+			if($model->save()) {
+				Yii::app()->user->setFlash('success','Demo has been updated!');
+				$this->redirect(array('update', 'id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(

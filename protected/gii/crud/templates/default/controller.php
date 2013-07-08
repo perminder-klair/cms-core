@@ -94,8 +94,10 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 			//Update Categories
 			$model->setRelationRecords('categories', $_POST['<?php echo $this->modelClass; ?>']['activeCategories'], array('type' => '<?php echo strtolower($this->modelClass); ?>'));
 			
-			if($model->save())
-				$this->redirect(array('admin'));
+			if($model->save()) {
+				Yii::app()->user->setFlash('success','<?php echo $this->modelClass; ?> has been updated!');
+				$this->redirect(array('update', 'id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(

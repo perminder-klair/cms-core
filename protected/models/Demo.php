@@ -234,7 +234,7 @@ class Demo extends SiteActiveRecord
 	    $ids=array();
 	    foreach($categories as $c)
 	        $ids[]=$c['category_id'];
-        
+	        
 	    return $ids;
 	}
 }
