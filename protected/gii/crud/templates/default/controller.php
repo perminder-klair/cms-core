@@ -90,6 +90,10 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		if(isset($_POST['<?php echo $this->modelClass; ?>']))
 		{
 			$model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
+			
+			//Update Categories
+			$model->setRelationRecords('categories', $_POST['<?php echo $this->modelClass; ?>']['activeCategories'], array('type' => '<?php echo strtolower($this->modelClass); ?>'));
+			
 			if($model->save())
 				$this->redirect(array('admin'));
 		}

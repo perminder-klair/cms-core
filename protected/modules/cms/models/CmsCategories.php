@@ -117,4 +117,23 @@ class CmsCategories extends SiteActiveRecord
 
     	return $result;
 	}
+	
+	/**
+	 * get all Categories for a specific type
+	 * use as: CmsCategories::getAllCategories('TYPE_HERE');
+	 */
+	public static function getAllCategories($type)
+	{
+		$criteria=new CDbCriteria(
+			array("condition"=>"category_type = {$type}")
+		);
+		$allCategories = CmsCategories::model()->findAll($criteria);
+		
+		$categories = array();
+		foreach ($allCategories as $category) {
+		    $categories[$category->id] = $category->title;
+		}
+		
+		return $categories;
+	}
 }

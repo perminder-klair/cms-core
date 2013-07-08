@@ -83,6 +83,10 @@ class DemoController extends Controller
 		if(isset($_POST['Demo']))
 		{
 			$model->attributes=$_POST['Demo'];
+			
+			//Update Categories
+			$model->setRelationRecords('categories', $_POST['Demo']['activeCategories'], array('type' => 'demo'));
+			
 			if($model->save())
 				$this->redirect(array('admin'));
 		}

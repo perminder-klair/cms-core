@@ -43,6 +43,7 @@
       <ul class="nav nav-tabs">
         <li><a href="#validate_tab1" data-toggle="tab">Basic Info</a></li>
         <li><a href="#validate_tab2" data-toggle="tab">Media</a></li>
+        <li><a href="#validate_tab3" data-toggle="tab">Categories</a></li>
       </ul>
     </div>
     <div class="widget-body">
@@ -61,6 +62,20 @@
       	<div class="tab-pane" id="validate_tab2"> 
 	      	<!-- Media manager here -->
 	      	<?php $this->widget('cms.widgets.CmsMediaManager', array('model'=>$model, 'type'=>'demo')) ?>
+	    </div>
+	    
+	    <div class="tab-pane" id="validate_tab3"> 
+	      	
+	      	<div class="control-group">
+                <div class="controls" style="width: 250px;">
+                	
+                	<?php echo $form->checkBoxList($model, 'activeCategories', CmsCategories::getAllCategories('2'), 
+							array(
+								'labelOptions'=>array('class'=>'checkbox strong')
+							)); ?>
+                </div>
+            </div>
+	      	
 	    </div>
       	 
       </div>

@@ -109,6 +109,7 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 			<?php echo "'$name' => $relation,\n"; ?>
 <?php endforeach; ?>
 			'media'=>array(self::MANY_MANY, 'CmsMedia', 'cms_content_media(content_id, media_id)', 'condition' => 'type = "<?php echo strtolower($modelClass);?>"'),
+			'categories'=>array(self::MANY_MANY, 'CmsCategories', 'cms_content_categories(content_id, category_id)', 'condition' => 'type = "<?php echo strtolower($modelClass);?>"'),
 		);
 	}
 
@@ -264,5 +265,26 @@ foreach($columns as $name=>$column)
     	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/<?php echo $modelClass; ?>/delete",array('id'=>$this->id))));
 
     	return $result;
+	}
+	
+	
+	/**
+	 * get active categories
+	 * make sure to insert raw in cms_lookup table as: type: CategoryType
+	 */
+	public function getActiveCategories()
+	{	
+		$categories = Yii::app()->db->createCommand()
+		    ->select('*')
+		    ->from('cms_content_categories')
+		    ->where('content_id=:id', array(':id'=>$this->id))
+		    ->andWhere('type=:type', array(':type'=>'<?php echo strtolower($modelClass);?>'))
+		    ->queryAll();
+		
+	    $ids=array();
+	    foreach($categories as $c)
+	        $ids[]=$c['category_id'];
+	        
+	    return $ids;
 	}
 }

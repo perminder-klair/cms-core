@@ -59,6 +59,7 @@ class Demo extends SiteActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'media'=>array(self::MANY_MANY, 'CmsMedia', 'cms_content_media(content_id, media_id)', 'condition' => 'type = "demo"'),
+			'categories'=>array(self::MANY_MANY, 'CmsCategories', 'cms_content_categories(content_id, category_id)', 'condition' => 'type = "demo"'),
 		);
 	}
 
@@ -214,5 +215,26 @@ class Demo extends SiteActiveRecord
     	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/Demo/delete",array('id'=>$this->id))));
 
     	return $result;
+	}
+	
+	
+	/**
+	 * get active categories
+	 * make sure to insert raw in cms_lookup table as: type: CategoryType
+	 */
+	public function getActiveCategories()
+	{	
+		$categories = Yii::app()->db->createCommand()
+		    ->select('*')
+		    ->from('cms_content_categories')
+		    ->where('content_id=:id', array(':id'=>$this->id))
+		    ->andWhere('type=:type', array(':type'=>'demo'))
+		    ->queryAll();
+		
+	    $ids=array();
+	    foreach($categories as $c)
+	        $ids[]=$c['category_id'];
+        
+	    return $ids;
 	}
 }
