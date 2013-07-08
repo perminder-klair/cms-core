@@ -29,10 +29,11 @@
     </div>
     <?php } ?>
     
-<?php if(\Yii::app()->user->hasFlash('success')):?>
+<?php if(Yii::app()->user->hasFlash('success')):?>
 <div class="alert alert-success">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Success!</strong> <?php echo Yii::app()->user->getFlash('success'); ?></div>
+    <strong>Success!</strong> <?php echo Yii::app()->user->getFlash('success'); ?>
+</div>
 <?php endif; ?>
 
 <div class="row-fluid">
