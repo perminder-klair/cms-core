@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `cms_blog` (
   `author_id` int(11) NOT NULL,
   `deleted` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_categories
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `cms_categories` (
   `parent` tinyint(4) DEFAULT NULL,
   `category_type` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_comment
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `cms_content_categories` (
   `category_id` int(11) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_content_media
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `cms_lookup` (
   `type` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_media
@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `demo` (
   `updated` timestamp NULL DEFAULT NULL,
   `listing_order` int(11) DEFAULT NULL,
   `active` tinyint(4) DEFAULT NULL,
-  `deleted` tinyint(4) DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -425,7 +425,19 @@ INSERT INTO `cms_blocks` (`id`,`name`,`body`,`created`,`updated`,`parentId`,`pub
 -- TABLE DATA cms_blog
 -- -------------------------------------------
 INSERT INTO `cms_blog` (`id`,`title`,`content`,`metaDescription`,`tags`,`slug`,`created`,`modified`,`date_start`,`blog_type`,`parentId`,`status`,`author_id`,`deleted`) VALUES
-('1','New Blog','<p>content for blog... heellooo sddssds</p>','this is my blog short','my, page, yii','nice-','2013-05-18 07:54:55','2013-05-22 14:44:42','2013-03-24 18:30:00','blog','0','2','2','0');
+('1','New Blogs','<p>content for blog... heellooo sddssds</p>','this is my blog short','my, page, yii','nice-','2013-05-18 07:54:55','2013-07-05 13:28:34','2013-03-24 18:30:00','blog','0','2','2','0');
+INSERT INTO `cms_blog` (`id`,`title`,`content`,`metaDescription`,`tags`,`slug`,`created`,`modified`,`date_start`,`blog_type`,`parentId`,`status`,`author_id`,`deleted`) VALUES
+('2','New Blog','<p>content for blog... heellooo sddssds</p>','this is my blog short','my, page, yii','nice-','2013-07-05 13:28:34','2013-07-05 13:28:34','2013-07-05 00:00:00','revision','1','2','2','0');
+
+
+
+-- -------------------------------------------
+-- TABLE DATA cms_categories
+-- -------------------------------------------
+INSERT INTO `cms_categories` (`id`,`title`,`url`,`parent`,`category_type`) VALUES
+('1','Category Title','category-title','1','1');
+INSERT INTO `cms_categories` (`id`,`title`,`url`,`parent`,`category_type`) VALUES
+('2','Demo Category','demo-category','1','2');
 
 
 
@@ -478,6 +490,8 @@ INSERT INTO `cms_lookup` (`id`,`name`,`code`,`type`,`position`) VALUES
 ('24','Featured','1','MediaType','2');
 INSERT INTO `cms_lookup` (`id`,`name`,`code`,`type`,`position`) VALUES
 ('25','Content','2','MediaType','3');
+INSERT INTO `cms_lookup` (`id`,`name`,`code`,`type`,`position`) VALUES
+('26','Demo','2','CategoryType','2');
 
 
 
@@ -565,7 +579,7 @@ INSERT INTO `cms_user_profile` (`id`,`user_id`,`address`,`postcode`,`telehphone`
 INSERT INTO `demo` (`id`,`title`,`created`,`updated`,`listing_order`,`active`,`deleted`) VALUES
 ('1','test','2013-06-10 14:49:17','2013-06-10 16:26:18','1','0','1');
 INSERT INTO `demo` (`id`,`title`,`created`,`updated`,`listing_order`,`active`,`deleted`) VALUES
-('2','test 2','2013-06-10 14:49:40','2013-06-11 09:21:35','2','1','0');
+('2','test 2','2013-06-10 14:49:40','2013-07-08 10:52:18','2','1','0');
 
 
 

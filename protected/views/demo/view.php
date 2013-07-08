@@ -23,7 +23,6 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'title',
-		'description',
 		'created',
 		'updated',
 		'listing_order',

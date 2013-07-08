@@ -6,7 +6,6 @@
  * The followings are the available columns in table 'demo':
  * @property string $id
  * @property string $title
- * @property string $description
  * @property string $created
  * @property string $updated
  * @property integer $listing_order
@@ -43,10 +42,10 @@ class Demo extends SiteActiveRecord
 		return array(
 			array('listing_order, active, deleted', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>255),
-			array('description, created, updated', 'safe'),
+			array('created, updated', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, title, description, created, updated, listing_order, active, deleted', 'safe', 'on'=>'search'),
+			array('id, title, created, updated, listing_order, active, deleted', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +70,6 @@ class Demo extends SiteActiveRecord
 		return array(
 			'id' => 'ID',
 			'title' => 'Title',
-			'description' => 'Description',
 			'created' => 'Created',
 			'updated' => 'Updated',
 			'listing_order' => 'Listing Order',
@@ -95,7 +93,6 @@ class Demo extends SiteActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('description',$this->description,true);
 		$criteria->compare('created',$this->created,true);
 		$criteria->compare('updated',$this->updated,true);
 		$criteria->compare('listing_order',$this->listing_order);
@@ -124,10 +121,10 @@ class Demo extends SiteActiveRecord
      * This method is invoked after each record is instantiated by a find method.
      */
     public function afterFind()
-    {//* @property integer $deleted
+    {
     
     	$this->created = date('m/d/Y',strtotime($this->created));
-    	$this->updated = date('m/d/Y',strtotime($this->updated));
+$this->updated = date('m/d/Y',strtotime($this->updated));
     	
 	    return parent::afterFind();
     }
@@ -152,7 +149,7 @@ class Demo extends SiteActiveRecord
             }
             
             $this->created = date('Y-m-d',strtotime($this->created));
-            $this->updated = date('Y-m-d',strtotime($this->updated));
+$this->updated = date('Y-m-d',strtotime($this->updated));
             
             return true;
 		}
