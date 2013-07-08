@@ -55,7 +55,7 @@
           		          <?php echo $form->datepickerRow($model, 'created', array('prepend'=>'<i class="icon-calendar"></i>')); ?>
           		          <?php echo $form->datepickerRow($model, 'updated', array('prepend'=>'<i class="icon-calendar"></i>')); ?>
           		          <?php echo $form->textFieldRow($model,'listing_order',array('class'=>'span5')); ?>
-          		          <?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
+          		          <?php echo $form->dropDownListRow($model,'active', array(0=>'No', 1=>'Yes')); ?>
           		          <?php echo $form->textFieldRow($model,'deleted',array('class'=>'span5')); ?>
           	      	</div>
       	

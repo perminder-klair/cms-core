@@ -119,6 +119,18 @@ class Demo extends SiteActiveRecord
             ),
         );
     }
+    
+    /**
+     * This method is invoked after each record is instantiated by a find method.
+     */
+    public function afterFind()
+    {//* @property integer $deleted
+    
+    	$this->created = date('m/d/Y',strtotime($this->created));
+    	$this->updated = date('m/d/Y',strtotime($this->updated));
+    	
+	    return parent::afterFind();
+    }
 	
 	/**
 	 * This is invoked before the record is saved.
@@ -138,6 +150,9 @@ class Demo extends SiteActiveRecord
             } else {
 
             }
+            
+            $this->created = date('Y-m-d',strtotime($this->created));
+            $this->updated = date('Y-m-d',strtotime($this->updated));
             
             return true;
 		}

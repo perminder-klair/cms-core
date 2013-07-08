@@ -169,6 +169,17 @@ foreach($columns as $name=>$column)
             ),
         );
     }
+    
+    /**
+     * This method is invoked after each record is instantiated by a find method.
+     */
+    public function afterFind()
+    {
+    
+    	<?php foreach($columns as $column): ?><? if(stripos($column->dbType, 'TIMESTAMP') !== false): ?><? echo "\$this->".$column->name." = date('m/d/Y',strtotime(\$this->".$column->name."));\n"; ?><? endif; ?><?php endforeach; ?>
+    	
+	    return parent::afterFind();
+    }
 	
 	/**
 	 * This is invoked before the record is saved.
@@ -188,6 +199,8 @@ foreach($columns as $name=>$column)
             } else {
 
             }
+            
+            <?php foreach($columns as $column): ?><? if(stripos($column->dbType, 'TIMESTAMP') !== false): ?><? echo "\$this->".$column->name." = date('Y-m-d',strtotime(\$this->".$column->name."));\n"; ?><? endif; ?><?php endforeach; ?>
             
             return true;
 		}

@@ -262,6 +262,10 @@ class CrudCode extends CCodeModel
 			return "\$form->html5EditorRow(\$model, '{$column->name}', array('class'=>'span8', 'rows'=>5, 'height'=>'200', 'options'=>array('color'=>true)))";
 		} else if (stripos($column->dbType, 'TIMESTAMP') !== false) {
 			return "\$form->datepickerRow(\$model, '{$column->name}', array('prepend'=>'<i class=\"icon-calendar\"></i>'))";
+		} else if (stripos($column->dbType, 'DECIMAL') !== false) {
+			return "\$form->textFieldRow(\$model, '{$column->name}', array('prepend'=>'&pound;'))";
+		} else if ($column->name=='active') {
+			return "\$form->dropDownListRow(\$model,'{$column->name}', array(0=>'No', 1=>'Yes'))";
 		} else {
 			if (preg_match('/^(password|pass|passwd|passcode)$/i', $column->name)) {
 				$inputField = 'passwordFieldRow';
