@@ -265,7 +265,7 @@ class CrudCode extends CCodeModel
 		} else if (stripos($column->dbType, 'DECIMAL') !== false) {
 			return "\$form->textFieldRow(\$model, '{$column->name}', array('prepend'=>'&pound;'))";
 		} else if ($column->name=='active') {
-			return "\$form->dropDownListRow(\$model,'{$column->name}', array(0=>'No', 1=>'Yes'))";
+			return "\$form->toggleButtonRow(\$model,'{$column->name}')";
 		} else {
 			if (preg_match('/^(password|pass|passwd|passcode)$/i', $column->name)) {
 				$inputField = 'passwordFieldRow';

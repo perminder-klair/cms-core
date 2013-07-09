@@ -83,7 +83,7 @@ class CmsActiveRecord extends ManyManyActiveRecord
          * @param boolean $soft indicates whether to perform a "soft" delete
          * @return boolean whether the record can be deleted
          */
-        public function beforeDelete($soft)
+        public function beforeDelete($soft = null)
         {
                 if (parent::beforeDelete() && $soft && $this->hasAttribute('deleted'))
                 {

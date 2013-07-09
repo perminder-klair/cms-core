@@ -68,17 +68,16 @@
 	 * Creates random string
 	 * default lenght is 8
 	 */
-	function genRandomString() {
-	    $length = 8;
-	    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";  
-	
-	    $size = strlen( $chars );
-	    for( $i = 0; $i < $length; $i++ ) {
-	      $str .= $chars[ rand( 0, $size - 1 ) ];
-	    }
-	
-	    return $str;
-	}
+	function genRandomString($length=8) {
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        $size = strlen( $chars );
+        for( $i = 0; $i < $length; $i++ ) {
+            $str .= $chars[ rand( 0, $size - 1 ) ];
+        }
+
+        return $str;
+    }
 	
 	/**
 	 * returns array containg: lat, lng, postcode 

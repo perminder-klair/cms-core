@@ -252,6 +252,15 @@ foreach($columns as $name=>$column)
 	    	return CmsMedia::model()->findByPk($row['id']);
 	    }
     }
+    
+    /**
+     * returns Default Image which is selected as featured in CMS
+     */
+    public function getDefaultImage()
+	{
+		if($image = $this->mediaType(CmsMedia::TYPE_FEATURED))
+			return $image->render(array('width' => '400', 'height' => '300', 'smart_resize' => true));
+	}
 	
 	public function adminActions()
 	{
