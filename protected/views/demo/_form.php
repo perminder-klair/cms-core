@@ -53,8 +53,8 @@
         		          <?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>255)); ?>
           		          <?php echo $form->datepickerRow($model, 'created', array('prepend'=>'<i class="icon-calendar"></i>')); ?>
           		          <?php echo $form->datepickerRow($model, 'updated', array('prepend'=>'<i class="icon-calendar"></i>')); ?>
-          		          <?php echo $form->textFieldRow($model,'listing_order',array('class'=>'span5')); ?>
-          		          <?php echo $form->dropDownListRow($model,'active', array(0=>'No', 1=>'Yes')); ?>
+          		          <?php echo $form->dropDownListRow($model, 'listing_order', $model->listingIdArray, array('empty' => 'Select Here')); ?>
+          		          <?php echo $form->toggleButtonRow($model,'active'); ?>
           		          <?php echo $form->textFieldRow($model,'deleted',array('class'=>'span5')); ?>
           	      	</div>
       	

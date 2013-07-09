@@ -137,13 +137,8 @@ $this->updated = date('m/d/Y',strtotime($this->updated));
 	    if (parent::beforeSave())
 	    {
             if ($this->isNewRecord) {
-            	//find listing Order number of last
-            	$criteria=new CDbCriteria;
-            	$criteria->order='listing_order DESC';
-            	$lastID=$this::model()->find($criteria);
-            	$listOrderId = $lastID->listing_order+1;
             	//Update Listing order
-            	$this->listing_order=$listOrderId;
+            	$this->listing_order=$this->findLastListingNumber();
             } else {
 
             }
@@ -201,6 +196,15 @@ $this->updated = date('Y-m-d',strtotime($this->updated));
 	    	return CmsMedia::model()->findByPk($row['id']);
 	    }
     }
+    
+    /**
+     * returns Default Image which is selected as featured in CMS
+     */
+    public function getDefaultImage()
+	{
+		if($image = $this->mediaType(CmsMedia::TYPE_FEATURED))
+			return $image->render(array('width' => '400', 'height' => '300', 'smart_resize' => true));
+	}
 	
 	public function adminActions()
 	{
@@ -249,4 +253,28 @@ $this->updated = date('Y-m-d',strtotime($this->updated));
 	        
 	    return $ids;
 	}
+	
+	/**
+	 * find last listing number
+	 */
+	private function findLastListingNumber()
+    {
+        //find listing Order number of last
+        $criteria=new CDbCriteria;
+        $criteria->order='listing_order DESC';
+        $lastID=$this::model()->find($criteria);
+        return $lastID->listing_order+1;
+    }
+    
+    /**
+     * return list of listing Ids array
+     */
+    public function getListingIdArray()
+    {
+        for ($i = 1; $i <= $this->findLastListingNumber(); $i++) {
+            $array[]=$i;
+        }
+
+        return $array;
+    }
 }

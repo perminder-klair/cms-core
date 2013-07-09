@@ -189,13 +189,8 @@ foreach($columns as $name=>$column)
 	    if (parent::beforeSave())
 	    {
             if ($this->isNewRecord) {
-            	//find listing Order number of last
-            	$criteria=new CDbCriteria;
-            	$criteria->order='listing_order DESC';
-            	$lastID=$this::model()->find($criteria);
-            	$listOrderId = $lastID->listing_order+1;
             	//Update Listing order
-            	$this->listing_order=$listOrderId;
+            	$this->listing_order=$this->findLastListingNumber();
             } else {
 
             }
@@ -309,4 +304,28 @@ foreach($columns as $name=>$column)
 	        
 	    return $ids;
 	}
+	
+	/**
+	 * find last listing number
+	 */
+	private function findLastListingNumber()
+    {
+        //find listing Order number of last
+        $criteria=new CDbCriteria;
+        $criteria->order='listing_order DESC';
+        $lastID=$this::model()->find($criteria);
+        return $lastID->listing_order+1;
+    }
+    
+    /**
+     * return list of listing Ids array
+     */
+    public function getListingIdArray()
+    {
+        for ($i = 1; $i <= $this->findLastListingNumber(); $i++) {
+            $array[]=$i;
+        }
+
+        return $array;
+    }
 }
