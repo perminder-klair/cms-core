@@ -13,7 +13,7 @@
 	        ),
 	        'validation' => array(
 	            'allowedExtensions' => CmsMedia::allowedFileTypes(),
-	            'sizeLimit' => 20971520, // max file size in bytes
+	            'sizeLimit' => CmsMedia::FILE_SIZE_LIMIT, // max file size in bytes
 	            'minSizeLimit' => 256, // min file size in bytes
 	        ),
 	        'callbacks' => array(

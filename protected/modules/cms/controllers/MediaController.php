@@ -90,9 +90,9 @@ class MediaController extends CmsController
 			//Do insert into join table manually
 			$command = Yii::app()->db->createCommand();
 			$command->insert('cms_content_media', array(
-			    'content_id'=>$_GET['content_id'],
+			    'content_id'=>$_REQUEST['content_id'],
 			    'media_id'=>$media->id,
-			    'type'=>$_GET['type'],
+			    'type'=>$_REQUEST['type'],
 			));
 			
 			$this->render('newMedia',array(
