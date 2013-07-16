@@ -40,18 +40,18 @@ class BlocksController extends CmsController
 
             if (isset($_POST['CmsBlocks']))
             {
-                    $model->attributes = $_POST['CmsBlocks'];
+                $model->attributes = $_POST['CmsBlocks'];
+                $model->parentId=$id;
 
-                    if ($model->save())
-                    {
-                            //Yii::app()->user->setFlash(Yii::app()->cms->flashes['success'], Yii::t('CmsModule.core', 'Node created.'));
-                            $this->redirect(array('/cms/pages/update', 'id'=>$id));
-                    }
+                if ($model->save())
+                {
+                    Yii::app()->user->setFlash(Yii::app()->cms->flashes['success'], 'Block Created!');
+                    $this->redirect(array('/cms/pages/update', 'id'=>$id));
+                }
             }
 
             $this->render('create', array(
                     'model'=>$model,
-                    'page_id'=>$id,
             ));
     }
     

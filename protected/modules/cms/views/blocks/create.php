@@ -10,4 +10,4 @@ $this->breadcrumbs=array(
 
 <h1>Create Block</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model,'page_id'=>$page_id)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -7,7 +7,7 @@ class CmsMedia extends CmsActiveRecord
 	const TYPE_OTHER=0;
 	const TYPE_FEATURED=1;
 	const TYPE_CONTENT=2;
-	const FILE_SIZE_LIMIT = 100 * 1024 * 1024;
+	const FILE_SIZE_LIMIT=1048567600;
 	
 	public $media_id = 'id';
 	

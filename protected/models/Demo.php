@@ -203,7 +203,9 @@ $this->updated = date('Y-m-d',strtotime($this->updated));
     public function getDefaultImage()
 	{
 		if($image = $this->mediaType(CmsMedia::TYPE_FEATURED))
-			return $image->render(array('width' => '400', 'height' => '300', 'smart_resize' => true));
+			return $image->render();
+        elseif($image = $this->media)
+            return $image[0]->render();
 	}
 	
 	public function adminActions()
@@ -262,8 +264,11 @@ $this->updated = date('Y-m-d',strtotime($this->updated));
         //find listing Order number of last
         $criteria=new CDbCriteria;
         $criteria->order='listing_order DESC';
-        $lastID=$this::model()->find($criteria);
-        return $lastID->listing_order+1;
+        
+        if($lastID=$this::model()->find($criteria))
+        	return $lastID->listing_order+1;
+        else
+        	return 0;
     }
     
     /**

@@ -232,7 +232,8 @@ class CmsBlog extends CmsActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('blog_type','blog');
+		
+		$criteria->condition='deleted = 0 AND blog_type = "blog"';
 
 		return new CActiveDataProvider('CmsBlog', array(
 			'criteria'=>$criteria,

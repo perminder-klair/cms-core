@@ -20,7 +20,3 @@ $this->pageOgImage = 'my title';
 the <a href="http://www.yiiframework.com/doc/">documentation</a>.
 Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
 should you have any questions.</p>
-
-<a href="<?=page('new-page');?>">PAGE NAME</a>
-
-<?php $this->widget('cms.widgets.CmsBlock', array('blockParent'=>$this->getPageData()->id, 'name'=>'info')) ?>

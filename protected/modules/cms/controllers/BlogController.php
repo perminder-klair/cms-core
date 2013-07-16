@@ -81,7 +81,7 @@ class BlogController extends CmsController
 		//Yii::app()->cms->sisyphus(); //TODO! NEED TO FIND SOLUTION
 		
 		//If restored successfully, clear local data created by sisyphus
-		if($_GET['restored']=='true') {
+		if(isset($_GET['restored'])) {
 			$cs = Yii::app()->getClientScript();
 			$cs->registerScript(
 			'manualy-sisyphus-release',
@@ -168,12 +168,6 @@ class BlogController extends CmsController
 	 */
 	public function actionAdmin()
 	{
-		/*if(Yii::app()->user->checkAccess('createPost')) {
-			dump('yes'); die();
-		} else {
-			dump('no'); die();
-		}*/
-		
 		$this->layout = 'admin';
 		
 		$model=new CmsBlog('search');

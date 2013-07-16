@@ -40,8 +40,6 @@
     </div>
     <div class="widget-body">
       <div class="widget-forms clearfix">
-  
-      			<?php echo $form->hiddenField($model,'parentId',array('value'=>$page_id)); ?>
       			
       			<?php echo $form->dropDownListRow($model, 'published', CmsLookup::items('BlockStatus')); ?>
       			
