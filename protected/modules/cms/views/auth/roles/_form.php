@@ -55,7 +55,6 @@
 
 <?php $this->endWidget(); ?>
 
-<? if(!$isNewRecord) { ?>
 <div class="row-fluid">
 <div class="widget widget-padding span12">
   <div class="widget-header">
@@ -102,4 +101,3 @@
      </div> <!-- /widget-body -->
   </div> <!-- /widget -->
 </div> <!-- /row-fluid -->
-<? } ?>

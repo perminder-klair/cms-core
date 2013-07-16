@@ -49,7 +49,7 @@ class UserController extends CmsController
 	 * @param integer $id the ID of the model to be updated
 	 */
 	public function actionUpdate($id)
-	{	
+	{
 		$this->layout = 'admin';
 		
 		$model=$this->loadModel($id);

@@ -224,6 +224,8 @@ class CmsUser extends CmsActiveRecord
 			$tag = 'label-success';
 		elseif($this->status==self::STATUS_BANNED)
 			$tag = 'label-important';
+		else
+			$tag = '';
 			
 		return '<span class="label '.$tag.'">'.CmsLookup::item("UserStatus", $this->status).'</span>';
 	}
@@ -271,6 +273,7 @@ class CmsUser extends CmsActiveRecord
     public function getRolesAsListData()
 	{
 		$roles = Yii::app()->authManager->getRoles();
+		if(Yii::app()->user->getDetails()->userRole!='super') unset($roles['super']);
 		return CHtml::listData($roles,'name','description');    
 	}
 	

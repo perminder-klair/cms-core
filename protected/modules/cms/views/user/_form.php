@@ -50,7 +50,7 @@
                 	
 	              		<?php echo $form->dropDownListRow($model, 'status', CmsLookup::items('UserStatus')); ?>
 	              		
-	              		<?php echo $form->dropDownListRow($model, 'userRole', $model->getRolesAsListData()); ?>
+	              		<?php if($model->userRole!='super') echo $form->dropDownListRow($model, 'userRole', $model->getRolesAsListData()); ?>
 			          
                   </div>
                   
