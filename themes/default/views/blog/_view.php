@@ -3,6 +3,21 @@
 		<?php echo CHtml::link(CHtml::encode($data->title), $data->getUrl()); ?>
 	</h1>
 	<div class="author">
+		<?php
+		if($data->author->authorImage()){
+			$this->widget('ext.yii-gravatar.YiiGravatar', array(
+			    'email'=>$data->author->email,
+			    'size'=>40,
+			    'defaultImage'=>$data->author->authorImage(),
+			    'secure'=>false,
+			    'rating'=>'r',
+			    'emailHashed'=>false,
+			    'htmlOptions'=>array(
+			        'alt'=>$data->author->getName().' Gravatar image',
+			        'title'=>$data->author->getName().' Gravatar image',
+			    )
+			)); 
+		} ?>
 		posted by <?php echo $data->author->getName() . ' on ' . date('F j, Y',strtotime($data->date_start)); ?>
 	</div>
 	<div class="content">

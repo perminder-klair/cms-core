@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     
     <?php 
-    	$this->pageTitle='TBL CMS';
-	    $this->pageDescription='TBL CMS based on Yii Framework';
-	    $this->pageKeywords='TBL CMS, tbl, seo cms, php cms, yii cms';
-	    $this->pageAuthor='TBL Marketing';
+    	$this->pageTitle=Yii::app()->cms->cmsName;//'TBL CMS';
+	    $this->pageDescription=Yii::app()->cms->cmsName.' based on Yii Framework';
+	    $this->pageKeywords=Yii::app()->cms->cmsName.' seo cms, php cms, yii cms';
+	    $this->pageAuthor='Parminder Klair';
     ?>
     <?php $this->getMetaData(); ?>
     
@@ -27,7 +27,7 @@
       <div class="navbar-inner">
         <div class="container-fluid">
           <div class="logo"> 
-            <img src="<?=Yii::app()->cms->assetsUrl;?>/img/logo-tbl.png" alt="TBL CMS Logo">
+            <img src="<?=Yii::app()->cms->assetsUrl.Yii::app()->cms->cmsLogo;?>" alt="CMS Logo">
           </div>
            <a class="btn btn-navbar visible-phone" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
@@ -64,7 +64,7 @@
     <div class="container-fluid">
       <div class="sidebar-nav nav-collapse collapse">
         <div class="user_side clearfix">
-          <img src="<?=Yii::app()->cms->assetsUrl;?>/img/logo-small.png" alt="TBL CMS">
+          <?=Yii::app()->cms->userGravatar();?>
           <h5><?=Yii::app()->user->name;?></h5>
           <a href="<?=url("/cms/user/update", array('id'=>userId()));?>"><i class="icon-cog"></i> Edit Profile</a>        
         </div>

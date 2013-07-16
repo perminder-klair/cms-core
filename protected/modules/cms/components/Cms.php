@@ -8,24 +8,11 @@ Yii::import('cms.models.*');
 class Cms extends CApplicationComponent
 {
 	/**
-     * @var string the allowed attachment files types.
-     */
-    //public $allowedFileTypes = 'jpg, gif, png';
-        
-    /**
-     * @var integer the maximum allowed attachment file size in bytes.
-     */
-    //public $allowedFileSize = 1024;
-   
-    /**
-     * @var string the path for saving attached files.
-     */
-    //public $attachmentPath = '/files/cms/attachments/';
-        
-	/**
-     * @var string the application layout to use with the cms.
-     */
-    //public $appLayout = 'application.views.layouts.main';
+	 * Cms Branding
+	 */
+	public $cmsName = 'TBL CMS';
+	public $cmsLogo = '/img/logo-tbl.png'; //logo.png
+	public $defaultGravatar = '/img/logo-tbl-gravatar.png'; //logo-gravatar.jpg
         
     /**
      * @var string the template to use for node headings.
@@ -196,5 +183,25 @@ class Cms extends CApplicationComponent
 		closedir($handle);
 		
 		return $array;
+    }
+    
+    public function userGravatar()
+    {
+    	$user = Yii::app()->user->getDetails();
+    	if($user->authorImage()){
+			$this->widget('ext.yii-gravatar.YiiGravatar', array(
+			    'email'=>$user->email,
+			    'size'=>40,
+			    'defaultImage'=>$user->authorImage(),
+			    'secure'=>false,
+			    'rating'=>'r',
+			    'emailHashed'=>false,
+			    'htmlOptions'=>array(
+			        'alt'=>$user->getName().' Gravatar image',
+			        'title'=>$user->getName().' Gravatar image',
+			    )
+			)); 
+		} else
+	    	return i(Yii::app()->cms->assetsUrl.$this->defaultGravatar, 'Gravatar');
     }
 }
