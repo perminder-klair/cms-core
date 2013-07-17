@@ -31,8 +31,8 @@
 				array('label'=>'Blogs', 'url'=>array('/cms/blog/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/cms/admin/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Login', 'url'=>array('/account/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/account/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
@@ -43,6 +43,13 @@
 				'links'=>$this->breadcrumbs,
 			)); ?><!-- breadcrumbs -->
 		<?php endif?>
+
+        <? if(Yii::app()->user->hasFlash('success')): ?>
+            <?=Yii::app()->user->getFlash('success');?>
+        <? endif; ?>
+        <? if(Yii::app()->user->hasFlash('error')): ?>
+            <?=Yii::app()->user->getFlash('error');?>
+        <? endif; ?>
 
 		<?php echo $content; ?>
 	</div>

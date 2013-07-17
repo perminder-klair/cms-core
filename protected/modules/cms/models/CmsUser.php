@@ -129,9 +129,9 @@ class CmsUser extends CmsActiveRecord
 	    
 	    if ($this->isNewRecord) {
 	        //create profile row
-			$profile = new CmsUserProfile;
+			/*$profile = new CmsUserProfile;
 			$profile->user_id = $this->id;
-			$profile->save();
+			$profile->save();*/
 			
 			//update user role
 		    $this->setUserRole($this->defaultRole);

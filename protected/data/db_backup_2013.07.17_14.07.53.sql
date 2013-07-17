@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `cms_blog` (
   `author_id` int(11) NOT NULL,
   `deleted` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_categories
@@ -245,6 +245,19 @@ CREATE TABLE IF NOT EXISTS `cms_user_profile` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
+-- TABLE cms_user_pwd_reset
+-- -------------------------------------------
+DROP TABLE IF EXISTS cms_user_pwd_reset;
+CREATE TABLE IF NOT EXISTS `cms_user_pwd_reset` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email` varchar(70) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `key` varchar(32) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Password reset functionality';
+
+-- -------------------------------------------
 -- TABLE demo
 -- -------------------------------------------
 DROP TABLE IF EXISTS demo;
@@ -257,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `demo` (
   `active` tinyint(4) DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE DATA AuthAssignment
@@ -426,8 +439,6 @@ INSERT INTO `cms_blocks` (`id`,`name`,`body`,`created`,`updated`,`parentId`,`pub
 -- -------------------------------------------
 INSERT INTO `cms_blog` (`id`,`title`,`content`,`metaDescription`,`tags`,`slug`,`created`,`modified`,`date_start`,`blog_type`,`parentId`,`status`,`author_id`,`deleted`) VALUES
 ('1','New Blog','<p>content for blog...</p>','','','','2013-07-16 10:54:01','2013-07-16 10:54:08','2013-07-16 00:00:00','blog','0','2','2','0');
-INSERT INTO `cms_blog` (`id`,`title`,`content`,`metaDescription`,`tags`,`slug`,`created`,`modified`,`date_start`,`blog_type`,`parentId`,`status`,`author_id`,`deleted`) VALUES
-('2','New Blog','content for blog...','','','','2013-07-16 10:54:08','2013-07-16 10:54:08','2013-07-16 00:00:00','revision','1','1','2','0');
 
 
 
@@ -539,7 +550,7 @@ INSERT INTO `cms_tag` (`id`,`name`,`frequency`) VALUES
 INSERT INTO `cms_tag` (`id`,`name`,`frequency`) VALUES
 ('2','page','2');
 INSERT INTO `cms_tag` (`id`,`name`,`frequency`) VALUES
-('3','yii','4');
+('3','cms','4');
 
 
 
@@ -560,6 +571,14 @@ INSERT INTO `cms_user_profile` (`id`,`user_id`,`address`,`postcode`,`telehphone`
 ('1','1','','','');
 INSERT INTO `cms_user_profile` (`id`,`user_id`,`address`,`postcode`,`telehphone`) VALUES
 ('2','2','','','');
+
+
+
+-- -------------------------------------------
+-- TABLE DATA demo
+-- -------------------------------------------
+INSERT INTO `demo` (`id`,`title`,`created`,`updated`,`listing_order`,`active`,`deleted`) VALUES
+('1','Test Data','2013-07-17 00:00:00','2013-07-17 00:00:00','0','1','0');
 
 
 

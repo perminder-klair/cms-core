@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle=Yii::app()->name . ' - Login';
+$this->pageTitle='Login';
 $this->breadcrumbs=array(
 	'Login',
 );
@@ -43,4 +43,7 @@ $this->breadcrumbs=array(
 	</div>
 
 <?php $this->endWidget(); ?>
+
+    <p><a href="<?=url('/account/register');?>">Register here</a></p>
+    <p><a href="<?=url('/account/passwordReset');?>">Recover Password</a></p>
 </div><!-- form -->

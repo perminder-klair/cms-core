@@ -74,49 +74,15 @@ class SiteController extends Controller
 				);
 				
 				if(Mail::sendEmail($emailData)) {
-					Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+                    setSuccessMessage('Thank you for contacting us. We will respond to you as soon as possible.');
 				} else {
-					Yii::app()->user->setFlash('error','Error while sending email: '.$mail->ErrorInfo);
+                    setErrorMessage('Error while sending email: '.$mail->ErrorInfo);
 				}
 				
 				$this->refresh();
 			}
 		}
 		$this->render('contact',array('model'=>$model));
-	}
-	
-	/**
-	 * Displays the login page
-	 */
-	public function actionLogin()
-	{
-		//Check if visitor is not guest then redirect to index page
-		if(!Yii::app()->user->isGuest)
-			$this->redirect(array('index'));
-	
-		if (!defined('CRYPT_BLOWFISH')||!CRYPT_BLOWFISH)
-			throw new CHttpException(500,"This application requires that PHP was compiled with Blowfish support for crypt().");
-		
-		$model=new CmsLogin;
-
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-
-		// collect user input data
-		if(isset($_POST['CmsLogin']))
-		{
-			$model->attributes=$_POST['CmsLogin'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login()) {
-				$this->redirect('/index');	//Yii::app()->user->returnUrl
-			}
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
 	}
 	
 }

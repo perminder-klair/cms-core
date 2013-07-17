@@ -17,6 +17,7 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
+        'application.models.forms.*',
 		'application.components.*',
 		'application.helpers.*',
 		'application.modules.cms.models.*',
