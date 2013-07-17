@@ -10,22 +10,23 @@
 	<?php Yii::app()->bootstrap->register(); ?>
 	
 	<?php Yii::app()->setting->loadCss(array('styles')); ?>
-	<?php Yii::app()->setting->loadJs(array('')); ?>
+	<?php Yii::app()->setting->loadJs(array()); ?>
 </head>
 
 <body>
 
 <?php $this->widget('bootstrap.widgets.TbNavbar',array(
+    'brand' => gl('site_name'),
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'Blogs', 'url'=>array('/cms/blog/index')),
+				array('label'=>'Blog', 'url'=>array('/cms/blog/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/cms/admin/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                array('label'=>'Login', 'url'=>array('/account/login'), 'visible'=>Yii::app()->user->isGuest),
+                array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/account/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),
         ),
     ),
@@ -38,6 +39,17 @@
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
+
+    <?php if(Yii::app()->user->hasFlash('success')): ?>
+        <?php $this->widget('bootstrap.widgets.TbAlert', array(
+            'alerts'=>array('success'),
+        )); ?>
+    <?php endif; ?>
+    <?php if(Yii::app()->user->hasFlash('error')): ?>
+        <?php $this->widget('bootstrap.widgets.TbAlert', array(
+            'alerts'=>array('error'),
+        )); ?>
+    <?php endif; ?>
 
 	<?php echo $content; ?>
 

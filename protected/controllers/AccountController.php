@@ -27,12 +27,12 @@ class AccountController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index', 'logout', 'passwordReset', 'validatePassword'),
+				'actions'=>array('index', 'logout'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('?'),
-				'actions'=>array('index', 'logout', 'passwordReset', 'validatePassword'),
+				'actions'=>array('index', 'logout'),
 			),
 		);
 	}

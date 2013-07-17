@@ -34,7 +34,7 @@ return array(
      * choose: default or bootstrap
      * for bootstrap docs: http://www.cniska.net/yii-bootstrap/ and http://twitter.github.com/bootstrap/
      */
-     'theme'=>'default',
+     'theme'=>'bootstrap',
 	
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
