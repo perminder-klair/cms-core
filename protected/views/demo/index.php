@@ -10,7 +10,12 @@ $this->breadcrumbs=array(
 
 <h1>Demos</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<? foreach($dataProvider as $data): ?>
+	<? $this->renderPartial('_view', array('data'=>$data)); ?>
+<? endforeach; ?>
+<? if($listCategories): ?>
+	<h2>Categories</h2>
+	<? foreach($listCategories as $category): ?>
+	        <a href="<?=url('/Demos/index', array('category'=>$category->url));?>"><?=$category->title;?></a> /
+	<? endforeach; ?>
+<? endif; ?>

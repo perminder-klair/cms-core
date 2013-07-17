@@ -92,7 +92,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 			$model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
 			
 			//Update Categories
-			$model->setRelationRecords('categories', $_POST['<?php echo $this->modelClass; ?>']['activeCategories'], array('type' => '<?php echo strtolower($this->modelClass); ?>'));
+			if(isset($_POST['<?php echo $this->modelClass; ?>']['activeCategories'])) $model->setRelationRecords('categories', $_POST['<?php echo $this->modelClass; ?>']['activeCategories'], array('type' => '<?php echo strtolower($this->modelClass); ?>'));
 			
 			if($model->save()) {
 				Yii::app()->user->setFlash('success','<?php echo $this->modelClass; ?> has been updated!');
@@ -124,11 +124,28 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('<?php echo $this->modelClass; ?>');
-		//$dataProvider = <?php echo $this->modelClass; ?>::model()->live()->findAll();
+		$criteria=new CDbCriteria();
+
+        //if category is selectedd
+        if(isset($_GET['category'])) {
+            if($category = CmsCategories::model()->findByAttributes(array('url'=>$_GET['category']))) {
+
+                $criteria->with='categories';
+                $criteria->together=true;
+                $criteria->condition='category_id=:category_id';
+                $criteria->params=array(':category_id'=>$category->id);
+
+                $this->pageTitle.=" - ".$category->title;
+                $this->pageKeywords=$category->title;
+            }
+        }
+        $listCategories=CmsCategories::listAllCategories(2);
+        
+		$dataProvider = <?php echo $this->modelClass; ?>::model()->live()->findAll($criteria);
 		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'listCategories'=>$listCategories,
 		));
 	}
 

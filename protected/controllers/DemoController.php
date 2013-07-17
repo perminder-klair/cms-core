@@ -85,7 +85,7 @@ class DemoController extends Controller
 			$model->attributes=$_POST['Demo'];
 			
 			//Update Categories
-			$model->setRelationRecords('categories', $_POST['Demo']['activeCategories'], array('type' => 'demo'));
+			if(isset($_POST['Demo']['activeCategories'])) $model->setRelationRecords('categories', $_POST['Demo']['activeCategories'], array('type' => 'demo'));
 			
 			if($model->save()) {
 				Yii::app()->user->setFlash('success','Demo has been updated!');
@@ -117,11 +117,28 @@ class DemoController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Demo');
-		//$dataProvider = Demo::model()->live()->findAll();
+		$criteria=new CDbCriteria();
+
+        //if category is selectedd
+        if(isset($_GET['category'])) {
+            if($category = CmsCategories::model()->findByAttributes(array('url'=>$_GET['category']))) {
+
+                $criteria->with='categories';
+                $criteria->together=true;
+                $criteria->condition='category_id=:category_id';
+                $criteria->params=array(':category_id'=>$category->id);
+
+                $this->pageTitle.=" - ".$category->title;
+                $this->pageKeywords=$category->title;
+            }
+        }
+        $listCategories=CmsCategories::listAllCategories(2);
+        
+		$dataProvider = Demo::model()->live()->findAll($criteria);
 		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'listCategories'=>$listCategories,
 		));
 	}
 

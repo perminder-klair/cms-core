@@ -136,4 +136,16 @@ class CmsCategories extends SiteActiveRecord
 		
 		return $categories;
 	}
+	
+	/**
+     * @param $type
+     * @return categories
+     */
+    public static function listAllCategories($type)
+    {
+        $criteria=new CDbCriteria(
+            array("condition"=>"category_type = {$type}")
+        );
+        return CmsCategories::model()->findAll($criteria);
+    }
 }
