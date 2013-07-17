@@ -38,6 +38,14 @@ function themeBase()
 } 
 
 /**
+ * Redirect back to last page
+ */
+function lastUrl()
+{
+	return Yii::app()->request->urlReferrer;
+}
+
+/**
  * This is the shortcut to Yii::app()->clientScript
  */
 function cs()
@@ -267,6 +275,38 @@ function destroySess()
 {
   return sess()->destroy();
 }
-/*
- * Session functions
+
+/**
+ * Create SQL Command
+ */ 
+function db($sql=null){
+    if(is_null($sql)) return false;
+    return app()->db->CreateCommand($sql);
+}
+
+/**
+ * Sets an success userFalsh message
+ * @param string $message string to be displayed
  */
+function setSuccessMessage($message = 'Saved successfully.') {
+    if (!Yii::app()->user->hasFlash('success'))
+        Yii::app()->user->setFlash('success', '<strong>Success:</strong> ' . $message);
+}
+
+/**
+ * Sets an error userFalsh message
+ * @param string $message string to be displayed
+ */
+function setErrorMessage($message = 'An error occurred. Do try again.') {
+    if (!Yii::app()->user->hasFlash('error'))
+        Yii::app()->user->setFlash('error', ' ' . $message);
+}
+
+/**
+ * Sets a notice userFalsh message
+ * @param string $message string to be displayed
+ */
+function setNoticeMessage($message = 'Take Notice!!') {
+    if (!Yii::app()->user->hasFlash('notice'))
+        Yii::app()->user->setFlash('notice', 'Notice!!: ' . $message);
+}

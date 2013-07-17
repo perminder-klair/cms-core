@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `cms_blog` (
   `author_id` int(11) NOT NULL,
   `deleted` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_categories
@@ -422,6 +422,16 @@ INSERT INTO `cms_blocks` (`id`,`name`,`body`,`created`,`updated`,`parentId`,`pub
 
 
 -- -------------------------------------------
+-- TABLE DATA cms_blog
+-- -------------------------------------------
+INSERT INTO `cms_blog` (`id`,`title`,`content`,`metaDescription`,`tags`,`slug`,`created`,`modified`,`date_start`,`blog_type`,`parentId`,`status`,`author_id`,`deleted`) VALUES
+('1','New Blog','<p>content for blog...</p>','','','','2013-07-16 10:54:01','2013-07-16 10:54:08','2013-07-16 00:00:00','blog','0','2','2','0');
+INSERT INTO `cms_blog` (`id`,`title`,`content`,`metaDescription`,`tags`,`slug`,`created`,`modified`,`date_start`,`blog_type`,`parentId`,`status`,`author_id`,`deleted`) VALUES
+('2','New Blog','content for blog...','','','','2013-07-16 10:54:08','2013-07-16 10:54:08','2013-07-16 00:00:00','revision','1','1','2','0');
+
+
+
+-- -------------------------------------------
 -- TABLE DATA cms_categories
 -- -------------------------------------------
 INSERT INTO `cms_categories` (`id`,`title`,`url`,`parent`,`category_type`) VALUES
@@ -539,7 +549,7 @@ INSERT INTO `cms_tag` (`id`,`name`,`frequency`) VALUES
 INSERT INTO `cms_user` (`id`,`username`,`password`,`email`,`firstname`,`lastname`,`created`,`modified`,`status`,`activkey`) VALUES
 ('1','demo','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','webmaster@example.com','','','2013-03-01 12:21:41','2013-04-16 16:17:21','2','');
 INSERT INTO `cms_user` (`id`,`username`,`password`,`email`,`firstname`,`lastname`,`created`,`modified`,`status`,`activkey`) VALUES
-('2','admin','$2a$10$TaMCcwXsT.JsDlIWztuOo.xDJ9uSH5hfqad.Ui5YxNgtQYV1wrG8.','parminder@tblmarketing.com','','','2013-03-21 17:18:53','2013-07-16 10:12:05','2','');
+('2','admin','$2a$10$TaMCcwXsT.JsDlIWztuOo.xDJ9uSH5hfqad.Ui5YxNgtQYV1wrG8.','parminder@tblmarketing.com','','','2013-03-21 17:18:53','2013-07-16 10:38:01','2','');
 
 
 

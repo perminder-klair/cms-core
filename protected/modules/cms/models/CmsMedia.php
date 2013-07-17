@@ -179,10 +179,10 @@ class CmsMedia extends CmsActiveRecord
     	if(empty($array)) {
 	    	$new_path = $this->source;
     	} else {
-    	if($array['file'])
+    		if($array['file'])
 	    		$file = $array['file'];
 	    	else
-	    		$file = $this->source;
+	    		$file = $this->source; //$file =  Yii::app()->basePath.'/../'.$this->source;
 	    		
 			$image = Yii::app()->image->load($file);
 			
