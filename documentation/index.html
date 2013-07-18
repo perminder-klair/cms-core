@@ -162,7 +162,7 @@
 		</code></p>
 		<p><code>
 			$model = new CmsMedia; <br />
-			$result = $model->render($config);
+			$result = $model->render($config, true); //Set to true for dummy image
 		</code></p>
 		<p>if insert img tag is needed instead of render use:</p>
 		<p><code> i('link-to-image', 'alt', array('class'=>'example')) </code></p>

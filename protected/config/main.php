@@ -26,6 +26,7 @@ return array(
 		'application.modules.cms.components.CmsUserIdentity',
 		'application.extensions.CAdvancedArBehavior',
 		'application.extensions.YiiMailer.YiiMailer',
+        'ext.easyimage.EasyImage',
 	),
 	
 	'aliases' => array(),
@@ -96,13 +97,14 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-        
-        'image'=>array(
-          'class'=>'application.extensions.image.CImageComponent',
-            // GD or ImageMagick
-            'driver'=>'GD',
-            // ImageMagick setup path
-            'params'=>array('directory'=>'/opt/local/bin'),
+
+        'easyImage' => array(
+            'class' => 'application.extensions.easyimage.EasyImage',
+            //'driver' => 'GD',
+            //'quality' => 100,
+            'cachePath' => '/files/cache/',
+            'cacheTime' => 2592000,
+            //'retinaSupport' => false,
         ),
         
         'request'=>array(

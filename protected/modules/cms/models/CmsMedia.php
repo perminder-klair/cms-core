@@ -173,41 +173,43 @@ class CmsMedia extends CmsActiveRecord
     	
     	return $result;
     }
-    
-    public function render($array=array())
+
+    public function render($array=array(), $dummy=false)
     {
-    	if(empty($array)) {
-	    	$new_path = $this->source;
-    	} else {
-    		if($array['file'])
-	    		$file = $array['file'];
-	    	else
-	    		$file = $this->source; //$file =  Yii::app()->basePath.'/../'.$this->source;
-	    		
-			$image = Yii::app()->image->load($file);
-			
-			if($array['smart_resize'])
-				$image->smart_resize($array['width'], $array['height']);
-			else
-				$image->resize($array['width'], $array['height']);
-				
-			if($array['rotate']) $image->rotate($array['rotate']);
-			if($array['quality']) $image->quality($array['quality']);
-			if($array['sharpen']) $image->sharpen($array['sharpen']);
-			
-			$path_parts = pathinfo($file);
-			if($array['width']) $path_parts['filename'] .= '_'.$array['width'];
-			if($array['height']) $path_parts['filename'] .= '_'.$array['height'];
-			
-			$cache_dir = 'files/cache';
-			if(!is_dir($cache_dir)) mkdir($cache_dir, 0777, true);
-			
-			$new_path = $cache_dir.'/'.$path_parts['filename'].'.'.$path_parts['extension'];
-			
-			$image->save($new_path);
-		}
-		
-		return Yii::app()->request->baseUrl.'/'.$new_path;
+        if(isset($array['file']))
+            $file = $array['file'];
+        else
+            $file = YiiBase::getPathOfAlias('webroot').DIRECTORY_SEPARATOR.$this->source;
+
+        if(is_readable($file))
+        {
+            $config=array();
+
+            if(isset($array['width']) && isset($array['height']))
+            {
+                if($array['smart_resize']) {
+                    $config['smart_resize'] = array('width' => $array['width'], 'height' => $array['height']);
+                    $config['crop'] = array('width'=>$array['width'], 'height'=>$array['height'], 'center', 'center');
+                } else
+                    $config['resize'] = array('width' => $array['width'], 'height' => $array['height']);
+            }
+
+            if(isset($array['rotate'])) $config['rotate'] = array('degrees' => $array['rotate']);
+            if(isset($array['sharpen'])) $config['sharpen'] = $array['sharpen'];
+            if(isset($array['background'])) $config['background'] = $array['background'];
+            if(isset($array['type'])) $config['type'] = $array['type'];
+            if(isset($array['quality'])) $config['quality'] = $array['quality'];
+
+            $thumb = Yii::app()->easyImage->thumbSrcOf($file, $config);
+
+            return $thumb;
+        }
+
+        if($dummy)
+            if(isset($array['width']) && isset($array['height']))
+                return "http://dummyimage.com/{$array['width']}x{$array['height']}/cccccc/969696.png&text=image+not+found";
+
+        return false;
     }
     
     public function getMedia($id)
