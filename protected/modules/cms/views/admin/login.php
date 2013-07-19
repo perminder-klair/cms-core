@@ -39,15 +39,15 @@ $this->breadcrumbs=array(
 							<label style="width:auto" class="checkbox pull-left">
 								<?php echo $form->checkBox($model,'rememberMe'); ?> <?php echo $form->label($model,'rememberMe'); ?>
 							</label>
-							<a style="padding: 5px 0px 0px 5px;" href="#" class="pull-right">Forgot Password?</a>
+							<!--<a style="padding: 5px 0px 0px 5px;" href="#" class="pull-right">Forgot Password?</a>-->
 						</div>
 					</div>					
 					<?php echo CHtml::submitButton('Sign in', array('class'=>'btn pull-right')); ?>
       			<?php $this->endWidget(); ?>
 			</div>  
 		</div>  
-			<div style="text-align:center">
+			<!--<div style="text-align:center">
 				<p>Neen an account? <a href="new_account.html">Create Account</a></p>
-			</div>
+			</div>-->
 	</div><!--/row-fluid-->
 </div><!--/span10-->

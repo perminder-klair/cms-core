@@ -174,6 +174,11 @@ class CmsMedia extends CmsActiveRecord
     	return $result;
     }
 
+    /**
+     * @param array $array
+     * @param bool $dummy
+     * @return bool|string
+     */
     public function render($array=array(), $dummy=false)
     {
         if(isset($array['file']))
@@ -211,7 +216,11 @@ class CmsMedia extends CmsActiveRecord
 
         return false;
     }
-    
+
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getMedia($id)
     {
 	    return CmsMedia::model()->findByPk($id);

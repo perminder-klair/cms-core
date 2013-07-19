@@ -59,15 +59,15 @@ class RegisterForm extends CFormModel{
 
     public function register()
     {
-        $user = new CmsUser('create');
-        $user->attributes=$_POST['RegisterForm'];
-        $user->status=CmsUser::STATUS_ACTIVE;
-        if(!$user->save()){
-            $this->addErrors($user->getErrors());
-            return false;
-        }
-
         if($_POST['RegisterForm']) {
+            $user = new CmsUser('create');
+            $user->attributes=$_POST['RegisterForm'];
+            $user->status=CmsUser::STATUS_ACTIVE;
+            if(!$user->save()){
+                $this->addErrors($user->getErrors());
+                return false;
+            }
+
             $userProfile = new CmsUserProfile;
             $userProfile->user_id=$user->id; //insert user profile
             $userProfile->attributes=$_POST['RegisterForm'];

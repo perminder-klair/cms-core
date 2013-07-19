@@ -65,15 +65,17 @@ class AccountController extends Controller
         $this->performAjaxValidation($model);
 
         // collect user input data
-        if(isset($_POST['CmsLogin']))
+        if(isset($_POST['LoginForm']))
         {
-            $model->attributes=$_POST['CmsLogin'];
+            $model->attributes=$_POST['LoginForm'];
             // validate user input and redirect to the previous page if valid
             if($model->validate() && $model->login()) {
                 setSuccessMessage('Logged in successfully!');
                 $this->redirect(Yii::app()->request->urlReferrer); //Yii::app()->user->returnUrl
             }
         }
+        //dump($model->getErrors()); die();
+        
         // display the login form
         $this->render('login',array('model'=>$model));
     }
@@ -91,7 +93,8 @@ class AccountController extends Controller
         // if it is ajax validation request
         $this->performAjaxValidation($model);
 
-        if (isset($_POST['RegisterForm'])) {
+        if(isset($_POST['RegisterForm'])) 
+        {
             $model->attributes = $_POST['RegisterForm'];
             // validate user input and redirect to the previous page if valid
             if ($model->validate() && $model->register()) {
@@ -99,7 +102,8 @@ class AccountController extends Controller
                 $this->redirect(Yii::app()->user->loginUrl); //Yii::app()->user->urlReferrer
             }
         }
-
+        //dump($model->getErrors()); die();
+        
         // display the register form
         $this->render('register', array('model' => $model));
     }
@@ -114,6 +118,7 @@ class AccountController extends Controller
     public function actionPasswordReset()
     {
         $model = new CmsUserPwdReset;
+        
         if(isset($_POST['CmsUserPwdReset'])){
             $model->attributes = $_POST['CmsUserPwdReset'];
             if($model->validate() && $model->savePassword()){
@@ -121,6 +126,7 @@ class AccountController extends Controller
                 $this->refresh();
             }
         }
+        //dump($model->getErrors()); die();
 
         $this->render('passwordReset',array('model'=>$model));
     }
