@@ -15,8 +15,8 @@ Options +followSymlinks
     RewriteRule ^(.*)$ index.php
 
     # uncomment to redirect mywebsite.com to www.mywebsite.com
-    #RewriteCond %{HTTP_HOST} !^www\.mynewwebsite\.com$ [NC]
-    #RewriteRule ^(.*)$ http://www.mynewwebsite.com/$1 [L,R=301]
+    #RewriteCond %{HTTP_HOST} !^(www\.|$) [NC]
+    #RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 </ifModule>
 

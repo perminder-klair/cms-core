@@ -144,7 +144,7 @@ $this->updated = date('m/d/Y',strtotime($this->updated));
             }
             
             $this->created = date('Y-m-d',strtotime($this->created));
-$this->updated = date('Y-m-d',strtotime($this->updated));
+            $this->updated = date('Y-m-d',strtotime($this->updated));
             
             return true;
 		}
