@@ -167,7 +167,7 @@ function dd() {
  */
 function get($key, $defaultValue=null) 
 {
-	return Yii::app()->request->getQuery($key, $defaultValue=null);	
+	return sanitize(Yii::app()->request->getQuery($key, $defaultValue=null));
 }
 
 /*
@@ -175,7 +175,7 @@ function get($key, $defaultValue=null)
  */
 function post($key, $defaultValue=null) 
 {
-	return Yii::app()->request->getPost($key, $defaultValue=null);
+	return sanitize(Yii::app()->request->getPost($key, $defaultValue=null));
 }
 
 /*

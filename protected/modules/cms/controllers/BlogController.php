@@ -113,10 +113,10 @@ class BlogController extends CmsController
 	 * Lists all models.
 	 */
 	public function actionIndex()
-	{	
-		$this->pageTitle='Blogs';
-		$this->pageDescription='All Blogs'; 
-		$this->pageKeywords='blogs, news, updates';
+	{
+        $this->pageTitle='Blog';
+        $this->pageDescription='Blog List';
+        $this->pageKeywords='blog, news, updates';
 		
 		$criteria=new CDbCriteria();
 		$criteria->order='date_start DESC';
