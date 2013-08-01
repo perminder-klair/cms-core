@@ -32,4 +32,4 @@ logins are: admin / admin
 
 Know Issues / ToDo
 ------------------
-- fix htaccess with some servers
+- Nothing! I think :D

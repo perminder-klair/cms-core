@@ -1,7 +1,5 @@
 <?php
-
 date_default_timezone_set('UTC');
-//ini_set("memory_limit","128M");
 
 function get_domain($url)
 {
@@ -24,7 +22,7 @@ if(($extension == "dev") || (!$extension)) {
     $config=dirname(__FILE__).'/protected/config/dev.php';
     defined('YII_DEBUG') or define('YII_DEBUG',true);
 
-} elseif(($domainName == "frbit.net")) {
+} elseif($domainName == "frbit.net") {
 
     $config=dirname(__FILE__).'/protected/config/beta.php';
     defined('YII_DEBUG') or define('YII_DEBUG',true);

@@ -176,16 +176,16 @@ class CmsBlog extends CmsActiveRecord
 			if($this->isNewRecord)
 			{
 				$this->date_start=date('Y-m-d', time());
-				
+
 				if(empty($this->blog_type))
 					$this->blog_type = 'blog';
 			}
 			else
-			{	
+			{
 				//Copy the blog as revision
 				if($this->restore!==true)
 					$this->copyBlog();
-					
+
 				if($this->slug)
 					$this->slug = strtolower(preg_replace("/[^A-Za-z0-9]/", "-", $this->slug));
 			}
@@ -207,21 +207,21 @@ class CmsBlog extends CmsActiveRecord
 	/**
 	 * This is invoked after the record is deleted.
 	 */
-	public function beforeDelete()
-	{		
-		//change status to archived
-		$this->status=self::STATUS_ARCHIVED;
-		
-		parent::beforeDelete(true);
-		//remove all related media
-		foreach($this->media as $media) {
-			$media->delete();
-		}
-		
-		CmsComment::model()->deleteAll('blog_id='.$this->id);
-		CmsTag::model()->updateFrequency($this->tags, '');
-		CmsBlog::model()->deleteAll('parentId='.$this->id);
-	}
+    public function beforeDelete($soft = null)
+    {
+        //change status to archived
+        $this->status=self::STATUS_ARCHIVED;
+
+        parent::beforeDelete($soft);
+        //remove all related media
+        foreach($this->media as $media) {
+            $media->delete();
+        }
+
+        CmsComment::model()->deleteAll('blog_id='.$this->id);
+        CmsTag::model()->updateFrequency($this->tags, '');
+        CmsBlog::model()->deleteAll('parentId='.$this->id);
+    }
 
 	/**
 	 * Retrieves the list of posts based on the current search/filter conditions.

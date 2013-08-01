@@ -1,11 +1,12 @@
-IndexIgnore *
-Options +followSymlinks
+## Uncomment following or add this to your httpd.config
+## Options FollowSymLinks Indexes
+#Options +followSymlinks
 
 <ifModule mod_rewrite.c>
 
     RewriteEngine on
     
-    #RewriteBase /
+    RewriteBase /
 
     # if a directory or a file exists, use it directly
     RewriteCond %{REQUEST_FILENAME} !-f
