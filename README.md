@@ -7,6 +7,9 @@ Read the /documentation/index.html for more information
 
 Setup:
 ------
+Get Yii Framework using Composer:
+Inside protected directory run: php composer.phar install
+
 Get database from: /protected/data/
 
 Note: Make sure following directories are writable to 0777:
