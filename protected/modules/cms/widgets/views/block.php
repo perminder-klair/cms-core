@@ -2,4 +2,6 @@
 	<?php $this->beginWidget('CHtmlPurifier'); ?>
 		<?php echo $content ?>
 	<?php $this->endWidget(); ?>
+
+    <div style="clear:both;"></div>
 </div>

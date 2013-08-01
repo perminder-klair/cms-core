@@ -61,7 +61,7 @@ class MediaController extends CmsController
 		{
 			$model->attributes=$_POST['CmsMedia'];
 			if($model->save())
-				$this->redirect(array('admin'));
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 
 		$this->render('update',array(
@@ -75,7 +75,7 @@ class MediaController extends CmsController
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(Yii::app()->request->urlReferrer);
 	}
 
 	public function actionUpload()

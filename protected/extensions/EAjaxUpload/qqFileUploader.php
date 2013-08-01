@@ -113,7 +113,8 @@ class qqUploadedFileForm extends qqUploadedFile
 	
 	public function getExtension() 
 	{
-		return substr(substr($this->getName(), strpos($this->getName(),'.'), strlen($this->getName())-1), 1); // Get the extension from the filename.
+        return substr(substr($this->getName(), strrpos($this->getName(),'.'), strlen($this->getName())-1), 1);
+		//return substr(substr($this->getName(), strpos($this->getName(),'.'), strlen($this->getName())-1), 1); // Get the extension from the filename.
 	}
 
 }

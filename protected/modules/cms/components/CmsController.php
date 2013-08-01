@@ -47,7 +47,7 @@ class CmsController extends CController
     	}
 		else $this->pageTitle=$this->pageTitle.' - '.Yii::app()->setting->getValue('site_name');
 		
-		if(empty($this->pageDescription)) $this->pageDescription= $controllerName.' - '.$methodName.' - '.Yii::app()->setting->getValue('home_meta_description');
+		if(empty($this->pageDescription)) $this->pageDescription= Yii::app()->setting->getValue('home_meta_description');
 		if(empty($this->pageKeywords)) $this->pageKeywords = $controllerName.', '.$methodName.', '.Yii::app()->setting->getValue('home_meta_keywords');
 		
         echo '<title>'.CHtml::encode($this->pageTitle).'</title>';
