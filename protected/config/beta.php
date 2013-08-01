@@ -1,0 +1,40 @@
+<?php
+error_reporting(E_ALL);
+
+return CMap::mergeArray(
+    require(dirname(__FILE__).'/main.php'),
+    array(
+        'components'=>array(
+            'fixture'=>array(
+                'class'=>'system.test.CDbFixtureManager',
+            ),
+            'db'=>array(
+                'connectionString' => 'mysql:host=tbl-cms.mysql.eu1.frbit.com;dbname=tbl-cms',
+                'emulatePrepare' => true,
+                'username' => 'tbl-cms',
+                'password' => 'xfMZyoRyg54jWPHa',
+                'charset' => 'utf8',
+                'enableProfiling'=>true,
+                'enableParamLogging'=>true,
+            ),
+            'assetManager' => array(
+                'linkAssets' => true,
+            ),
+            /*'log'=>array(
+                'class'=>'CLogRouter',
+                'routes'=>array(
+                    array(
+                        // uncomment the following to show log messages on web pages
+                        //'class'=>'CWebLogRoute',
+                        'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+                        // Access is restricted by default to the localhost
+                        'ipFilters'=>array('127.0.0.1','192.168.1.*'),
+                    ),
+                ),
+            ),*/
+        ),
+        'modules'=>array(
+            'backup',
+        ),
+    )
+);
