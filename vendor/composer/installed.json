@@ -1,0 +1,22 @@
+[
+    {
+        "name": "yiisoft/yii",
+        "version": "1.1.13",
+        "version_normalized": "1.1.13.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii.git",
+            "reference": "e9e4a0d5be901d8bd48e516a2d9afe33d6fd05a6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/yiisoft/yii/archive/e9e4a0d5be901d8bd48e516a2d9afe33d6fd05a6.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "type": "library",
+        "installation-source": "dist",
+        "description": "Yii PHP Framework",
+        "homepage": "https://github.com/yiisoft/yii"
+    }
+]

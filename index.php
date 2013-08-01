@@ -16,7 +16,7 @@ date_default_timezone_set('UTC');
 
 $extension = pathinfo($_SERVER['SERVER_NAME'], PATHINFO_EXTENSION);
 
-$yii=dirname(__FILE__).'/protected/vendor/yiisoft/yii/framework/yii.php';
+$yii=dirname(__FILE__).'/vendor/yiisoft/yii/framework/yii.php';
 
 // change the following paths if necessary
 if(($extension == "dev") || (!$extension)) {
