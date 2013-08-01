@@ -1,5 +1,8 @@
 <?php
 
+date_default_timezone_set('UTC');
+//ini_set("memory_limit","128M");
+
 function get_domain($url)
 {
     $pieces = parse_url($url);
@@ -10,9 +13,6 @@ function get_domain($url)
     return false;
 }
 $domainName = get_domain('http://'.$_SERVER['HTTP_HOST']);
-
-date_default_timezone_set('UTC');
-//ini_set("memory_limit","128M");
 
 $extension = pathinfo($_SERVER['SERVER_NAME'], PATHINFO_EXTENSION);
 
@@ -27,6 +27,7 @@ if(($extension == "dev") || (!$extension)) {
 } elseif(($domainName == "frbit.net")) {
 
     $config=dirname(__FILE__).'/protected/config/beta.php';
+    defined('YII_DEBUG') or define('YII_DEBUG',true);
 
 } else {
 
