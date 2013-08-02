@@ -20,7 +20,7 @@ class CmsBaseRenderer extends CComponent
          */
         public function render($page)
         {
-                $heading = str_replace('{heading}', $node->heading, Yii::app()->cms->headingTemplate);
+                $heading = str_replace('{heading}', $page->heading, Yii::app()->cms->headingTemplate);
                 $content = $this->renderHeading($heading, $page->body); 
                 $content = $this->renderURLs($content);
                 $content = $this->renderLinks($content);
