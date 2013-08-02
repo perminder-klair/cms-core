@@ -8,7 +8,9 @@ Read the /documentation/index.html for more information
 Setup:
 ------
 Get Yii Framework using Composer:
+
 Inside protected directory run: php composer.phar install
+
 (For beta in Fortabitt use: git commit --allow-empty -m 'Just run composer [trigger:composer]')
 
 Get database from: /protected/data/
@@ -32,4 +34,4 @@ logins are: admin / admin
 
 Know Issues / ToDo
 ------------------
-- Nothing! I think :D
+- Change PHP short tags to full
