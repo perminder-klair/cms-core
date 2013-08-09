@@ -38,8 +38,6 @@ class CmsBaseRenderer extends CComponent
          */
         public function renderWidget($node)
         {
-                //$heading = str_replace('{heading}', $node->heading, Yii::app()->cms->widgetHeadingTemplate);
-                //$content = $this->renderHeading($heading, $node->body);
                 $content = $this->renderURLs($node->body);
                 $content = $this->renderURLs($content);
                 $content = $this->renderLinks($content);

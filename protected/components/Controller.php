@@ -26,6 +26,6 @@ class Controller extends CmsController
 	
 	public function init()
 	{
-
+        //Yii::app()->theme = Yii::app()->session['theme'];
 	}
 }
