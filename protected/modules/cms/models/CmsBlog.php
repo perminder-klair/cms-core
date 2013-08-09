@@ -278,7 +278,7 @@ class CmsBlog extends CmsActiveRecord
 	/*
 	 * Load list of categories for frontend
 	 */
-	public function listActiveCategories($limit)
+	public static function listActiveCategories($limit)
 	{
 		$sql = "SELECT category.*, count(cat.category_id) as category_count FROM cms_content_categories as cat, cms_blog as blog, cms_categories as category";
 		$sql .= " WHERE cat.content_id = blog.id";

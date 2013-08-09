@@ -270,7 +270,7 @@ class CmsUser extends CmsActiveRecord
 		$auth->revoke($this->getUserRole($this->id), $this->id);
 	}
 
-    public function getRolesAsListData()
+    public static function getRolesAsListData()
 	{
 		$roles = Yii::app()->authManager->getRoles();
 		if(Yii::app()->user->getDetails()->userRole!='super') unset($roles['super']);
