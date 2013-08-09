@@ -119,7 +119,7 @@ class DemoController extends Controller
 	{
 		$criteria=new CDbCriteria();
 
-        //if category is selectedd
+        //if category is selected
         if(isset($_GET['category'])) {
             if($category = CmsCategories::model()->findByAttributes(array('url'=>$_GET['category']))) {
 
@@ -204,12 +204,6 @@ class DemoController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		/*if(isset($_POST['ajax']) && $_POST['ajax']==='demo-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}*/
-		
 		if(Yii::app()->getRequest()->getIsAjaxRequest()) {
 			echo CActiveForm::validate( array( $model)); 
 			Yii::app()->end(); 

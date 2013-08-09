@@ -7,14 +7,14 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Blogs <small>(<?=l('RSS Feed',array('/cms/blog/feed'));?>)</small></h1>
+<h1>Blogs <small>(<?php echo l('RSS Feed',array('/cms/blog/feed')); ?>)</small></h1>
 
- <?
+ <?php
  	$this->widget('TagCloud');
  ?>
 
-<? foreach($dataProvider as $blog): ?>
-	<a href="<?=$blog->getUrl();?>"><?=$blog->title;?></a><br />
+<?php foreach($dataProvider as $blog): ?>
+	<a href="<?php echo $blog->getUrl();?>"><?=$blog->title; ?></a><br />
 	
 	<?php $this->widget('ext.XReadMore.XReadMore', array(
          'model'=>$blog,
@@ -27,16 +27,16 @@ $this->breadcrumbs=array(
        ));
     ?>
     <hr />
-<? endforeach; ?>
+<?php endforeach; ?>
 
 <?php $this->widget('CLinkPager', array(
     'pages' => $pages,
-)) ?>
+)); ?>
 
 <div id="categories">
-	<? $this->widget('BlogCategories'); ?>
+	<?php $this->widget('BlogCategories'); ?>
 </div>
 
 <div id="archive">
-	<? $this->widget('BlogArchive'); ?>
+	<?php $this->widget('BlogArchive'); ?>
 </div>

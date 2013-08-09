@@ -60,7 +60,7 @@ class BlogController extends CmsController
 		
 		$model=$this->loadModel();
 		
-		//$this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 		
 		if(isset($_POST['CmsBlog']))
 		{	
@@ -324,11 +324,6 @@ class BlogController extends CmsController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		/*if(isset($_POST['ajax']) && $_POST['ajax']==='film-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}*/
 		if(Yii::app()->getRequest()->getIsAjaxRequest()) {
 			echo CActiveForm::validate( array( $model)); 
 			Yii::app()->end(); 

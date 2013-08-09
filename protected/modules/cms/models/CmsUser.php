@@ -100,10 +100,6 @@ class CmsUser extends CmsActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('email',$this->email);
-		
-		//use roles property
-		//$criteria->compare('role.itemname', $this->role, true, 'OR');
-		//$criteria->with = array('role');
 
 		return new CActiveDataProvider('CmsUser', array(
 			'criteria'=>$criteria,
@@ -128,11 +124,6 @@ class CmsUser extends CmsActiveRecord
 	    parent::afterSave();
 	    
 	    if ($this->isNewRecord) {
-	        //create profile row
-			/*$profile = new CmsUserProfile;
-			$profile->user_id = $this->id;
-			$profile->save();*/
-			
 			//update user role
 		    $this->setUserRole($this->defaultRole);
 	    }
@@ -277,13 +268,13 @@ class CmsUser extends CmsActiveRecord
 		return CHtml::listData($roles,'name','description');    
 	}
 	
-	public function getOperationsAsListData()
+	public static function getOperationsAsListData()
 	{
 		$roles = Yii::app()->authManager->getOperations();
 		return CHtml::listData($roles,'name','description');    
 	}
 	
-	public function getAllOperations()
+	public static function getAllOperations()
 	{
 		$operations = Yii::app()->authManager->getOperations();
 		return CHtml::listData($operations,'name','description'); 

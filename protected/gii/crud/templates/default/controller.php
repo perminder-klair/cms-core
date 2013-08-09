@@ -84,8 +84,8 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		//AJAX validation
+	    $this->performAjaxValidation($model);
 
 		if(isset($_POST['<?php echo $this->modelClass; ?>']))
 		{
@@ -126,7 +126,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	{
 		$criteria=new CDbCriteria();
 
-        //if category is selectedd
+        //if category is selected
         if(isset($_GET['category'])) {
             if($category = CmsCategories::model()->findByAttributes(array('url'=>$_GET['category']))) {
 
@@ -211,12 +211,6 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	 */
 	protected function performAjaxValidation($model)
 	{
-		/*if(isset($_POST['ajax']) && $_POST['ajax']==='<?php echo $this->class2id($this->modelClass); ?>-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}*/
-		
 		if(Yii::app()->getRequest()->getIsAjaxRequest()) {
 			echo CActiveForm::validate( array( $model)); 
 			Yii::app()->end(); 

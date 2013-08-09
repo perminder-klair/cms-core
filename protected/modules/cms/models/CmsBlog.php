@@ -60,7 +60,6 @@ class CmsBlog extends CmsActiveRecord
 			'commentCount' => array(self::STAT, 'CmsComment', 'blog_id', 'condition'=>'status='.CmsComment::STATUS_APPROVED),
 			'revisions' => array(self::HAS_MANY, 'CmsBlog', 'parentId', 'condition'=>'blog_type="revision"', 'order'=>'modified DESC'),
 			'categories'=>array(self::MANY_MANY, 'CmsCategories', 'cms_content_categories(content_id, category_id)'),
-																		/*, 'condition' => '"blog_type" = "blog"' //NEED TO BE FIXED*/
 		);
 	}
 

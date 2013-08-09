@@ -106,12 +106,12 @@ class BlocksController extends CmsController
      */
     public function loadModel($id)
     {
-            $model = CmsBlocks::model()->findByPk($id);
+        $model = CmsBlocks::model()->findByPk($id);
 
-            if ($model === null)
-                    throw new CHttpException(404, Yii::t('CmsModule.core', 'The requested page does not exist.'));
+        if ($model === null)
+            throw new CHttpException(404, Yii::t('CmsModule.core', 'The requested page does not exist.'));
 
-            return $model;
+        return $model;
     }
     
 }

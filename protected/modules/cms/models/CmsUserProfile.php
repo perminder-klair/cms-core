@@ -101,10 +101,5 @@ class CmsUserProfile extends SiteActiveRecord
     	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/cms_user_profile/delete",array('id'=>$this->id))));
 
     	return $result;
-    	
-		//$result = '<a class="btn btn-mini btn-primary" href="'.url("/cms_user_profile/update/".$this->id).'">Edit</a>';
-        //$result .= '&nbsp;&nbsp;<a class="btn btn-mini" href="'.url("/cms_user_profile/delete/".$this->id).'">Delete</a>';
-        	
-        //return $result;
 	}
 }

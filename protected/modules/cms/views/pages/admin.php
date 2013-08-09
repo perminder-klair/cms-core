@@ -27,7 +27,7 @@
 
 				<div class="widget-tasks-assigned">
                 	<ul>
-                		<? $model->renderTree(); ?>
+                		<?php $model->renderTree(); ?>
                 	</ul>
                 </div>
               

@@ -19,13 +19,13 @@ echo "\$this->breadcrumbs=array(
 
 <h1><?php echo $label; ?></h1>
 
-<?php echo "<? foreach(\$dataProvider as \$data): ?>
+<?php echo "<?php foreach(\$dataProvider as \$data): ?>
 	<? \$this->renderPartial('_view', array('data'=>\$data)); ?>
-<? endforeach; ?>"; ?>
+<?php endforeach; ?>"; ?>
 
-<?php echo "<? if(\$listCategories): ?>
+<?php echo "<?php if(\$listCategories): ?>
 	<h2>Categories</h2>
-	<? foreach(\$listCategories as \$category): ?>
-	        <a href=\"<?=url('/".$this->pluralize($this->class2name($this->modelClass))."/index', array('category'=>\$category->url));?>\"><?=\$category->title;?></a> /
-	<? endforeach; ?>
-<? endif; ?>"; ?>
+	<?php foreach(\$listCategories as \$category): ?>
+	        <a href=\"<?php echo url('/".$this->pluralize($this->class2name($this->modelClass))."/index', array('category'=>\$category->url));?>\"><?=\$category->title; ?></a> /
+	<?php endforeach; ?>
+<?php endif; ?>"; ?>

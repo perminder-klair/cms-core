@@ -4,7 +4,7 @@
 'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
-	<? if($form->errorSummary($model)): ?>
+	<?php if($form->errorSummary($model)): ?>
 	<div class="row-fluid">
       <div class="widget widget-padding span12">
         <div class="widget-header">
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <? endif; ?>
+    <?php endif; ?>
     
 <?php if(Yii::app()->user->hasFlash('success')):?>
 <div class="alert alert-success">
@@ -82,9 +82,8 @@
 			          <div class="control-group">
 			          	<?php echo $form->labelEx($model,'date_start'); ?>
 			          	<div class="controls">
-			          		<div class="input-append date span5 datepicker datepicker-basic" data-date="<?=date("d-m-Y", strtotime($model->date_start));?>" data-date-format="dd-mm-yyyy">
+			          		<div class="input-append date span5 datepicker datepicker-basic" data-date="<?php echo date("d-m-Y", strtotime($model->date_start)); ?>" data-date-format="dd-mm-yyyy">
 			          			<?php echo $form->textField($model,'date_start',array('size'=>16)); ?>
-	                        	<!--<input size="16" type="text" value="<?=date("d-m-Y", strtotime($model->date_start));?>">-->
 	                        	<span class="add-on"><i class="icon-th"></i></span>
 	                        </div>
 			          		<span class="help-inline"><?php echo $form->error($model,'date_start'); ?></span>
@@ -108,9 +107,9 @@
                   
                   <div class="tab-pane" id="validate_tab4"> 
                   
-                  		<? if(count($model->revisions)<=0) { ?>
+                  		<?php if(count($model->revisions)<=0) { ?>
                   			<h5>No revisions found to restore.</h5>
-                  		<? } else { ?>
+                  		<?php } else { ?>
 	                    <table class="table">
 	                      <thead>
 	                        <tr>
@@ -120,18 +119,17 @@
 	                        </tr>
 	                      </thead>
 	                      <tbody>
-	                      	<? foreach($model->revisions as $revision): ?>
+	                      	<?php foreach($model->revisions as $revision): ?>
 	                        <tr>
-	                          <td><?=$revision->revisionTime();?></td>
-	                          <td><?=$revision->author->username;;?></td>
-	                          <td><a href="<?=url("/cms/blog/restore/", array('id'=>$revision->id));?>">Restore</a></td>
+	                          <td><?php echo $revision->revisionTime(); ?></td>
+	                          <td><?php echo $revision->author->username; ?></td>
+	                          <td><a href="<?php echo url("/cms/blog/restore/", array('id'=>$revision->id)); ?>">Restore</a></td>
 	                        </tr>
-	                        <? endforeach; ?>
+	                        <?php endforeach; ?>
 	                      </tbody>
 	                    </table>
-	                    <? } ?>
-	                    
-	                    
+	                    <?php } ?>
+
                   </div>
                   
                   <div class="tab-pane form-horizontal" id="validate_tab5">
@@ -153,7 +151,7 @@
             </div>
             <div class="widget-footer">
               <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Create' : 'Save')); ?>
-              <a href="<?=$model->getUrl();?>" target="_blank"><button class="btn" type="button">Preview</button></a>
+              <a href="<?php echo $model->getUrl();?>" target="_blank"><button class="btn" type="button">Preview</button></a>
             </div>
           </div>
      </div>

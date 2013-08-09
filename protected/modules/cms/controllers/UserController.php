@@ -54,11 +54,10 @@ class UserController extends CmsController
 		
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['CmsUser']))
-		{ //dump($_POST['CmsUser']); die();
+		{
 			$model->attributes=$_POST['CmsUser'];
 			
 			// if a new password has been entered
@@ -107,11 +106,10 @@ class UserController extends CmsController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='film-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+        if(Yii::app()->getRequest()->getIsAjaxRequest()) {
+            echo CActiveForm::validate( array( $model));
+            Yii::app()->end();
+        }
 	}
 	
 }

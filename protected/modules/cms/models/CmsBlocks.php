@@ -5,7 +5,7 @@ class CmsBlocks extends CmsActiveRecord
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className the class name
-	 * @return CmsNode the static model class
+	 * @return CmsBlocks the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -20,7 +20,7 @@ class CmsBlocks extends CmsActiveRecord
     	return 'cms_blocks';
     }
 
-        /**
+    /**
      * @return array validation rules for model attributes
      */
     public function rules()

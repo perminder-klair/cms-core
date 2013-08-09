@@ -48,8 +48,7 @@ class PagesController extends CmsController
      * @param $id the id of the model to display
      */
     public function actionView($id)
-    { 
-	    //$app = Yii::app();
+    {
 	    $model = $this->loadModel($id);
 
         if ($model->body !== null)
@@ -61,7 +60,6 @@ class PagesController extends CmsController
             $this->breadcrumbs = $model->getBreadcrumbs();
         }
 
-        //$this->layout = $app->cms->appLayout;
         $pageView = $model->layout;
         $this->render('//cms_pages/'.$pageView, array(
             'model'=>$model,
@@ -80,9 +78,6 @@ class PagesController extends CmsController
 		$this->layout = 'admin';
 		
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['CmsPage']))
 		{
@@ -123,12 +118,12 @@ class PagesController extends CmsController
      */
     public function loadModel($id)
     {
-            $model = CmsPage::model()->findByPk($id);
+        $model = CmsPage::model()->findByPk($id);
 
-            if ($model === null)
-                    throw new CHttpException(404, Yii::t('CmsModule.core', 'The requested page does not exist.'));
+        if ($model === null)
+            throw new CHttpException(404, Yii::t('CmsModule.core', 'The requested page does not exist.'));
 
-            return $model;
+        return $model;
     }
 
 }

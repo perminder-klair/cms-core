@@ -136,7 +136,7 @@ class AuthController extends CmsController
 		));
 	}
 	
-	public function actiondeleteRole($name)
+	public function actionDeleteRole($name)
 	{
 		/* @var $am CAuthManager|AuthBehavior */
 		$am = Yii::app()->getAuthManager();

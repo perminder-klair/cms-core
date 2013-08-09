@@ -22,15 +22,15 @@ class AccountController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
+			array('allow',  // allow all users
 				'actions'=>array('*'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			array('allow', // allow authenticated user to perform 'index' and 'logout' actions
 				'actions'=>array('index', 'logout'),
 				'users'=>array('@'),
 			),
-			array('deny',  // deny all users
+			array('deny',  // deny all users to perform 'index' and 'logout' actions
 				'users'=>array('?'),
 				'actions'=>array('index', 'logout'),
 			),
@@ -39,9 +39,6 @@ class AccountController extends Controller
 	
 	public function actionIndex()
 	{
-        if(Yii::app()->user->isGuest)
-            $this->redirect(Yii::app()->user->loginUrl);
-
         $this->render('index', array(
             'user'=>$this->getUser(),
         ));
@@ -54,7 +51,7 @@ class AccountController extends Controller
     {
         //Check if visitor is not guest then redirect to index page
         if(!Yii::app()->user->isGuest)
-            $this->redirect(array('index'));
+            $this->redirect(Yii::app()->user->returnUrl);
 
         if (!defined('CRYPT_BLOWFISH')||!CRYPT_BLOWFISH)
             throw new CHttpException(500,"This application requires that PHP was compiled with Blowfish support for crypt().");
@@ -77,13 +74,13 @@ class AccountController extends Controller
         //dump($model->getErrors()); die();
         
         // display the login form
-        $this->render('login',array('model'=>$model));
+        $this->render('login', array('model'=>$model));
     }
 
     public function actionRegister()
     {
         if(!Yii::app()->user->isGuest)
-            $this->redirect(array('index'));
+            $this->redirect(Yii::app()->user->returnUrl);
 
         if (!defined('CRYPT_BLOWFISH') || !CRYPT_BLOWFISH)
             throw new CHttpException(500, "This application requires that PHP was compiled with Blowfish support for crypt().");
@@ -99,7 +96,7 @@ class AccountController extends Controller
             // validate user input and redirect to the previous page if valid
             if ($model->validate() && $model->register()) {
                 setSuccessMessage('Registration was successful. You can login.');
-                $this->redirect(Yii::app()->user->loginUrl); //Yii::app()->user->urlReferrer
+                $this->redirect(Yii::app()->user->loginUrl);
             }
         }
         //dump($model->getErrors()); die();
@@ -128,7 +125,7 @@ class AccountController extends Controller
         }
         //dump($model->getErrors()); die();
 
-        $this->render('passwordReset',array('model'=>$model));
+        $this->render('passwordReset', array('model'=>$model));
     }
 
     /**

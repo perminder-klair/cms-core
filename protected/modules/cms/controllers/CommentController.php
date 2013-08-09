@@ -48,8 +48,6 @@ class CommentController extends CmsController
 		
 		$model=$this->loadModel();
 		
-		//$this->performAjaxValidation($model);
-		
 		if(isset($_POST['CmsComment']))
 		{
 			$model->attributes=$_POST['CmsComment'];

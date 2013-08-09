@@ -61,7 +61,7 @@ class AuthItemForm extends CFormModel
 	 * @return string the text.
 	 * @throws CException if the item type is invalid.
 	 */
-	public function getItemTypeText($type, $plural = false)
+	public static function getItemTypeText($type, $plural = false)
 	{
 		// todo: change the default value for $plural to false.
 		$n = $plural ? 2 : 1;

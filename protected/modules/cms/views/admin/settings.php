@@ -28,7 +28,7 @@
                   <div class="control-group">
                   	<?php echo $form->labelEx($model, $row->define); ?>
                     <div class="controls">
-                      <input class="span7" type="text" name="CmsSettings[<?=$row->define?>]" value="<?=$row->value?>">
+                      <input class="span7" type="text" name="CmsSettings[<?php echo $row->define; ?>]" value="<?php echo $row->value; ?>">
                       <span class="help-inline"><?php echo $form->error($model, $row->define); ?></span>
                     </div>
                   </div>

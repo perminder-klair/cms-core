@@ -14,7 +14,7 @@
     <?php Yii::app()->setting->getAdminScripts(); ?>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="<?=Yii::app()->cms->assetsUrl;?>/ico/favicon.png">
+    <link rel="shortcut icon" href="<?php echo Yii::app()->cms->assetsUrl; ?>/ico/favicon.png">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -27,7 +27,7 @@
       <div class="navbar-inner">
         <div class="container-fluid">
           <div class="logo"> 
-            <img src="<?=Yii::app()->cms->assetsUrl.Yii::app()->cms->cmsLogo;?>" alt="CMS Logo">
+            <img src="<?php echo Yii::app()->cms->assetsUrl.Yii::app()->cms->cmsLogo; ?>" alt="CMS Logo">
           </div>
            <a class="btn btn-navbar visible-phone" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
@@ -42,19 +42,16 @@
 
           <div class="top-menu visible-desktop">
             <ul class="pull-left">
-              <li><a id="" href="<?=$this->createAbsoluteUrl('/cms/admin/settings')?>"><i class="icon-cogs"></i> Site Settings</a></li>
-              <!--<li><a id="notifications" data-notification="0" href="#"><i class="icon-globe"></i> Notifications</a></li>-->
+              <li><a id="" href="<?php echo $this->createAbsoluteUrl('/cms/admin/settings'); ?>"><i class="icon-cogs"></i> Site Settings</a></li>
             </ul>
             <ul class="pull-right">  
-              <li><a href="<?=$this->createAbsoluteUrl('/cms/admin/logout')?>"><i class="icon-off"></i> Logout</a></li>
+              <li><a href="<?php echo $this->createAbsoluteUrl('/cms/admin/logout'); ?>"><i class="icon-off"></i> Logout</a></li>
             </ul>
           </div>
 
           <div class="top-menu visible-phone visible-tablet">
-            <ul class="pull-right">  
-              <!--<li><a title="link to View all Messages page, no popover in phone view or tablet" href="#"><i class="icon-envelope"></i></a></li>
-              <li><a title="link to View all Notifications page, no popover in phone view or tablet" href="#"><i class="icon-globe"></i></a></li>-->
-              <li><a href="<?=$this->createAbsoluteUrl('/cms/admin/logout')?>"><i class="icon-off"></i></a></li>
+            <ul class="pull-right">
+              <li><a href="<?php echo $this->createAbsoluteUrl('/cms/admin/logout'); ?>"><i class="icon-off"></i></a></li>
             </ul>
           </div>
         </div>
@@ -64,26 +61,26 @@
     <div class="container-fluid">
       <div class="sidebar-nav nav-collapse collapse">
         <div class="user_side clearfix">
-          <?=Yii::app()->cms->userGravatar();?>
-          <h5><?=Yii::app()->user->name;?></h5>
-          <a href="<?=url("/cms/user/update", array('id'=>userId()));?>"><i class="icon-cog"></i> Edit Profile</a>        
+          <?php echo Yii::app()->cms->userGravatar(); ?>
+          <h5><?php echo Yii::app()->user->name; ?></h5>
+          <a href="<?php echo url("/cms/user/update", array('id'=>userId())); ?>"><i class="icon-cog"></i> Edit Profile</a>
         </div>
         <div class="accordion" id="accordion2">
           <div class="accordion-group">
             <div class="accordion-heading">
-              <a class="accordion-toggle b_F79999 <?=$this->getId()=='admin'?'active':'';?>" href="<?=$this->createAbsoluteUrl('/cms/admin')?>"><i class="icon-dashboard"></i> <span>Dashboard</span></a>
+              <a class="accordion-toggle b_F79999 <?php echo $this->getId()=='admin'?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/cms/admin'); ?>"><i class="icon-dashboard"></i> <span>Dashboard</span></a>
             </div>
           </div>
           <div class="accordion-group">
             <div class="accordion-heading">
               <a class="accordion-toggle b_C3F7A7 collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse1"><i class="icon-book"></i> <span>Blog</span></a>
             </div>
-            <div id="collapse1" class="accordion-body collapse <?=$this->getId()=='blog'?'in':'';?><?=$this->getId()=='comment'?'in':'';?>">
+            <div id="collapse1" class="accordion-body collapse <?php echo $this->getId()=='blog'?'in':''; ?><?php echo $this->getId()=='comment'?'in':''; ?>">
               <div class="accordion-inner">
-                <a class="accordion-toggle <? if(($this->getAction()->getId()=='admin') && ($this->getId()=='blog')) { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/blog/admin')?>"><i class="icon-align-justify"></i> All Posts</a>
-                <a class="accordion-toggle <?=$this->getAction()->getId()=='create'?'active':'';?>" href="<?=$this->createAbsoluteUrl('/cms/blog/create')?>"><i class="icon-plus-sign"></i> Add New</a>
-                <a class="accordion-toggle  <? if(($this->getAction()->getId()=='admin') && ($this->getId()=='comment')) { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/comment/admin')?>"><i class="icon-comment"></i> Comments</a>
-                <a class="accordion-toggle <?=$this->getAction()->getId()=='tags'?'active':'';?>" href="<?=$this->createAbsoluteUrl('/cms/blog/tags')?>"><i class="icon-tags"></i> Tags</a>
+                <a class="accordion-toggle <?php if(($this->getAction()->getId()=='admin') && ($this->getId()=='blog')) { echo 'active'; } ?>" href="<?php echo $this->createAbsoluteUrl('/cms/blog/admin'); ?>"><i class="icon-align-justify"></i> All Posts</a>
+                <a class="accordion-toggle <?php echo $this->getAction()->getId()=='create'?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/cms/blog/create'); ?>"><i class="icon-plus-sign"></i> Add New</a>
+                <a class="accordion-toggle  <?php if(($this->getAction()->getId()=='admin') && ($this->getId()=='comment')) { echo 'active'; } ?>" href="<?php echo $this->createAbsoluteUrl('/cms/comment/admin'); ?>"><i class="icon-comment"></i> Comments</a>
+                <a class="accordion-toggle <?php echo $this->getAction()->getId()=='tags'?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/cms/blog/tags'); ?>"><i class="icon-tags"></i> Tags</a>
               </div>
             </div>
           </div>
@@ -91,10 +88,10 @@
             <div class="accordion-heading">
               <a class="accordion-toggle b_9FDDF6 collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse2"><i class="icon-picture"></i> <span>Media</span></a>
             </div>
-            <div id="collapse2" class="accordion-body collapse <?=$this->getId()=='media'?'in':'';?>">
+            <div id="collapse2" class="accordion-body collapse <?php echo $this->getId()=='media'?'in':''; ?>">
               <div class="accordion-inner">
-                <a class="accordion-toggle <?=$this->getAction()->getId()=='admin'?'active':'';?>" href="<?=$this->createAbsoluteUrl('/cms/media/admin')?>"><i class="icon-folder-open"></i> Library</a>
-                <a class="accordion-toggle <?=$this->getAction()->getId()=='create'?'active':'';?>" href="#"><i class="icon-plus-sign"></i> Add New</a>
+                <a class="accordion-toggle <?php echo $this->getAction()->getId()=='admin'?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/cms/media/admin'); ?>"><i class="icon-folder-open"></i> Library</a>
+                <a class="accordion-toggle <?php echo $this->getAction()->getId()=='create'?'active':''; ?>" href="#"><i class="icon-plus-sign"></i> Add New</a>
               </div>
             </div>
           </div>
@@ -102,33 +99,17 @@
             <div class="accordion-heading">
               <a class="accordion-toggle b_F6F1A2 collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse3"><i class="icon-file-alt"></i> <span>Pages</span></a>
             </div>
-            <div id="collapse3" class="accordion-body collapse <?=$this->getId()=='pages'?'in':'';?><?=$this->getId()=='blocks'?'in':'';?>">
+            <div id="collapse3" class="accordion-body collapse <?php echo $this->getId()=='pages'?'in':''; ?><?php echo $this->getId()=='blocks'?'in':''; ?>">
               <div class="accordion-inner">
-                <a class="accordion-toggle <? if(($this->getAction()->getId()=='admin') && ($this->getId()=='pages')) { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/pages/admin')?>"><i class="icon-align-justify"></i> All Pages</a>
-                <a class="accordion-toggle <?=$this->getAction()->getId()=='create'?'active':'';?>" href="<?=$this->createAbsoluteUrl('/cms/pages/create')?>"><i class="icon-plus-sign"></i> Add New Page</a>
-                <a class="accordion-toggle <? if(($this->getAction()->getId()=='admin') && ($this->getId()=='blocks')) { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/blocks/admin')?>"><i class="icon-align-left"></i> All Text Blocks</a>
-                <!--<a class="accordion-toggle <?=$this->getAction()->getId()=='create'?'active':'';?>" href="<?=$this->createAbsoluteUrl('/cms/blocks/create')?>"><i class="icon-plus-sign"></i> Add New</a>-->
+                <a class="accordion-toggle <?php if(($this->getAction()->getId()=='admin') && ($this->getId()=='pages')) { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/pages/admin')?>"><i class="icon-align-justify"></i> All Pages</a>
+                <a class="accordion-toggle <?php echo $this->getAction()->getId()=='create'?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/cms/pages/create'); ?>"><i class="icon-plus-sign"></i> Add New Page</a>
+                <a class="accordion-toggle <?php if(($this->getAction()->getId()=='admin') && ($this->getId()=='blocks')) { echo 'active'; } ?>" href="<?php echo $this->createAbsoluteUrl('/cms/blocks/admin'); ?>"><i class="icon-align-left"></i> All Text Blocks</a>
               </div>
             </div>
           </div>
-          <!--<div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle b_F6F1A2" href="tasks.html"><i class="icon-tasks"></i> <span>Tasks</span></a>
-            </div>
-          </div>
           <div class="accordion-group">
             <div class="accordion-heading">
-              <a class="accordion-toggle b_C1F8A9" href="analytics.html"><i class="icon-bar-chart"></i> <span>Analytics</span></a>
-            </div>
-          </div> 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle b_9FDDF6" href="tickets.html"><i class="icon-bullhorn"></i> <span>Support Tickets</span></a>
-            </div>
-          </div>-->  
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle b_F5C294 <?=$this->getId()=='categories'?'active':'';?>" href="<?=$this->createAbsoluteUrl('/cms/categories/admin')?>"><i class="icon-list"></i> <span>Categories</span></a>
+              <a class="accordion-toggle b_F5C294 <?php echo $this->getId()=='categories'?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/cms/categories/admin'); ?>"><i class="icon-list"></i> <span>Categories</span></a>
             </div>
           </div>                 
           
@@ -136,29 +117,23 @@
             <div class="accordion-heading">
               <a class="accordion-toggle b_F6F1A2 collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse4"><i class="icon-user"></i> <span>Users</span></a>
             </div>
-            <div id="collapse4" class="accordion-body collapse <?=$this->getId()=='user'?'in':'';?><?=$this->getId()=='auth'?'in':'';?>">
+            <div id="collapse4" class="accordion-body collapse <?php echo $this->getId()=='user'?'in':''; ?><?php echo $this->getId()=='auth'?'in':''; ?>">
               <div class="accordion-inner">
-                <a class="accordion-toggle <? if(($this->getAction()->getId()=='admin') && ($this->getId()=='user')) { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/user/admin')?>"><i class="icon-align-justify"></i> All Users</a>
-                <a class="accordion-toggle <? if($this->getId()=='auth') { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/auth/roles')?>"><i class="icon-group"></i> Manage Roles</a>
+                <a class="accordion-toggle <?php if(($this->getAction()->getId()=='admin') && ($this->getId()=='user')) { echo 'active'; } ?>" href="<?php echo $this->createAbsoluteUrl('/cms/user/admin'); ?>"><i class="icon-align-justify"></i> All Users</a>
+                <a class="accordion-toggle <?php if($this->getId()=='auth') { echo 'active'; } ?>" href="<?php echo $this->createAbsoluteUrl('/cms/auth/roles')?>"><i class="icon-group"></i> Manage Roles</a>
               </div>
             </div>
           </div>
-          
-          <!--<div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle b_F5C294 <?=$this->getId()=='user'?'active':'';?>" href="<?=$this->createAbsoluteUrl('/cms/user/admin')?>"><i class="icon-user"></i> <span>Users</span></a>
-            </div>
-          </div>-->
-          
-          <? if(count(Yii::app()->params['adminMenu'])>0) { ?>
-	          <? foreach(Yii::app()->params['adminMenu'] as $key=>$value): ?>
+
+          <?php if(count(Yii::app()->params['adminMenu'])>0) { ?>
+	          <?php foreach(Yii::app()->params['adminMenu'] as $key=>$value): ?>
 	          <div class="accordion-group">
 	            <div class="accordion-heading">
-	              <a class="accordion-toggle b_F5C294 <?=$this->getId()==$value?'active':'';?>" href="<?=$this->createAbsoluteUrl('/'.$value.'/admin')?>"><i class="icon-align-justify"></i> <span><?=ucfirst($value);?></span></a>
+	              <a class="accordion-toggle b_F5C294 <?php echo $this->getId()==$value?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/'.$value.'/admin'); ?>"><i class="icon-align-justify"></i> <span><?php echo ucfirst($value); ?></span></a>
 	            </div>
 	          </div> 
-	          <? endforeach; ?>
-          <? } ?>
+	          <?php endforeach; ?>
+          <?php } ?>
           
         </div>
       </div>

@@ -1,13 +1,5 @@
 <?php
 /**
- * AuthBehavior class file.
- * @author Christoffer Niska <ChristofferNiska@gmail.com>
- * @copyright Copyright &copy; Christoffer Niska 2012-
- * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @package auth.components
- */
-
-/**
  * Auth module behavior for the authorization manager.
  *
  * @property CAuthManager|IAuthManager $owner The authorization manager.

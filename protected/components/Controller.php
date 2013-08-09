@@ -4,7 +4,6 @@
  * Controller is the customized base controller class.
  * All controller classes for this application should extend from this base class.
  */
-Yii::import('cms.components.CmsController'); 
 
 class Controller extends CmsController
 {
@@ -27,6 +26,6 @@ class Controller extends CmsController
 	
 	public function init()
 	{
-		//Yii::app()->theme = 'bootstrap';
+
 	}
 }

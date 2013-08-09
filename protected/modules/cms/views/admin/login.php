@@ -45,9 +45,6 @@ $this->breadcrumbs=array(
 					<?php echo CHtml::submitButton('Sign in', array('class'=>'btn pull-right')); ?>
       			<?php $this->endWidget(); ?>
 			</div>  
-		</div>  
-			<!--<div style="text-align:center">
-				<p>Neen an account? <a href="new_account.html">Create Account</a></p>
-			</div>-->
+		</div>
 	</div><!--/row-fluid-->
 </div><!--/span10-->

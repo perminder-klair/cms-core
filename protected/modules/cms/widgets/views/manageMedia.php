@@ -1,10 +1,10 @@
 <h4>Upload Media</h4>
 <hr>
     <script>
-    	var content_id = "<?=$model->id?>";
-    	var type = "<?=$type?>";
+    	var content_id = "<?php echo $model->id; ?>";
+    	var type = "<?php echo $typel ?>";
     </script>
-    <? $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
+    <?php $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
 	    'id' => 'media',
 	    'config' => array(
 	        'request' => array(
@@ -42,10 +42,10 @@
             </tr>
           </thead>
           <tbody>
-          	<? $mediaView = 'application.modules.cms.views.media.newMedia'; ?>
-          	<? foreach($model->media as $media): ?>
+          	<?php $mediaView = 'application.modules.cms.views.media.newMedia'; ?>
+          	<?php foreach($model->media as $media): ?>
           		<?php echo Yii::app()->controller->renderPartial($mediaView, array('media'=>$media)); ?>
-            <? endforeach; ?>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>

@@ -35,13 +35,13 @@
                         </tr>
                       </thead>
                       <tbody>
-                      	<? foreach($roles as $key=>$value): ?>
+                      	<?php foreach($roles as $key=>$value): ?>
                         <tr>
-                          <td><?=$value;?></td>
-                          <td><?=l('Edit',array('/cms/auth/updateRole', 'name'=>$key), array('class'=>'btn btn-mini btn-primary'));?></td>
-                          <td><?=l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/cms/auth/deleteRole",array('name'=>$key))));?></td>
+                          <td><?php echo $value; ?></td>
+                          <td><?php echo l('Edit',array('/cms/auth/updateRole', 'name'=>$key), array('class'=>'btn btn-mini btn-primary')); ?></td>
+                          <td><?php echo l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/cms/auth/deleteRole",array('name'=>$key)))); ?></td>
                         </tr>
-                        <? endforeach; ?>
+                        <?php endforeach; ?>
                       </tbody>
                     </table>
                   </div>

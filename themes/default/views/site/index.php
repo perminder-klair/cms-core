@@ -8,7 +8,7 @@ $this->pageOgDesc = 'my title';
 $this->pageOgImage = 'my title';
 ?>
 
-<h1>Welcome to <i><?=gl('site_name');?></i></h1>
+<h1>Welcome to <i><?php echo gl('site_name'); ?></i></h1>
 
 <p>You may change the content of this page by modifying the following two files:</p>
 <ul>

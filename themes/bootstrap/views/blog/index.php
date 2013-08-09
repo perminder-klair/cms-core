@@ -8,17 +8,17 @@ $this->breadcrumbs=array(
 ?>
 
 <div class="page-header">
-	<h1>Blogs <small>(<?=l('RSS Feed',array('/cms/blog/feed'));?>)</small></h1>
+	<h1>Blogs <small>(<?php echo l('RSS Feed',array('/cms/blog/feed')); ?>)</small></h1>
 </div>
 
- <?
+ <?php
  	$this->widget('TagCloud');
  ?>
 
-<? foreach($dataProvider as $blog): ?>
+<?php foreach($dataProvider as $blog): ?>
 
     <div class="hero-unit">
-	    <h1><?=$blog->title;?></h1>
+	    <h1><?php echo $blog->title; ?></h1>
 	    <p><?php $this->widget('ext.XReadMore.XReadMore', array(
 	         'model'=>$blog,
 	         'attribute'=>'content',
@@ -30,20 +30,20 @@ $this->breadcrumbs=array(
 	       ));
 	    ?></p>
 	    <p>
-		    <a href="<?=$blog->getUrl();?>" class="btn btn-primary btn-large">Read more</a>
+		    <a href="<?php echo $blog->getUrl(); ?>" class="btn btn-primary btn-large">Read more</a>
 	    </p>
     </div>
     
-<? endforeach; ?>
+<?php endforeach; ?>
 
 <?php $this->widget('CLinkPager', array(
     'pages' => $pages,
-)) ?>
+)); ?>
 
 <div id="categories">
-    <? $this->widget('BlogCategories'); ?>
+    <?php $this->widget('BlogCategories'); ?>
 </div>
 
 <div id="archive">
-    <? $this->widget('BlogArchive'); ?>
+    <?php $this->widget('BlogArchive'); ?>
 </div>

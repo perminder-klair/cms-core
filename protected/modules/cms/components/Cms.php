@@ -1,7 +1,5 @@
 <?php
 
-Yii::import('cms.models.*');
-        
 /**
  * Cms application component that allows for application-wide access to the cms.
  */
@@ -13,21 +11,6 @@ class Cms extends CApplicationComponent
 	public $cmsName = 'TBL CMS';
 	public $cmsLogo = '/img/logo-tbl.png'; //logo.png
 	public $defaultGravatar = '/img/logo-tbl-gravatar.png'; //logo-gravatar.jpg
-        
-    /**
-     * @var string the template to use for node headings.
-     */
-    public $headingTemplate = '<h1 class="heading">{heading}</h1>';
-        
-	/**
-     * @var string the template to use for page titles.
-     */
-    public $pageTitleTemplate = ' - {title}';
-        
-	/**
-     * @var string the template to use for widget headings.
-     */
-    public $widgetHeadingTemplate = '<h3 class="heading">{heading}</h3>';
         
 	/**
 	 * @var array the renderer configuration.
@@ -89,26 +72,6 @@ class Cms extends CApplicationComponent
 		$page = CmsPage::model()->findByAttributes(array('name'=>$name));
 		return $page;
 	}
-	
-	/**
-     * Creates a new node model.
-     * @param string $name the node name
-     * @return boolean whether the node was created
-     * @throws CException if the node could not be created
-     */
-	/*protected function createNode($name)
-    {
-        if (!$this->autoCreate)
-                throw new CException(__CLASS__.': Failed to create node. Node creation is disabled.');
-
-        // Validate the node name before creation.
-        if (preg_match('/^[\w\d\._-]+$/i', $name) === 0)
-                throw new CException(__CLASS__.': Failed to create node. Name "'.$name.'" is invalid.');
-
-        $node = new CmsNode();
-        $node->name = $name;
-        return $node->save(false);
-    }*/
     
     public function uploadMedia()
     {

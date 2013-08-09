@@ -331,11 +331,6 @@ class CmsPage extends CmsActiveRecord
      */
     public function getUrl($params = array())
     {
-    	//return 'test';
-    	//dump($params); die();
-    	//return Yii::app()->createUrl('cms/pages/view/',
-    		//CMap::mergeArray($params, array('id'=>$this->id, 'name'=>$this->getContentUrl()))
-    	//);
     	return url('/cms/pages/view/', array('id'=>$this->id, 'name'=>$this->getContentUrl()));
     }
 

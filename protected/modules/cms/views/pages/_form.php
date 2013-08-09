@@ -4,7 +4,7 @@
 'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
-	<? if($form->errorSummary($model)): ?>
+	<?php if($form->errorSummary($model)): ?>
 	<div class="row-fluid">
       <div class="widget widget-padding span12">
         <div class="widget-header">
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <? endif; ?>
+    <?php endif; ?>
     
 <?php if(Yii::app()->user->hasFlash('success')):?>
 <div class="alert alert-success">
@@ -34,11 +34,11 @@
             <div class="widget-header">
               <ul class="nav nav-tabs">
                 <li><a href="#validate_tab1" data-toggle="tab">Basic Info</a></li>
-                <? if($model->isCmsPage()): ?>
+                <?php if($model->isCmsPage()): ?>
 	                <li><a href="#validate_tab2" data-toggle="tab">Media</a></li>
 	                <li><a href="#validate_tab3" data-toggle="tab">Parent</a>
 	                <li><a href="#validate_tab4" data-toggle="tab">Style</a></li>
-                <? endif; ?>
+                <?php endif; ?>
                 <li><a href="#validate_tab5" data-toggle="tab">SEO</a></li>
               </ul>
             </div>
@@ -50,7 +50,7 @@
 
 				          <?php echo $form->textFieldRow($model, 'heading'); ?>
 			          		
-			          	  <? if($model->isCmsPage()): ?>
+			          	  <?php if($model->isCmsPage()): ?>
 				          <div class="control-group">
 				          	<?php echo $form->labelEx($model,'body'); ?>
 				          	<div class="controls">
@@ -65,11 +65,11 @@
 				          		<span class="help-inline"><?php echo $form->error($model,'body'); ?></span>
 				          	</div>
 				          </div>
-				          <? endif; ?>
+				          <?php endif; ?>
 				          
-			          	<? if($model->isCmsPage()): ?>
+			          	<?php if($model->isCmsPage()): ?>
 			          		<?php echo $form->dropDownListRow($model, 'status', CmsLookup::items('PageStatus')); ?> 
-				        <? endif; ?>
+				        <?php endif; ?>
 				          
 			          <div class="control-group">
 			          	<?php echo $form->labelEx($model,'tags'); ?>
@@ -98,9 +98,9 @@
                   </div>
                   
                   <div class="tab-pane" id="validate_tab4">      
-                  		<? if($model->isCmsPage()): ?>
+                  		<?php if($model->isCmsPage()): ?>
                   			<?php echo $form->dropDownListRow($model, 'layout', Yii::app()->cms->scanPagesDir()); ?>
-				        <? endif; ?>
+				        <?php endif; ?>
                   </div>
                   
                   <div class="tab-pane" id="validate_tab5">                   
@@ -114,9 +114,9 @@
             </div>
             <div class="widget-footer">
             	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>$model->isNewRecord ? 'Create' : 'Save')); ?>
-              <? if($model->isCmsPage()): ?>
-              	<a href="<?=$model->getUrl();?>" target="_blank"><button class="btn" type="button">Preview</button></a>
-              <? endif; ?>
+              <?php if($model->isCmsPage()): ?>
+              	<a href="<?php echo $model->getUrl(); ?>" target="_blank"><button class="btn" type="button">Preview</button></a>
+              <?php endif; ?>
             </div>
           </div>
      </div>

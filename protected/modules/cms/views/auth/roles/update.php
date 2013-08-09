@@ -6,5 +6,4 @@
 	'ancestors' => $ancestors,
 	'descendants' => $descendants,
 	'formModel' => $formModel,
-	//'childOptions' => $childOptions,
 	)); ?>  

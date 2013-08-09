@@ -9,16 +9,16 @@
 	<?php Yii::app()->setting->loadCss(array('main', 'form')); ?>
 
 	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?=baseUrl();?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?=baseUrl();?>/css/print.css" media="print" />
+	<link rel="stylesheet" type="text/css" href="<?php echo baseUrl(); ?>/css/screen.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?php echo baseUrl(); ?>/css/print.css" media="print" />
 	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?=baseUrl();?>/css/ie.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?php echo baseUrl(); ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
 </head>
 
 <body>
 
-<div class="container <?=$this->bodyClass();?>" id="page">
+<div class="container <?php $this->bodyClass(); ?>" id="page">
 
 	<div id="header">
 		<div id="logo"><?php echo gl('site_name'); ?></div>
@@ -44,12 +44,12 @@
 			)); ?><!-- breadcrumbs -->
 		<?php endif?>
 
-        <? if(Yii::app()->user->hasFlash('success')): ?>
-            <?=Yii::app()->user->getFlash('success');?>
-        <? endif; ?>
-        <? if(Yii::app()->user->hasFlash('error')): ?>
-            <?=Yii::app()->user->getFlash('error');?>
-        <? endif; ?>
+        <?php if(Yii::app()->user->hasFlash('success')): ?>
+            <?php echo Yii::app()->user->getFlash('success'); ?>
+        <?php endif; ?>
+        <?php if(Yii::app()->user->hasFlash('error')): ?>
+            <?php echo Yii::app()->user->getFlash('error'); ?>
+        <?php endif; ?>
 
 		<?php echo $content; ?>
 	</div>

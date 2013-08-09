@@ -5,7 +5,7 @@
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
 
-	<? if($form->errorSummary($model)): ?>
+	<?php if($form->errorSummary($model)): ?>
 	<div class="row-fluid">
       <div class="widget widget-padding span12">
         <div class="widget-header">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <? endif; ?>
+    <?php endif; ?>
     
 <?php if(Yii::app()->user->hasFlash('success')):?>
 <div class="alert alert-success">
@@ -84,15 +84,15 @@
                 </tr>
               </thead>
               <tbody>
-              	<? foreach($descendants as $row): ?>
+              	<?php foreach($descendants as $row): ?>
                 <tr>
-                  <td><?=$row['item']->description;?></td>
-                  <td><?=AuthItemForm::getItemTypeText($row['item']->type);?></td>
+                  <td><?php echo $row['item']->description; ?></td>
+                  <td><?php echo AuthItemForm::getItemTypeText($row['item']->type); ?></td>
                   <td>
-	                <?=l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/cms/auth/removeChild",array('itemName'=>$model->name,'childName'=>$row['item']->name)))); ?>
+	                <?php echo l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/cms/auth/removeChild",array('itemName'=>$model->name,'childName'=>$row['item']->name)))); ?>
                   </td>
                 </tr>
-                <? endforeach; ?>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>

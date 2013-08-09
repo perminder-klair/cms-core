@@ -8,7 +8,7 @@
 	'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
-	<? if($form->errorSummary($model)): ?>
+	<?php if($form->errorSummary($model)): ?>
 	<div class="row-fluid">
       <div class="widget widget-padding span12">
         <div class="widget-header">
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <? endif; ?>
+    <?php endif; ?>
 
 <div class="row-fluid">
   <div class="widget widget-padding span12">

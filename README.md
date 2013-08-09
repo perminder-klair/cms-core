@@ -1,12 +1,11 @@
-TBL CMS
+# TBL CMS
 =========
 
 TBL Cms based on Yii Framework
 
 Read the /documentation/index.html for more information
 
-Setup:
-------
+## Setup
 Get Yii Framework using Composer:
 
 Inside protected directory run: php composer.phar install
@@ -32,6 +31,23 @@ For live environment change database config in:
 Login to Admin Panel by visiting: www.yoursite.com/admin/login and
 logins are: admin / admin
 
-Know Issues / ToDo
-------------------
-- Change PHP short tags to full
+## Extenstions included in CMS
+* [YiiBooster](https://github.com/clevertech/YiiBooster)
+* [EAjaxUpload](https://github.com/valums/file-uploader)
+* [yii-easyimage](https://github.com/zhdanovartur/yii-easyimage)
+* [efeed](https://github.com/2amigos/efeed)
+* [Mobile_Detect](https://github.com/serbanghita/Mobile-Detect/)
+* [yii-tinymce](https://bitbucket.org/z_bodya/yii-tinymce)
+* [XReadMore](http://www.yiiframework.com/extension/xreadmore/)
+* [Yii Debug Toolbar](https://github.com/malyshev/yii-debug-toolbar)
+* [YiiMailer](https://github.com/vernes/YiiMailer)
+* [backup](http://www.yiiframework.com/extension/backup/)
+
+## Bug tracker
+If you find any bugs, please create an issue at [issue tracker for project Github repository](https://github.com/TBL-CMS/Core/issues).
+
+## Know Issues / ToDo
+* Change PHP short tags to full
+
+## License
+This work is licensed under a MIT license. Full text is included in the `LICENSE` file in the root of codebase.

@@ -33,9 +33,6 @@ class MediaController extends CmsController
 		
 		$model=new CmsMedia;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
 		if(isset($_POST['CmsMedia']))
 		{
 			$model->attributes=$_POST['CmsMedia'];
@@ -53,9 +50,6 @@ class MediaController extends CmsController
 		$this->layout = 'admin';
 		
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['CmsMedia']))
 		{

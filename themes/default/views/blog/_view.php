@@ -28,7 +28,7 @@
 		?>
 	</div>
 	<div class="media">
-		<? if($media = $data->mediaType(CmsMedia::TYPE_FEATURED)) {
+		<?php if($media = $data->mediaType(CmsMedia::TYPE_FEATURED)) {
 			$image=CmsMedia::getMedia($media['id']);
 			dump($image->render());
 		} ?>
@@ -39,6 +39,6 @@
 		<br/>
 		<?php echo CHtml::link('Permalink', $data->url); ?> |
 		<?php echo CHtml::link("Comments ({$data->commentCount})",$data->url.'#comments'); ?> |
-		Last updated on <?=$data->modified; ?>
+		Last updated on <?php echo $data->modified; ?>
 	</div>
 </div>

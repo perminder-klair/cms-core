@@ -50,8 +50,7 @@ class CategoriesController extends CmsController
 		
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['CmsCategories']))
 		{
@@ -129,10 +128,9 @@ class CategoriesController extends CmsController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='cms-categories-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+        if(Yii::app()->getRequest()->getIsAjaxRequest()) {
+            echo CActiveForm::validate( array( $model));
+            Yii::app()->end();
+        }
 	}
 }

@@ -4,7 +4,7 @@
 'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal')
 )); ?>
-	<? if($form->errorSummary($model)): ?>
+	<?php if($form->errorSummary($model)): ?>
 	<div class="row-fluid">
       <div class="widget widget-padding span12">
         <div class="widget-header">
@@ -20,9 +20,9 @@
         </div>
       </div>
     </div>
-    <? endif; ?>
+    <?php endif; ?>
     
-<?php if(Yii::app()->user->hasFlash('success')):?>
+<?php if(Yii::app()->user->hasFlash('success')): ?>
 <div class="alert alert-success">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>Success!</strong> <?php echo Yii::app()->user->getFlash('success'); ?> 

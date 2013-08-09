@@ -13,37 +13,6 @@ class AdminController extends CmsController
 		);
 	}
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	/*public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to access 'index' and 'view' actions.
-				'actions'=>array('login'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated users to access all actions
-				'actions'=>array('logout'),
-				'users'=>array('@'),
-			),
-			array('allow',
-				'actions'=>array('index', 'settings'),
-				'expression'=>'$user->isAdmin()'
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-				//'actions'=>array('index', 'settings'),
-			),*/
-			/*array('deny',  // deny all users
-				'users'=>array('@'),
-				//'actions'=>array('admin'),
-			),*/
-		/*);
-	}*/
-	
 	public function actionIndex()
 	{
 		$this->layout = 'admin';
@@ -51,12 +20,12 @@ class AdminController extends CmsController
 		$criteria=new CDbCriteria(array(
 			'limit'=>'10'
 		));
-		$blogs = CmsBlog::model()->published()->findAll($criteria);
+		$blog = CmsBlog::model()->published()->findAll($criteria);
 		
 		$comments = CmsComment::model()->findAll($criteria);
 		
 		$this->render('index', array(
-			'blogs'=>$blogs,
+			'blogs'=>$blog,
 			'comments'=>$comments,
 		));
 	}
@@ -101,7 +70,7 @@ class AdminController extends CmsController
 		$model=new CmsLogin;
 
 		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		if(isset($_POST['ajax']))
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -127,12 +96,5 @@ class AdminController extends CmsController
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
-	}
-	
-	public function actionUser()
-	{
-		$this->layout = 'admin';
-		
-		$this->render('user');
 	}
 }

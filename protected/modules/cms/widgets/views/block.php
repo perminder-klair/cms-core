@@ -1,4 +1,4 @@
-<div class="cms-block block-<?=$model->name;?>">
+<div class="cms-block block-<?php echo $model->name; ?>">
 	<?php $this->beginWidget('CHtmlPurifier'); ?>
 		<?php echo $content ?>
 	<?php $this->endWidget(); ?>

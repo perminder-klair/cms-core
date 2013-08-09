@@ -12,6 +12,6 @@ $this->breadcrumbs=array(
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
 
-<? if(!$model->isCmsPage()): ?>
+<?php if(!$model->isCmsPage()): ?>
 	<?php $this->renderPartial('_blocks', array('model'=>$model)); ?>
-<? endif; ?>
+<?php endif; ?>
