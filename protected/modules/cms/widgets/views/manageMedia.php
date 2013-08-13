@@ -2,7 +2,7 @@
 <hr>
     <script>
     	var content_id = "<?php echo $model->id; ?>";
-    	var type = "<?php echo $typel ?>";
+    	var type = "<?php echo $type; ?>";
     </script>
     <?php $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
 	    'id' => 'media',

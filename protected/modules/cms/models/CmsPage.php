@@ -228,17 +228,12 @@ class CmsPage extends CmsActiveRecord
         $pages = CmsPage::model()->findAll($criteria);
         $tree = $this->getTree($pages, true);
 
-        //echo CHtml::openTag('div', array('class'=>'page-tree'));
-        //echo CHtml::openTag('ul', array('class'=>'root'));
         if(count($pages)<=0) {
 	        echo 'No pages to display.';
         } else {
         	foreach ($tree as $branch)
         		$this->renderBranch($branch);
         }
-
-        //echo '</ul>';
-        //echo '</div>';
     }
 
     /**

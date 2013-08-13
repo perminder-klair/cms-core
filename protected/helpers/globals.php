@@ -162,6 +162,15 @@ function dd() {
     die;
 }
 
+/**
+ * Returns the request instance.
+ * @return CHttpRequest
+ */
+function request()
+{
+    return Yii::app()->getRequest();
+}
+
 /*
  * @return $_GET[] result
  */
@@ -193,6 +202,18 @@ function dump($target)
 {
   return '<pre>'.CVarDumper::dump($target, 10, true).'</pre>';
 }
+
+/**
+ * Dumps the given variable using CVarDumper::dumpAsString().
+ * @param mixed $var
+ * @param int $depth
+ * @param bool $highlight
+ */
+function dump_var($var, $depth = 10, $highlight = true)
+{
+    echo CVarDumper::dumpAsString($var, $depth, $highlight);
+}
+
 
 /*
  * Send a cookie
@@ -309,4 +330,124 @@ function setErrorMessage($message = 'An error occurred. Do try again.') {
 function setNoticeMessage($message = 'Take Notice!!') {
     if (!Yii::app()->user->hasFlash('notice'))
         Yii::app()->user->setFlash('notice', 'Notice!!: ' . $message);
+}
+
+/**
+ * Returns the current time as a MySQL date.
+ * @param integer $timestamp the timestamp.
+ * @return string the date.
+ */
+function sqlDate($timestamp = null)
+{
+    if ($timestamp === null) {
+        $timestamp = time();
+    }
+    return date('Y-m-d', $timestamp);
+}
+
+/**
+ * Returns the current time as a MySQL date time.
+ * @param integer $timestamp the timestamp.
+ * @return string the date time.
+ */
+function sqlDateTime($timestamp = null)
+{
+    if ($timestamp === null) {
+        $timestamp = time();
+    }
+    return date('Y-m-d H:i:s', $timestamp);
+}
+
+/**
+ * Registers the given CSS file.
+ * @param $url
+ * @param string $media
+ */
+function css($url, $media = '')
+{
+    Yii::app()->clientScript->registerCssFile(baseUrl($url), $media);
+}
+
+/**
+ * Registers the given JavaScript file.
+ * @param $url
+ * @param null $position
+ */
+function js($url, $position = null)
+{
+    Yii::app()->clientScript->registerScriptFile(baseUrl($url), $position);
+}
+
+/**
+ * Escapes the given string using CHtml::encode().
+ * @param $text
+ * @return string
+ */
+function e($text)
+{
+    return CHtml::encode($text);
+}
+
+/**
+ * Returns the escaped value of a model attribute.
+ * @param $model
+ * @param $attribute
+ * @param null $defaultValue
+ * @return string
+ */
+function v($model, $attribute, $defaultValue = null)
+{
+    return CHtml::encode(CHtml::value($model, $attribute, $defaultValue));
+}
+
+/**
+ * Purifies the given HTML.
+ * @param $text
+ * @return string
+ */
+function purify($text)
+{
+    static $purifier;
+    if (!isset($purifier)) {
+        $purifier = new CHtmlPurifier;
+    }
+    return $purifier->purify($text);
+}
+
+/**
+ * Returns the given markdown text as purified HTML.
+ * @param $text
+ * @return string
+ */
+function markdown($text)
+{
+    static $parser;
+    if (!isset($parser)) {
+        $parser = new MarkdownParser;
+    }
+    return $parser->safeTransform($text);
+}
+
+/**
+ * Encodes the given object using json_encode().
+ * @param mixed $value
+ * @param integer $options
+ * @return string
+ */
+function jsonEncode($value, $options = 0)
+{
+    return json_encode($value, $options);
+}
+
+/**
+ * Decodes the given JSON string using json_decode().
+ * @param $string
+ * @param boolean $assoc
+ * @param integer $depth
+ * @param integer $options
+ * @return mixed
+ */
+function jsonDecode($string, $assoc = true, $depth = 512, $options = 0)
+{
+    return json_decode($string, $assoc, $depth, $options);
 }

@@ -46,7 +46,7 @@ logins are: admin / admin
 If you find any bugs, please create an issue at [issue tracker for project Github repository](https://github.com/TBL-CMS/Core/issues).
 
 ## Know Issues / ToDo
-* Change PHP short tags to full
+* media upload from media tab
 
 ## License
 This work is licensed under a MIT license. Full text is included in the `LICENSE` file in the root of codebase.

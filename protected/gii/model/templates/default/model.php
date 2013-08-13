@@ -87,7 +87,7 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
+		return array_merge(parent::rules(), array(
 <?php foreach($rules as $rule): ?>
 			<?php echo $rule.",\n"; ?>
 <?php endforeach; ?>
@@ -104,7 +104,7 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
+		return array_merge(parent::relations(), array(
 <?php foreach($relations as $name=>$relation): ?>
 			<?php echo "'$name' => $relation,\n"; ?>
 <?php endforeach; ?>

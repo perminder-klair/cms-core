@@ -42,6 +42,7 @@ class CmsUserPwdReset extends SiteActiveRecord
 			array('email, password, password_repeat', 'required'),
 			array('email', 'length', 'max'=>70),
             array('email','email'),
+            array('email','checkExists'),
 			array('password', 'length', 'min'=>'6','max'=>90),
 			array('password', 'compare'),
 			array('key', 'length', 'max'=>32),
@@ -65,7 +66,23 @@ class CmsUserPwdReset extends SiteActiveRecord
 			'created_date' => 'Created Date',
 		);
 	}
-        
+
+    /**
+     * @param $attribute
+     * @return bool
+     */
+    public function checkExists($attribute)
+    {
+        if(!CmsUser::model()->exists("email='{$attribute}'")) {
+            $this->addError('email','Email does not exists');
+            return false;
+        } else
+            return true;
+    }
+
+    /**
+     * @return bool
+     */
     public function savePassword()
     {
         $user = CmsUser::model()->find(array(
@@ -96,6 +113,9 @@ class CmsUserPwdReset extends SiteActiveRecord
         return false;
     }
 
+    /**
+     * @return bool
+     */
     protected function sendPasswordEmail()
     {
         $subject = '=?UTF-8?B?' . base64_encode('Password reset validation link at '.gl('site_name')) . '?=';

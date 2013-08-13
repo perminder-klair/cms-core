@@ -115,7 +115,9 @@ class AccountController extends Controller
     public function actionPasswordReset()
     {
         $model = new CmsUserPwdReset;
-        
+
+        $this->performAjaxValidation($model);
+
         if(isset($_POST['CmsUserPwdReset'])){
             $model->attributes = $_POST['CmsUserPwdReset'];
             if($model->validate() && $model->savePassword()){
