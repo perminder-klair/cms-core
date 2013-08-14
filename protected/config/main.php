@@ -1,6 +1,7 @@
 <?php
 require(dirname(__FILE__).'/../helpers/globals.php');
 require(dirname(__FILE__).'/../helpers/site.php');
+require(dirname(__FILE__).'/../helpers/CArray.php');
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
@@ -27,6 +28,7 @@ return array(
 		'application.extensions.CAdvancedArBehavior',
 		'application.extensions.YiiMailer.YiiMailer',
         'application.extensions.easyimage.EasyImage',
+        'application.extensions.mobiledetect.Mobile_Detect',
 	),
 	
 	'aliases' => array(),
@@ -139,7 +141,7 @@ return array(
 	/* 
 	 * application-level parameters that can be accessed
 	 * using Yii::app()->params['paramName']
-	 * USE THIS INSTED gl('site_name'));
+	 * USE THIS INSTEAD gl('site_name'));
 	 */
 	'params'=>array(
 		// this is used in contact page
