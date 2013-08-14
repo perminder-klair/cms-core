@@ -7,6 +7,11 @@
           </h2>
         </div>
 
+        <?php $this->widget('OoCharts', array(
+            'apiKey'=>null,
+            'appId'=>null,
+        )); ?>
+
         <div class="row-fluid">
           <div class="widget span8">
             <div class="widget-header">
