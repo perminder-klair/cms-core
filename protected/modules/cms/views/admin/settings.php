@@ -22,7 +22,7 @@
               </div>
             </div>
             
-            <? foreach($settings as $row): ?>
+            <?php foreach($settings as $row): ?>
             <div class="widget-body">
               <div class="widget-forms clearfix">
                   <div class="control-group">
@@ -34,7 +34,7 @@
                   </div>
               </div>
             </div>
-            <? endforeach; ?>
+            <?php endforeach; ?>
             
             <div class="widget-footer">
                <button class="btn btn-primary" type="submit">Save</button>

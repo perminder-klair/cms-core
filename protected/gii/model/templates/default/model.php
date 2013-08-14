@@ -176,7 +176,7 @@ foreach($columns as $name=>$column)
     public function afterFind()
     {
     
-    	<?php foreach($columns as $column): ?><? if(stripos($column->dbType, 'TIMESTAMP') !== false): ?><? echo "\$this->".$column->name." = date('m/d/Y',strtotime(\$this->".$column->name."));\n"; ?><? endif; ?><?php endforeach; ?>
+    	<?php foreach($columns as $column): ?><?php if(stripos($column->dbType, 'TIMESTAMP') !== false): ?><?php echo "\$this->".$column->name." = date('m/d/Y',strtotime(\$this->".$column->name."));\n"; ?><?php endif; ?><?php endforeach; ?>
     	
 	    return parent::afterFind();
     }
@@ -195,7 +195,7 @@ foreach($columns as $name=>$column)
 
             }
             
-            <?php foreach($columns as $column): ?><? if(stripos($column->dbType, 'TIMESTAMP') !== false): ?><? echo "\$this->".$column->name." = date('Y-m-d',strtotime(\$this->".$column->name."));\n"; ?><? endif; ?><?php endforeach; ?>
+            <?php foreach($columns as $column): ?><?php if(stripos($column->dbType, 'TIMESTAMP') !== false): ?><?php echo "\$this->".$column->name." = date('Y-m-d',strtotime(\$this->".$column->name."));\n"; ?><?php endif; ?><?php endforeach; ?>
             
             return true;
 		}

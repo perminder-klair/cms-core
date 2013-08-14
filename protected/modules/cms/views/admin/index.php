@@ -37,7 +37,7 @@
 	                  </li>
                   	<?php endforeach; ?>
                 </ul>
-                <? } ?>
+                <?php } ?>
               </div>
             </div><!--/widget-body-->
             <div class="widget-footer">
@@ -70,9 +70,9 @@
 	                      </div>
 	                    </div>
 	                  </li>
-                  	<? endforeach; ?>
+                  	<?php endforeach; ?>
                 </ul>
-                <? } ?>
+                <?php } ?>
               </div>
             </div><!--/widget-body-->
             <div class="widget-footer">

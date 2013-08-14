@@ -137,7 +137,7 @@
                   		<div class="control-group">
 		                    <div class="controls" style="width: 250px;">
 		                    	
-		                    	<? echo $form->checkBoxList($model, "blogCategories", $model->listAllCategories(), 
+		                    	<?php echo $form->checkBoxList($model, "blogCategories", $model->listAllCategories(),
         								array(
         									'labelOptions'=>array('class'=>'checkbox strong')
         								)); ?>

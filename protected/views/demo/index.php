@@ -10,12 +10,12 @@ $this->breadcrumbs=array(
 
 <h1>Demos</h1>
 
-<? foreach($dataProvider as $data): ?>
-	<? $this->renderPartial('_view', array('data'=>$data)); ?>
-<? endforeach; ?>
-<? if($listCategories): ?>
+<?php foreach($dataProvider as $data): ?>
+	<?php $this->renderPartial('_view', array('data'=>$data)); ?>
+<?php endforeach; ?>
+<?php if($listCategories): ?>
 	<h2>Categories</h2>
-	<? foreach($listCategories as $category): ?>
-	        <a href="<?=url('/Demos/index', array('category'=>$category->url));?>"><?=$category->title;?></a> /
-	<? endforeach; ?>
-<? endif; ?>
+	<?php foreach($listCategories as $category): ?>
+	        <a href="<?php echo url('/Demos/index', array('category'=>$category->url)); ?>"><?php echo $category->title; ?></a> /
+	<?php endforeach; ?>
+<?php endif; ?>

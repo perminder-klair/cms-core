@@ -101,7 +101,7 @@
             </div>
             <div id="collapse3" class="accordion-body collapse <?php echo $this->getId()=='pages'?'in':''; ?><?php echo $this->getId()=='blocks'?'in':''; ?>">
               <div class="accordion-inner">
-                <a class="accordion-toggle <?php if(($this->getAction()->getId()=='admin') && ($this->getId()=='pages')) { echo 'active'; } ?>" href="<?=$this->createAbsoluteUrl('/cms/pages/admin')?>"><i class="icon-align-justify"></i> All Pages</a>
+                <a class="accordion-toggle <?php if(($this->getAction()->getId()=='admin') && ($this->getId()=='pages')) { echo 'active'; } ?>" href="<?php echo $this->createAbsoluteUrl('/cms/pages/admin'); ?>"><i class="icon-align-justify"></i> All Pages</a>
                 <a class="accordion-toggle <?php echo $this->getAction()->getId()=='create'?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/cms/pages/create'); ?>"><i class="icon-plus-sign"></i> Add New Page</a>
                 <a class="accordion-toggle <?php if(($this->getAction()->getId()=='admin') && ($this->getId()=='blocks')) { echo 'active'; } ?>" href="<?php echo $this->createAbsoluteUrl('/cms/blocks/admin'); ?>"><i class="icon-align-left"></i> All Text Blocks</a>
               </div>

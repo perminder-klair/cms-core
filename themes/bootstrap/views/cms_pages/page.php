@@ -11,7 +11,7 @@
 	
 	<div class="child">
 		<?php foreach($children as $page): ?>
-			<a href="<?php echo $page->getUrl();?>"><?=$page->getHeading(); ?></a>
+			<a href="<?php echo $page->getUrl();?>"><?php echo $page->getHeading(); ?></a>
 		<?php endforeach; ?>
 	</div>
 

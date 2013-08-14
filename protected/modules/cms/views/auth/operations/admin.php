@@ -37,7 +37,7 @@
                       <tbody>
                       	<?php foreach($roles as $key=>$value): ?>
                         <tr>
-                          <td><?=$value;?></td>
+                          <td><?php echo $value; ?></td>
                           <td><?php echo l('Edit',array('/cms/auth/updateOperation', 'name'=>$key), array('class'=>'btn btn-mini btn-primary')); ?></td>
                           <td><?php echo l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/cms/auth/deleteOperation",array('name'=>$key)))); ?></td>
                         </tr>

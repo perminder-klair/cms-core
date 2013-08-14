@@ -20,12 +20,12 @@ echo "\$this->breadcrumbs=array(
 <h1><?php echo $label; ?></h1>
 
 <?php echo "<?php foreach(\$dataProvider as \$data): ?>
-	<? \$this->renderPartial('_view', array('data'=>\$data)); ?>
+	<?php \$this->renderPartial('_view', array('data'=>\$data)); ?>
 <?php endforeach; ?>"; ?>
 
 <?php echo "<?php if(\$listCategories): ?>
 	<h2>Categories</h2>
 	<?php foreach(\$listCategories as \$category): ?>
-	        <a href=\"<?php echo url('/".$this->pluralize($this->class2name($this->modelClass))."/index', array('category'=>\$category->url));?>\"><?=\$category->title; ?></a> /
+	        <a href=\"<?php echo url('/".$this->pluralize($this->class2name($this->modelClass))."/index', array('category'=>\$category->url));?>\"><?php echo \$category->title; ?></a> /
 	<?php endforeach; ?>
 <?php endif; ?>"; ?>

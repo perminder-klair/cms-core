@@ -14,7 +14,7 @@ $this->breadcrumbs=array(
  ?>
 
 <?php foreach($dataProvider as $blog): ?>
-	<a href="<?php echo $blog->getUrl();?>"><?=$blog->title; ?></a><br />
+	<a href="<?php echo $blog->getUrl();?>"><?php echo $blog->title; ?></a><br />
 	
 	<?php $this->widget('ext.XReadMore.XReadMore', array(
          'model'=>$blog,

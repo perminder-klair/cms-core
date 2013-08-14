@@ -46,5 +46,5 @@ $this->breadcrumbs=array(
 
 </div><!-- form -->
 
-<p><a href="<?=url('/account/register');?>">Register here</a></p>
-<p><a href="<?=url('/account/passwordReset');?>">Recover Password</a></p>
+<p><a href="<?php echo url('/account/register'); ?>">Register here</a></p>
+<p><a href="<?php echo url('/account/passwordReset'); ?>">Recover Password</a></p>
