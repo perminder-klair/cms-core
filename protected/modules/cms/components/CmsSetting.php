@@ -7,8 +7,8 @@ class CmsSetting extends CApplicationComponent
      */
     public function getValue($key)
     {
-        $model = CmsSettings::model()->findByAttributes(array('define'=>$key));
-        return $model->value;
+        if($model = CmsSettings::model()->findByAttributes(array('define'=>$key)))
+            return $model->value;
     }
     
     //Load JS files for frontend

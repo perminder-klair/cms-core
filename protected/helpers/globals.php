@@ -229,10 +229,9 @@ function sendCookie($name,$value,$options=array())
  */
 function getCookie($name)
 {
-	$cookie=Yii::app()->request->cookies[$name];
-	$value=$cookie->value;
-	
-	return $value;
+    if($cookie=Yii::app()->request->cookies[$name])
+        if($value=$cookie->value)
+            return $value;
 }
 
 /*

@@ -129,7 +129,7 @@
 	          <?php foreach(Yii::app()->params['adminMenu'] as $key=>$value): ?>
 	          <div class="accordion-group">
 	            <div class="accordion-heading">
-	              <a class="accordion-toggle b_F5C294 <?php echo $this->getId()==$value?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/'.$value.'/admin'); ?>"><i class="icon-align-justify"></i> <span><?php echo ucfirst($value); ?></span></a>
+	              <a class="accordion-toggle b_F5C294 <?php echo $this->getId()==$value?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/'.$value.'/admin'); ?>"><i class="icon-list-alt"></i> <span><?php echo ucfirst($value); ?></span></a>
 	            </div>
 	          </div> 
 	          <?php endforeach; ?>
