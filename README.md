@@ -37,6 +37,7 @@ logins are: admin / admin
 * [efeed](https://github.com/2amigos/efeed)
 * [Mobile_Detect](https://github.com/serbanghita/Mobile-Detect/)
 * [yii-tinymce](https://bitbucket.org/z_bodya/yii-tinymce)
+* [Imperavi Redactor WYSIWYG](https://github.com/yiiext/imperavi-redactor-widget)
 * [XReadMore](http://www.yiiframework.com/extension/xreadmore/)
 * [Yii Debug Toolbar](https://github.com/malyshev/yii-debug-toolbar)
 * [YiiMailer](https://github.com/vernes/YiiMailer)

@@ -89,9 +89,8 @@ class Cms extends CApplicationComponent
         $result = $uploader->handleUpload($folder);
         
         //insert into database
-        if($result['success']==1) {
-        	$return = $this->insertFile($result);
-        	return $return;
+        if(isset($result['success']) && $result['success']==1) {
+        	return $this->insertFile($result);
         }
     }
     

@@ -29,6 +29,7 @@ return array(
 		'application.extensions.YiiMailer.YiiMailer',
         'application.extensions.easyimage.EasyImage',
         'application.extensions.mobiledetect.Mobile_Detect',
+        'application.extensions.redactor.ImperaviRedactorWidget',
 	),
 	
 	'aliases' => array(),

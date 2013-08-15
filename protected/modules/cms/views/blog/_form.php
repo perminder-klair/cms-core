@@ -50,14 +50,19 @@
 		          	  <div class="control-group">
 			          	<?php echo $form->labelEx($model,'content'); ?>
 			          	<div class="controls">
-			          		<?php $this->widget('ext.tinymce.TinyMce', array(
-								    'model' => $model,
-								    'attribute' => 'content',
-								    'htmlOptions' => array(
-								        'rows' => 6,
-								        'cols' => 60,
-								    ),
-								)); ?>
+			          		<?php $this->widget('ImperaviRedactorWidget', array(
+                                // You can either use it for model attribute
+                                'model' => $model,
+                                'attribute' => 'content',
+
+                                // or just for input field
+                                //'name' => 'my_input_name',
+
+                                // imperavi redactor [options](http://imperavi.com/redactor/docs/)
+                                'options'=>array(
+                                    'toolbar'=>'classic',
+                                ),
+                            )); ?>
 			          		<span class="help-inline"><?php echo $form->error($model,'content'); ?></span>
 			          	</div>
 			          	

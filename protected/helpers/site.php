@@ -79,26 +79,60 @@
 
         return $str;
     }
-	
-	/**
-	 * returns array containg: lat, lng, postcode 
-	 * Usage: pass in postcode
-	 */
-	function getPostcodeData($postcode) {
-		$trim_postcode = str_replace(' ', '', preg_replace("/[^a-zA-Z0-9\s]/", "", strtolower($postcode)));
 
-		$q_center = "http://maps.googleapis.com/maps/api/geocode/json?address=".$trim_postcode."&sensor=false";
-		$json_center = file_get_contents($q_center);
-		$details_center = json_decode($json_center, TRUE);
-		       
-		$center_lat = $details_center['results'][0]['geometry']['location']['lat'];
-		$center_lng = $details_center['results'][0]['geometry']['location']['lng'];
-		return array(
-			'postcode'=>$trim_postcode,
-			'lat'=>$center_lat,
-			'lng'=>$center_lng,
-		);
-	}
+    /**
+     * returns array containing: lat, lng, postcode
+     * Usage: pass in postcode
+     * @param $postcode
+     * @param bool $r
+     * @return array|bool|mixed
+     */
+    function getPostcodeData($postcode, $r = false) {
+        $trim_postcode = str_replace(' ', '', preg_replace("/[^a-zA-Z0-9\s]/", "", strtolower($postcode)));
+
+        $q_center = "http://maps.googleapis.com/maps/api/geocode/json?address=" . $trim_postcode . "&sensor=false&region=gb";
+        $json_center = file_get_contents($q_center);
+        $details_center = json_decode($json_center, TRUE);
+
+        if($details_center['status']=='OVER_QUERY_LIMIT') return false;
+
+        if ($r) return $details_center;
+
+        if (isset($details_center['results']) && isset($details_center['results'][0])) {
+
+            $center_lat=null;
+            $center_lng=null;
+            if (isset($details_center['results'][0]['geometry']['location'])) {
+                $center_lat = $details_center['results'][0]['geometry']['location']['lat'];
+                $center_lng = $details_center['results'][0]['geometry']['location']['lng'];
+            }
+
+            $boundsNE=null;
+            $boundsSW=null;
+            if (isset($details_center['results'][0]['geometry']['bounds'])) {
+                $boundsNE = $details_center['results'][0]['geometry']['bounds']['northeast'];
+                $boundsSW = $details_center['results'][0]['geometry']['bounds']['southwest'];
+            }
+
+            $status = isset($details_center['results'][0]['status']) ? $details_center['results'][0]['status']: '';
+            $types = isset($details_center['results'][0]['types']) ? $details_center['results'][0]['types'] : '' ;
+
+            return array(
+                'postcode' => $trim_postcode,
+                'lat' => $center_lat,
+                'lng' => $center_lng,
+                'NE' => $boundsNE,
+                'SW' => $boundsSW,
+                'status' => $status,
+                'types' => $types
+            );
+
+        } else {
+
+            return false;
+
+        }
+    }
 
     /**
      * Sanitize database inputs
