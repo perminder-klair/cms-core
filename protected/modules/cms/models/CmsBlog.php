@@ -160,6 +160,7 @@ class CmsBlog extends CmsActiveRecord
 		$this->_oldTags=$this->tags;
 		
 		$this->modified = date("d/m/Y", strtotime($this->modified));
+        $this->date_start = date("m/d/Y", strtotime($this->date_start));
 		
 		parent::afterFind();
 	}

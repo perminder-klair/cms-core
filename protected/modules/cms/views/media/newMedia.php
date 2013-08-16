@@ -6,18 +6,18 @@
               'type' => 'select',
               'model' => $media,
               'attribute' => 'published',
-              'url' => $this->createUrl('/cms/media/ajaxUpdate?for=published'), //url for submit data
+              'url' => $this->createUrl('/cms/media/ajaxUpdate?for=published'),
               'source' => array(1=>'Yes',0=>'No'),
           ));
       ?>
   </td>
   <td>
-      <?php //echo CmsLookup::item("MediaType", $media->media_type);
+      <?php
           $this->widget('ext.bootstrap.widgets.TbEditableField', array(
               'type' => 'select',
               'model' => $media,
               'attribute' => 'media_type',
-              'url' => $this->createUrl('/cms/media/ajaxUpdate?for=type'), //url for submit data
+              'url' => $this->createUrl('/cms/media/ajaxUpdate?for=type'),
               'source' => CmsLookup::items("MediaType"),
           ));
       ?>

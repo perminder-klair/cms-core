@@ -61,6 +61,12 @@
                                 // imperavi redactor [options](http://imperavi.com/redactor/docs/)
                                 'options'=>array(
                                     'toolbar'=>'classic',
+                                    'minHeight'=>300,
+                                ),
+                                'plugins' => array(
+                                    'fullscreen' => array(
+                                        'js' => array('fullscreen.js',),
+                                    ),
                                 ),
                             )); ?>
 			          		<span class="help-inline"><?php echo $form->error($model,'content'); ?></span>
@@ -83,17 +89,8 @@
 			          		<span class="help-inline">Please separate different tags with commas. <?php echo $form->error($model,'tags'); ?></span>
 			          	</div>
 			          </div>
-			          
-			          <div class="control-group">
-			          	<?php echo $form->labelEx($model,'date_start'); ?>
-			          	<div class="controls">
-			          		<div class="input-append date span5 datepicker datepicker-basic" data-date="<?php echo date("d-m-Y", strtotime($model->date_start)); ?>" data-date-format="dd-mm-yyyy">
-			          			<?php echo $form->textField($model,'date_start',array('size'=>16)); ?>
-	                        	<span class="add-on"><i class="icon-th"></i></span>
-	                        </div>
-			          		<span class="help-inline"><?php echo $form->error($model,'date_start'); ?></span>
-			          	</div>			          	
-			          </div>
+
+                      <?php echo $form->datepickerRow($model, 'date_start', array('prepend'=>'<i class="icon-calendar"></i>')); ?>
 			          
                   </div>
                   

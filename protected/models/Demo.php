@@ -124,7 +124,7 @@ class Demo extends SiteActiveRecord
     {
     
     	$this->created = date('m/d/Y',strtotime($this->created));
-$this->updated = date('m/d/Y',strtotime($this->updated));
+        $this->updated = date('m/d/Y',strtotime($this->updated));
     	
 	    return parent::afterFind();
     }
