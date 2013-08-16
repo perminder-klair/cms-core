@@ -58,13 +58,15 @@
                                     // You can either use it for model attribute
                                     'model' => $model,
                                     'attribute' => 'body',
-
-                                    // or just for input field
-                                    //'name' => 'my_input_name',
-
                                     // imperavi redactor [options](http://imperavi.com/redactor/docs/)
                                     'options'=>array(
                                         'toolbar'=>'classic',
+                                        'minHeight'=>300,
+                                    ),
+                                    'plugins' => array(
+                                        'fullscreen' => array(
+                                            'js' => array('fullscreen.js',),
+                                        ),
                                     ),
                                 )); ?>
 				          		<span class="help-inline"><?php echo $form->error($model,'body'); ?></span>

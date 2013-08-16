@@ -54,10 +54,6 @@
                                 // You can either use it for model attribute
                                 'model' => $model,
                                 'attribute' => 'content',
-
-                                // or just for input field
-                                //'name' => 'my_input_name',
-
                                 // imperavi redactor [options](http://imperavi.com/redactor/docs/)
                                 'options'=>array(
                                     'toolbar'=>'classic',
