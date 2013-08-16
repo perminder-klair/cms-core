@@ -16,17 +16,18 @@ class CmsBlock extends CWidget
      */
     public function run()
     {
-        $app = Yii::app();
-        $model = $app->cms->loadBlock($this->name, $this->blockParent);
+        if (isset($this->blockParent) && isset($this->name)) {
+            $model = CmsBlocks::model()->published()->findByAttributes(array('name'=>$this->name,'parentId'=>$this->blockParent));
 
-        // Ensure that we only render block-level nodes.
-        if ($model->published) {
+            // Ensure that we only render block-level nodes.
+            if ($model->published) {
 
-            $this->render('block', array(
-                'model'=>$model,
-                'content'=>$model->renderWidget(),
-            ));
+                $this->render('block', array(
+                    'model'=>$model,
+                    'content'=>$model->renderWidget(),
+                ));
 
+            }
         }
     }
 }

@@ -38,41 +38,6 @@ class Cms extends CApplicationComponent
 	    return $this->_assetsUrl;
 	}
     
-    /**
-     * Creates the URL to a content page.
-     * @param string $name the content name
-     * @param array $params additional parameters
-     * @return string the URL
-     */
-    public function createUrl($name, $params=array())
-    {
-            $page = $this->loadPage($name);
-            if($page)
-            	return $page->getUrl($params);
-    }
-    
-    /**
-     * Loads a node model.
-     * @param string $name the node name
-     * @return CmsNode the model
-     */
-	public function loadBlock($name, $parent)
-	{
-		$block = CmsBlocks::model()->published()->findByAttributes(array('name'=>$name,'parentId'=>$parent));
-		return $block;
-	}
-        
-	/**
-     * Loads a node model.
-     * @param string $name the node name
-     * @return CmsNode the model
-     */
-	public function loadPage($name)
-	{
-		$page = CmsPage::model()->findByAttributes(array('name'=>$name));
-		return $page;
-	}
-    
     public function uploadMedia()
     {
         Yii::import("ext.EAjaxUpload.qqFileUploader");

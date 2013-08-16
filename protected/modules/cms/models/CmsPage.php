@@ -91,6 +91,8 @@ class CmsPage extends CmsActiveRecord
         $criteria->compare('name',$this->name,true);
         $criteria->compare('parentId',$this->updated);
 
+        $criteria->condition='deleted = "0"';
+
         return new CActiveDataProvider($this, array(
         	'criteria'=>$criteria,
         ));
@@ -220,7 +222,8 @@ class CmsPage extends CmsActiveRecord
      */
     public function renderTree()
     {
-    	$criteria = new CDbCriteria(); 
+    	$criteria = new CDbCriteria();
+        $criteria->condition='deleted = "0"';
 
     	if(isset($_GET['CmsPage']))
 			$criteria->addSearchCondition('heading',$_GET['CmsPage']['heading']);

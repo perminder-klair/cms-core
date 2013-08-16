@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 
 <?php else: ?>
 
-<?php $this->widget('cms.widgets.CmsBlock', array('blockParent'=>$this->getPageData()->id, 'name'=>'info-text')) ?>
+<?php $this->widget('CmsBlock', array('blockParent'=>$this->getPageData()->id, 'name'=>'info-text')) ?>
 
 <div class="form">
 

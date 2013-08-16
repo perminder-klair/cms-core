@@ -1,3 +1,11 @@
+<?php
+    $this->pageTitle=$model->getHeading();
+    $this->pageDescription = $model->metaDescription;
+    $this->pageKeywords = $model->tags;
+
+    $this->breadcrumbs = $model->getBreadcrumbs();
+?>
+
 <div class="cms-page">
 	
 	<h1><?php echo $model->getHeading();?></h1>

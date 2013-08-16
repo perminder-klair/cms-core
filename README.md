@@ -36,7 +36,6 @@ logins are: admin / admin
 * [yii-easyimage](https://github.com/zhdanovartur/yii-easyimage)
 * [efeed](https://github.com/2amigos/efeed)
 * [Mobile_Detect](https://github.com/serbanghita/Mobile-Detect/)
-* [yii-tinymce](https://bitbucket.org/z_bodya/yii-tinymce)
 * [Imperavi Redactor WYSIWYG](https://github.com/yiiext/imperavi-redactor-widget)
 * [XReadMore](http://www.yiiframework.com/extension/xreadmore/)
 * [Yii Debug Toolbar](https://github.com/malyshev/yii-debug-toolbar)
@@ -47,7 +46,7 @@ logins are: admin / admin
 If you find any bugs, please create an issue at [issue tracker for project Github repository](https://github.com/TBL-CMS/Core/issues).
 
 ## Know Issues / ToDo
-* media upload from media tab
+* NONE!
 
 ## License
 This work is licensed under a MIT license. Full text is included in the `LICENSE` file in the root of codebase.

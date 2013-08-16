@@ -2,12 +2,18 @@
     "name": "TBL-CMS/Core",
     "description": "TBL CMS Based on Yii",
     "homepage": "http://tblmarketing.com/",
-    "type": "library",
-    "license": "BSD-3-Clause",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Parminder Klair",
+            "email": "parminder@tblmarketing.com"
+        }
+    ],
     "repositories": [
         {
             "packagist": false
-        },{
+        },
+        {
             "type":"composer",
             "url": "http://packages.phundament.com"
         }

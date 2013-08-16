@@ -2,6 +2,7 @@
 Thumbs.db
 *.DS_Store
 *.empty
+._*
 
 #phpstorm project files
 .idea

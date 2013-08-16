@@ -19,7 +19,7 @@ class PagesController extends CmsController
 		
 		$model=new CmsPage('search');
 		$model->unsetAttributes();  // clear any default values
-		
+
 		if(isset($_GET['CmsPage']))
 			$model->attributes=$_GET['CmsPage'];
 
@@ -50,15 +50,6 @@ class PagesController extends CmsController
     public function actionView($id)
     {
 	    $model = $this->loadModel($id);
-
-        if ($model->body !== null)
-        {
-	        $this->pageTitle = $model->heading;
-	        $this->pageDescription = $model->metaDescription;
-	        $this->pageKeywords = $model->tags;
-
-            $this->breadcrumbs = $model->getBreadcrumbs();
-        }
 
         $pageView = $model->layout;
         $this->render('//cms_pages/'.$pageView, array(
