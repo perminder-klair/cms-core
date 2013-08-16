@@ -111,5 +111,27 @@ class MediaController extends CmsController
 
             return $model;
     }
-	
+
+    /**
+     * @return bool
+     */
+    public function actionAjaxUpdate()
+    {
+        if (isset($_POST['pk']) && isset($_POST['value']) && isset($_GET['for'])) {
+
+            if ($media = CmsMedia::model()->findByPk($_POST['pk'])) {
+
+                if($_GET['for']=='published')
+                    $media->published = $_POST['value'];
+                elseif($_GET['for']=='type')
+                    $media->media_type = $_POST['value'];
+
+                if ($media->save())
+                    return true;
+
+            }
+
+        }
+    }
+
 }

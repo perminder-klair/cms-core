@@ -1,9 +1,36 @@
 <div class="row-fluid">
 	<h2 class="heading">Manage Media
 		<div class="btn-group pull-right">
-	        <button class="btn btn-primary" onclick="location.href=''"><i class="icon-plus"></i> Create New</button>
+
 	    </div>
 	</h2>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <?php $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
+            'id' => 'media',
+            'config' => array(
+                'request' => array(
+                    'endpoint' => '/cms/media/upload',
+                    'params' => array('index' => 'value'),
+                ),
+                'validation' => array(
+                    'allowedExtensions' => CmsMedia::allowedFileTypes(),
+                    'sizeLimit' => CmsMedia::FILE_SIZE_LIMIT, // max file size in bytes
+                    'minSizeLimit' => 256, // min file size in bytes
+                ),
+                'callbacks' => array(
+                    'onComplete' => 'js:function(id, fileName, responseJSON){
+                         //console.log(responseJSON);
+                         if (responseJSON.success) {
+                            window.location.reload(false);
+                         }
+                    }',
+                ),
+            )
+        )); ?>
+    </div>
 </div>
 
 <div class="row-fluid">

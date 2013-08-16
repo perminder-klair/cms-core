@@ -91,7 +91,7 @@
             <div id="collapse2" class="accordion-body collapse <?php echo $this->getId()=='media'?'in':''; ?>">
               <div class="accordion-inner">
                 <a class="accordion-toggle <?php echo $this->getAction()->getId()=='admin'?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/cms/media/admin'); ?>"><i class="icon-folder-open"></i> Library</a>
-                <a class="accordion-toggle <?php echo $this->getAction()->getId()=='create'?'active':''; ?>" href="#"><i class="icon-plus-sign"></i> Add New</a>
+                <a class="accordion-toggle <?php echo $this->getAction()->getId()=='create'?'active':''; ?>" href="<?php echo $this->createAbsoluteUrl('/cms/media/admin'); ?>"><i class="icon-plus-sign"></i> Add New</a>
               </div>
             </div>
           </div>

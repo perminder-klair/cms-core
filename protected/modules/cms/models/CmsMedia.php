@@ -168,8 +168,8 @@ class CmsMedia extends CmsActiveRecord
         
     public function adminActions()
     {
-    	$result = l('Edit',array('/cms/media/update', 'id'=>$this->id), array('class'=>'btn btn-mini btn-primary'));
-    	$result .= '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/cms/media/delete",array('id'=>$this->id))));
+    	//$result = l('Edit',array('/cms/media/update', 'id'=>$this->id), array('class'=>'btn btn-mini btn-primary'));
+    	$result = '&nbsp;&nbsp;'.l('Delete','', array('class'=>'btn btn-mini delete_dialog', 'data-url'=>url("/cms/media/delete",array('id'=>$this->id))));
     	
     	return $result;
     }
