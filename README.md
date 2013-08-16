@@ -27,10 +27,10 @@ For beta environment change database config in:
 For live environment change database config in:
 /protected/config/web.php
 
-Login to Admin Panel by visiting: www.yoursite.com/admin/login and
-logins are: admin / admin
+Login to Admin Panel by visiting: www.yoursite.com/admin/login
+Login using: admin / admin
 
-## Extenstions included in CMS
+## Extensions included in CMS
 * [YiiBooster](https://github.com/clevertech/YiiBooster)
 * [EAjaxUpload](https://github.com/valums/file-uploader)
 * [yii-easyimage](https://github.com/zhdanovartur/yii-easyimage)
