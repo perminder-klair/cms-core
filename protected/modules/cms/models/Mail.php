@@ -169,7 +169,7 @@ class Mail extends SiteActiveRecord
         $mailLog->cc = $data['cc'];
         $mailLog->bcc = $data['bcc'];
         $mailLog->subject = $data['subject'];
-        //$mailLog->body = $data['fromEmail'];
+        //$mailLog->body = $data['mailData'];
         $mailLog->status = '0';
         if(!$mailLog->save())
             return false;

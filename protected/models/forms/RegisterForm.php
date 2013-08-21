@@ -63,7 +63,8 @@ class RegisterForm extends CFormModel{
             $user = new CmsUser('create');
             $user->attributes=$_POST['RegisterForm'];
             $user->status=CmsUser::STATUS_ACTIVE;
-            if(!$user->save()){
+            $user->activkey=genRandomString();
+            if(!$user->save()) {
                 $this->addErrors($user->getErrors());
                 return false;
             }
@@ -73,9 +74,32 @@ class RegisterForm extends CFormModel{
             $userProfile->attributes=$_POST['RegisterForm'];
             if(!$userProfile->save())
                 return false;
+
+            //send register success email
+            $this->sendRegisterSuccessEmail($user);
         }
     
         return true;
+    }
+
+    protected function sendRegisterSuccessEmail($user)
+    {
+        $subject = '=?UTF-8?B?' . base64_encode('Registration success at '.gl('site_name')) . '?=';
+
+        $emailData = array(
+            'view'=>'registerSuccess',
+            'mailData'=>array(
+                'userEmail'=>$user->email,
+                'userName'=>$user->getName(),
+            ),
+            'fromEmail'=>gl('admin_email'),
+            'fromName'=>gl('site_name'),
+            'subject'=>$subject,
+            'toEmail'=>array($user->email),
+        );
+
+        if(Mail::sendEmail($emailData))
+            return true;
     }
     
 }

@@ -16,7 +16,7 @@ class CmsController extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
-    
+
 	/* SEO Vars */
     public $pageTitle;
     public $pageDescription;
@@ -32,12 +32,12 @@ class CmsController extends CController
 		// Use this to get referrer: Yii::app()->user->returnUrl;
 		Yii::app()->user->setReturnUrl(Yii::app()->request->urlReferrer);
 	}
-	
+
 	public function getMetaData()
-    { 
+    {
     	$controllerName = ucfirst(Yii::app()->controller->id);
     	$methodName = ucfirst(Yii::app()->controller->action->id);
-    	
+
     	if(empty($this->pageTitle))
     	{
     		$this->pageTitle = '';
@@ -46,17 +46,17 @@ class CmsController extends CController
 	    	$this->pageTitle .= Yii::app()->setting->getValue('site_name');
     	}
 		else $this->pageTitle=$this->pageTitle.' - '.Yii::app()->setting->getValue('site_name');
-		
+
 		if(empty($this->pageDescription)) $this->pageDescription= Yii::app()->setting->getValue('home_meta_description');
 		if(empty($this->pageKeywords)) $this->pageKeywords = $controllerName.', '.$methodName.', '.Yii::app()->setting->getValue('home_meta_keywords');
-		
+
         echo '<title>'.CHtml::encode($this->pageTitle).'</title>';
         Yii::app()->clientScript->registerMetaTag($this->pageDescription, 'description');
         Yii::app()->clientScript->registerMetaTag($this->pageKeywords, 'keywords');
         Yii::app()->clientScript->registerMetaTag($this->pageAuthor, 'author');
     }
     
-    //returns page name, to genrate Block widget for cms page
+    //returns page name, to generate Block widget for cms page
     public function getPageData()
 	{ 
 		if(Yii::app()->controller->id=='site')
