@@ -131,4 +131,28 @@ class Cms extends CApplicationComponent
 		} else
 	    	return i(Yii::app()->cms->assetsUrl.$this->defaultGravatar, 'Gravatar');
     }
+
+    /**
+     * @param $pageId
+     * @return array
+     */
+    public function getPageChildernMenu($pageId)
+    {
+        $array = array();
+
+        if ($page = CmsPage::model()->findByPk($pageId))
+        {
+            if ($childern = $page->children(array( 'scopes'=>array( 'published' ) )))
+            {
+                foreach ($childern as $child)
+                {
+                    $array[] = array(
+                        'label'=>$child->getHeading(), 'url'=>$child->getUrl(),
+                    );
+                }
+            }
+        }
+
+        return $array;
+    }
 }

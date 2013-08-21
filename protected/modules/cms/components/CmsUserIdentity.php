@@ -51,6 +51,11 @@ class CmsUserIdentity extends CUserIdentity
 			$this->_id=$this->user->id;
 			$this->username=$this->user->username;
 			$this->errorCode=self::ERROR_NONE;
+
+            //log user last login date
+            $this->user->lastLoginAt = date('Y-m-d H:i:s', time());
+            $this->user->save();
+
 		}
 		return $this->errorCode==self::ERROR_NONE;
 	}

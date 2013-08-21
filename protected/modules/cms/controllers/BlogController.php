@@ -229,7 +229,7 @@ class BlogController extends CmsController
 
 		$parent->attributes = $revision->attributes;
 		$parent->parentId = 0;
-		$parent->type = 'blog';
+		$parent->blog_type = 'blog';
 		$parent->restore = true;
 		$parent->author_id=Yii::app()->user->id;
 		

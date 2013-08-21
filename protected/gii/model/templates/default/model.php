@@ -94,7 +94,7 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('<?php echo implode(', ', array_keys($columns)); ?>', 'safe', 'on'=>'search'),
-		);
+		));
 	}
 
 	/**
@@ -110,7 +110,7 @@ class <?php echo $modelClass; ?> extends SiteActiveRecord
 <?php endforeach; ?>
 			'media'=>array(self::MANY_MANY, 'CmsMedia', 'cms_content_media(content_id, media_id)', 'condition' => 'type = "<?php echo strtolower($modelClass);?>"'),
 			'categories'=>array(self::MANY_MANY, 'CmsCategories', 'cms_content_categories(content_id, category_id)', 'condition' => 'type = "<?php echo strtolower($modelClass);?>"'),
-		);
+		));
 	}
 
 	/**

@@ -76,7 +76,7 @@ class SiteController extends Controller
 				if(Mail::sendEmail($emailData)) {
                     setSuccessMessage('Thank you for contacting us. We will respond to you as soon as possible.');
 				} else {
-                    setErrorMessage('Error while sending email: '.$mail->ErrorInfo);
+                    setErrorMessage('Error while sending email.');
 				}
 				
 				$this->refresh();
