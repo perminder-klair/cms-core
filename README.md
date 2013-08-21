@@ -7,28 +7,28 @@ Read the /documentation/index.html for more information
 ## Setup
 Get Yii Framework using Composer:
 
-Inside protected directory run: php composer.phar install
+Inside protected directory run: `php composer.phar install`
 
-(For beta in Fortabitt use: git commit --allow-empty -m 'Just run composer [trigger:composer]')
+(For beta in Fortabitt use: `git commit --allow-empty -m 'Just run composer [trigger:composer]')`
 
-Get database from: /protected/data/
+Get database from: `/protected/data/`
 
 Note: Make sure following directories are writable to 0777:
-/files
+`/files
 /cache
-/protected/runtime
+/protected/runtime`
 
 For local environment change database config in:
-/protected/config/dev.php
+`/protected/config/dev.php`
 
 For beta environment change database config in:
-/protected/config/beta.php
+`/protected/config/beta.php`
 
 For live environment change database config in:
-/protected/config/web.php
+`/protected/config/web.php`
 
 Login to Admin Panel by visiting: www.yoursite.com/admin/login
-Login using: admin / admin
+Login using: `admin / admin`
 
 ## Extensions included in CMS
 * [YiiBooster](https://github.com/clevertech/YiiBooster)
@@ -45,7 +45,7 @@ Login using: admin / admin
 ## Bug tracker
 If you find any bugs, please create an issue at [issue tracker for project Github repository](https://github.com/TBL-CMS/Core/issues).
 
-## Know Issues / ToDo
+## Known Issues / ToDo
 * NONE!
 
 ## License
