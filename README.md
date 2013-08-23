@@ -1,8 +1,8 @@
-# TBL CMS
+# Broome CMS
 
-TBL Cms based on Yii Framework
+Broome Cms based on Yii Framework
 
-Read the /documentation/index.html for more information
+Read the `/documentation/index.html` for more information
 
 ## Setup
 Get Yii Framework using Composer:

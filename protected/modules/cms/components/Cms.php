@@ -8,9 +8,9 @@ class Cms extends CApplicationComponent
 	/**
 	 * Cms Branding
 	 */
-	public $cmsName = 'TBL CMS';
-	public $cmsLogo = '/img/logo-tbl.png'; //logo.png
-	public $defaultGravatar = '/img/logo-tbl-gravatar.png'; //logo-gravatar.jpg
+	public $cmsName = 'Broome CMS';
+	public $cmsLogo = '/img/logo.png'; //logo-tbl.png
+	public $defaultGravatar = '/img/logo-gravatar.jpg'; //logo-tbl-gravatar.png
         
 	/**
 	 * @var array the renderer configuration.
@@ -130,29 +130,5 @@ class Cms extends CApplicationComponent
 			)); 
 		} else
 	    	return i(Yii::app()->cms->assetsUrl.$this->defaultGravatar, 'Gravatar');
-    }
-
-    /**
-     * @param $pageId
-     * @return array
-     */
-    public function getPageChildernMenu($pageId)
-    {
-        $array = array();
-
-        if ($page = CmsPage::model()->findByPk($pageId))
-        {
-            if ($childern = $page->children(array( 'scopes'=>array( 'published' ) )))
-            {
-                foreach ($childern as $child)
-                {
-                    $array[] = array(
-                        'label'=>$child->getHeading(), 'url'=>$child->getUrl(),
-                    );
-                }
-            }
-        }
-
-        return $array;
     }
 }

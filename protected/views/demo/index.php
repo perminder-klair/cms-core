@@ -16,6 +16,6 @@ $this->breadcrumbs=array(
 <?php if($listCategories): ?>
 	<h2>Categories</h2>
 	<?php foreach($listCategories as $category): ?>
-	        <a href="<?php echo url('/Demos/index', array('category'=>$category->url)); ?>"><?php echo $category->title; ?></a> /
+	        <a href="<?php echo url('/Demos/index', array('category'=>$category->url));?>"><?php echo $category->title; ?></a> /
 	<?php endforeach; ?>
 <?php endif; ?>

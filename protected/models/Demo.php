@@ -40,6 +40,7 @@ class Demo extends SiteActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('title', 'required'),
 			array('listing_order, active, deleted', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>255),
 			array('created, updated', 'safe'),
