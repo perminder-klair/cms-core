@@ -1,6 +1,4 @@
-## Uncomment following or add this to your httpd.config
-## Options FollowSymLinks Indexes
-#Options +followSymlinks
+Options -Indexes
 
 <ifModule mod_rewrite.c>
 

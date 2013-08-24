@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `cms_blog` (
   `author_id` int(11) NOT NULL,
   `deleted` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_categories
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `cms_categories` (
   `parent` tinyint(4) DEFAULT NULL,
   `category_type` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_comment
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `cms_content_media` (
   `tag` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_email
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `cms_media` (
   `published` tinyint(5) DEFAULT NULL,
   `media_type` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- -------------------------------------------
 -- TABLE cms_page
@@ -466,7 +466,15 @@ INSERT INTO `cms_blog` (`id`,`title`,`content`,`metaDescription`,`tags`,`slug`,`
 <hr>
 <p>
 	   nice
-</p>','My test description','yii, test','test-slug','2013-07-16 10:54:01','2013-08-16 17:29:15','2013-07-16 00:00:00','blog','0','2','2','0');
+</p>','My test description','yii, test','test-slug','2013-07-16 10:54:01','2013-08-23 10:27:10','0000-00-00 00:00:00','blog','0','2','2','0');
+INSERT INTO `cms_blog` (`id`,`title`,`content`,`metaDescription`,`tags`,`slug`,`created`,`modified`,`date_start`,`blog_type`,`parentId`,`status`,`author_id`,`deleted`) VALUES
+('2','New Blog','<p>
+	   content for blog... test
+</p>
+<hr>
+<p>
+	   nice
+</p>','My test description','yii, test','test-slug','2013-08-23 10:27:03','2013-08-23 10:27:03','2013-08-23 00:00:00','revision','1','2','2','0');
 
 
 
@@ -477,6 +485,8 @@ INSERT INTO `cms_categories` (`id`,`title`,`url`,`parent`,`category_type`) VALUE
 ('1','Category Title','category-title','1','1');
 INSERT INTO `cms_categories` (`id`,`title`,`url`,`parent`,`category_type`) VALUES
 ('2','Demo Category','demo-category','1','2');
+INSERT INTO `cms_categories` (`id`,`title`,`url`,`parent`,`category_type`) VALUES
+('3','Category Title','category-title','1','1');
 
 
 
@@ -596,7 +606,7 @@ INSERT INTO `cms_tag` (`id`,`name`,`frequency`) VALUES
 INSERT INTO `cms_user` (`id`,`username`,`password`,`email`,`firstname`,`lastname`,`created`,`modified`,`status`,`activkey`,`lastLoginAt`,`lastActiveAt`) VALUES
 ('1','demo','$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC','webmaster@example.com','','','2013-03-01 12:21:41','2013-04-16 16:17:21','2','','','');
 INSERT INTO `cms_user` (`id`,`username`,`password`,`email`,`firstname`,`lastname`,`created`,`modified`,`status`,`activkey`,`lastLoginAt`,`lastActiveAt`) VALUES
-('2','admin','$2a$10$TaMCcwXsT.JsDlIWztuOo.xDJ9uSH5hfqad.Ui5YxNgtQYV1wrG8.','parminder@tblmarketing.com','','','2013-03-21 17:18:53','2013-07-16 10:38:01','2','','','');
+('2','admin','$2a$10$TaMCcwXsT.JsDlIWztuOo.xDJ9uSH5hfqad.Ui5YxNgtQYV1wrG8.','parminder@tblmarketing.com','','','2013-03-21 17:18:53','2013-08-24 10:17:45','2','','2013-08-24 10:17:45','');
 
 
 
@@ -614,7 +624,7 @@ INSERT INTO `cms_user_profile` (`id`,`user_id`,`address`,`postcode`,`telehphone`
 -- TABLE DATA demo
 -- -------------------------------------------
 INSERT INTO `demo` (`id`,`title`,`created`,`updated`,`listing_order`,`active`,`deleted`) VALUES
-('1','Test Data','2013-07-17 00:00:00','2013-07-17 00:00:00','0','1','0');
+('1','Test Data','2013-07-17 00:00:00','2013-08-23 00:00:00','0','1','0');
 
 
 
