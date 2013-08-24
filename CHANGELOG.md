@@ -11,3 +11,4 @@ Please update this document each time you close an issue by your commit.
 - **(fix)** _form.php created using gii is fixed
 - **(enh)** recreated documentation bootstrap style
 - **(fix)** cms pages parent branch not displaying issue
+- **(fix)** media upload ajax view render issue fixed
