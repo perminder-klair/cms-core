@@ -326,8 +326,8 @@ class CmsUser extends CmsActiveRecord
 		}
     }
     
-    /* Returns User model by its email
-	 * 
+    /**
+     * Returns User model by its email
 	 * @param string $email 
 	 * @access public
 	 * @return User

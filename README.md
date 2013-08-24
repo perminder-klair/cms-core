@@ -1,6 +1,6 @@
-# TepTap CMS
+# YepTap CMS
 
-TepTap Cms based on Yii Framework
+YepTap Cms based on Yii Framework
 
 Read the `/documentation/index.html` for more information
 
