@@ -13,6 +13,8 @@ class CmsUser extends CmsActiveRecord
 	public $new_password;
 	public $new_password_repeat;
 	public $defaultRole='user';
+    public $lastLoginAt;
+    public $lastActiveAt;
 	
 	const STATUS_INACTIVE=1;
 	const STATUS_ACTIVE=2;
