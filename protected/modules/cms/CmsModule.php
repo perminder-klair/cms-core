@@ -45,19 +45,8 @@ class CmsModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'cms.models.*',
-			'cms.components.*',
-            'cms.widgets.*',
+
 		));
 	}
 
-	/*public function beforeControllerAction($controller, $action)
-	{
-		if(parent::beforeControllerAction($controller, $action))
-		{
-			return true;
-		}
-		else
-			return false;
-	}*/
 }

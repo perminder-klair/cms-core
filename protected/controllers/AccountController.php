@@ -50,7 +50,7 @@ class AccountController extends Controller
     public function actionLogin()
     {
         //Check if visitor is not guest then redirect to index page
-        if(!Yii::app()->user->isGuest)
+        if (!Yii::app()->user->isGuest)
             $this->redirect(Yii::app()->user->returnUrl);
 
         if (!defined('CRYPT_BLOWFISH')||!CRYPT_BLOWFISH)
@@ -62,8 +62,7 @@ class AccountController extends Controller
         $this->performAjaxValidation($model);
 
         // collect user input data
-        if(isset($_POST['LoginForm']))
-        {
+        if (isset($_POST['LoginForm'])) {
             $model->attributes=$_POST['LoginForm'];
             // validate user input and redirect to the previous page if valid
             if($model->validate() && $model->login()) {
@@ -79,7 +78,7 @@ class AccountController extends Controller
 
     public function actionRegister()
     {
-        if(!Yii::app()->user->isGuest)
+        if (!Yii::app()->user->isGuest)
             $this->redirect(Yii::app()->user->returnUrl);
 
         if (!defined('CRYPT_BLOWFISH') || !CRYPT_BLOWFISH)
@@ -90,8 +89,7 @@ class AccountController extends Controller
         // if it is ajax validation request
         $this->performAjaxValidation($model);
 
-        if(isset($_POST['RegisterForm'])) 
-        {
+        if (isset($_POST['RegisterForm'])) {
             $model->attributes = $_POST['RegisterForm'];
             // validate user input and redirect to the previous page if valid
             if ($model->validate() && $model->register()) {
@@ -118,9 +116,9 @@ class AccountController extends Controller
 
         $this->performAjaxValidation($model);
 
-        if(isset($_POST['CmsUserPwdReset'])){
+        if (isset($_POST['CmsUserPwdReset'])) {
             $model->attributes = $_POST['CmsUserPwdReset'];
-            if($model->validate() && $model->savePassword()){
+            if ($model->validate() && $model->savePassword()) {
                 setSuccessMessage('Click on the validation link sent to your email to activate new password.');
                 $this->refresh();
             }
@@ -143,13 +141,12 @@ class AccountController extends Controller
             )
         );
 
-        if($model instanceof CmsUserPwdReset)
-        {
+        if ($model instanceof CmsUserPwdReset) {
             $user = CmsUser::model()->findByAttributes(array(
                 'email'=>$email
             ));
 
-            if($user instanceof CmsUser){
+            if ($user instanceof CmsUser) {
 
                 $user->password = $model->password;
                 if($user->save())
@@ -174,8 +171,7 @@ class AccountController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']))
-		{
+		if (isset($_POST['ajax'])) {
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}

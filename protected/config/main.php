@@ -1,10 +1,7 @@
 <?php
-require(dirname(__FILE__).'/../helpers/globals.php');
-require(dirname(__FILE__).'/../helpers/site.php');
-require(dirname(__FILE__).'/../helpers/CArray.php');
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
+require(dirname(__FILE__).'/../modules/cms/helpers/globals.php');
+require(dirname(__FILE__).'/../modules/cms/helpers/cms.php');
+require(dirname(__FILE__).'/../modules/cms/helpers/CArray.php');
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
@@ -17,22 +14,23 @@ return array(
 
 	// autoloading model and component classes
 	'import'=>array(
+        'application.components.*',
 		'application.models.*',
         'application.models.forms.*',
-		'application.components.*',
-		'application.helpers.*',
-		'application.modules.cms.CmsModule',
+
         'application.modules.cms.components.*',
         'application.modules.cms.models.*',
         'application.modules.cms.widgets.*',
-		'application.extensions.CAdvancedArBehavior',
+
 		'application.extensions.YiiMailer.YiiMailer',
         'application.extensions.easyimage.EasyImage',
-        'application.extensions.mobiledetect.Mobile_Detect',
         'application.extensions.redactor.ImperaviRedactorWidget',
+        //'application.extensions.mobiledetect.Mobile_Detect', //Uncomment to activate
 	),
 	
-	'aliases' => array(),
+	'aliases' => array(
+        'bootstrap' => dirname(__FILE__).'/../extensions/bootstrap',
+    ),
     
     /*
      * choose: default or bootstrap
@@ -41,19 +39,14 @@ return array(
      'theme'=>'bootstrap',
 	
 	'modules'=>array(
-		// uncomment the following to enable the Gii tool
-		
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'admin',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-		),
-		'cms',
+
+		'cms' => array(),
+
 	),
 
 	// application components
-	'components'=>array(	
+	'components'=>array(
+
 		'bootstrap'=>array(
 		    'class'=>'bootstrap.components.Bootstrap',
 		),
@@ -67,6 +60,7 @@ return array(
 		),
 		
 		'cms'=>array('class'=>'cms.components.Cms'),
+
 	    'setting'=>array('class'=>'cms.components.CmsSetting'),
 	    
 	    'authManager'=>array(
@@ -126,6 +120,7 @@ return array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
+
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -137,16 +132,14 @@ return array(
 				),
 			),
 		),
+
 	),
 
 	/* 
 	 * application-level parameters that can be accessed
 	 * using Yii::app()->params['paramName']
-	 * USE THIS INSTEAD gl('site_name'));
 	 */
 	'params'=>array(
-		// this is used in contact page
-		//'adminEmail'=>'webmaster@example.com',
 		'adminMenu'=>array('demo'),
 	),
 );

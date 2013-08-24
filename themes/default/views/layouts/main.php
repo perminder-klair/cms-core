@@ -38,16 +38,16 @@
 	</div><!-- mainmenu -->
 	
 	<div id="content">
-		<?php if(isset($this->breadcrumbs)):?>
+		<?php if (isset($this->breadcrumbs)): ?>
 			<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 				'links'=>$this->breadcrumbs,
 			)); ?><!-- breadcrumbs -->
 		<?php endif?>
 
-        <?php if(Yii::app()->user->hasFlash('success')): ?>
+        <?php if (Yii::app()->user->hasFlash('success')): ?>
             <?php echo Yii::app()->user->getFlash('success'); ?>
         <?php endif; ?>
-        <?php if(Yii::app()->user->hasFlash('error')): ?>
+        <?php if (Yii::app()->user->hasFlash('error')): ?>
             <?php echo Yii::app()->user->getFlash('error'); ?>
         <?php endif; ?>
 

@@ -38,7 +38,7 @@ class ManyManyActiveRecord extends CActiveRecord
 	public function behaviors(){
     	return array( 
     		'CAdvancedArBehavior' => array(
-    			'class' => 'application.extensions.CAdvancedArBehavior'
+    			'class' => 'application.modules.cms.components.CAdvancedArBehavior'
     		)
     	);
     }

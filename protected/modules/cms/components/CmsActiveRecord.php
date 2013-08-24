@@ -12,15 +12,15 @@ class CmsActiveRecord extends ManyManyActiveRecord
      */
     public function defaultScope()
     {
-        $scope = parent::defaultScope();
+        $alias = $this->getTableAlias(false, false);
 
-        /*$condition='deleted=0';
-        if (isset($scope['condition']))
-            $scope['condition'] .= ' AND ' . $condition;
-        else
-            $scope['condition'] = $condition;*/
-
-        return $scope;
+        if ($this->hasAttribute('deleted')) {
+            return array(
+                'condition' => $alias . ".deleted=0",
+            );
+        } else {
+            return array();
+        }
 }
 
     /**
