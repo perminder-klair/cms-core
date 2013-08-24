@@ -57,7 +57,7 @@ class CmsUser extends CmsActiveRecord
             array('new_password, new_password_repeat', 'length', 'max'=>50),
 		    array('new_password', 'compare', 'compareAttribute'=>'new_password_repeat', 'on'=>'changePassword'),
 		    //array('new_password', 'required', 'on'=>'create'),
-		    array('username, email, status, password, new_password, new_password_repeat, userRole', 'safe'),
+		    array('username, email, status, password, new_password, new_password_repeat, userRole, lastLoginAt, lastActiveAt', 'safe'),
 		);
 	}
 
@@ -88,6 +88,8 @@ class CmsUser extends CmsActiveRecord
 			'status' => 'Status',
 			'created' => 'Created Date',
 			'modified' => 'Modified Date',
+            'lastLoginAt' => 'Last Login Time',
+            'lastActiveAt' => 'Last Active Time',
 		);
 	}
 
