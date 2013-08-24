@@ -1,6 +1,6 @@
-# Broome CMS
+# TepTap CMS
 
-Broome Cms based on Yii Framework
+TepTap Cms based on Yii Framework
 
 Read the `/documentation/index.html` for more information
 

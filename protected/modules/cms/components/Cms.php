@@ -8,7 +8,7 @@ class Cms extends CApplicationComponent
 	/**
 	 * Cms Branding
 	 */
-	public $cmsName = 'Broome CMS';
+	public $cmsName = 'YepTap CMS';
 	public $cmsLogo = '/img/logo.png'; //logo-tbl.png
 	public $defaultGravatar = '/img/logo-gravatar.jpg'; //logo-tbl-gravatar.png
         

@@ -1,7 +1,7 @@
 # ChangeLog
 Please update this document each time you close an issue by your commit.
 
-## Broome CMS version 1.0
+## YepTap CMS version 1.0
 - **(enh)** replace redactor with tinyMce editor
 - **(fix)** short php tags removed
 - **(enh)** upload videos in media tab of cms
