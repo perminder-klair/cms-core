@@ -28,3 +28,4 @@ index
 # ignore composer vendors
 /protected/vendor/
 /vendor/
+composer.lock

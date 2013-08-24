@@ -21,11 +21,13 @@ if(($extension == "dev") || (!$extension)) {
 
     $config=dirname(__FILE__).'/protected/config/dev.php';
     defined('YII_DEBUG') or define('YII_DEBUG',true);
+    defined('YII_ENV') or define('YII_ENV', 'dev');
 
 } elseif($domainName == "frbit.net") {
 
     $config=dirname(__FILE__).'/protected/config/beta.php';
     defined('YII_DEBUG') or define('YII_DEBUG',true);
+    defined('YII_ENV') or define('YII_ENV', 'dev');
 
 } else {
 

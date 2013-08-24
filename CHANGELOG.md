@@ -12,3 +12,4 @@ Please update this document each time you close an issue by your commit.
 - **(enh)** recreated documentation bootstrap style
 - **(fix)** cms pages parent branch not displaying issue
 - **(fix)** media upload ajax view render issue fixed
+- **(fix)** yii path in crop.php updated
