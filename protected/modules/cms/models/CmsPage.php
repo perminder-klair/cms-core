@@ -11,7 +11,7 @@ class CmsPage extends CmsActiveRecord
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className the class name
-	 * @return CmsNode the static model class
+	 * @return CmsPage the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -35,7 +35,7 @@ class CmsPage extends CmsActiveRecord
         	array('name, heading, body, status', 'required'),
         	array('status', 'in', 'range'=>array(1,2,3)),
             array('id, parentId, status, deleted, type', 'numerical', 'integerOnly'=>true),
-            array('layout', 'length', 'max'=>25),
+            array('layout', 'length', 'max'=>35),
             array('heading, name', 'length', 'max'=>70),
 			array('metaDescription', 'length', 'max'=>160),
             array('updated, body, status, type, tags, layout', 'safe'),
@@ -49,10 +49,10 @@ class CmsPage extends CmsActiveRecord
     public function relations()
     {
         return array(
-            'parent'=>array(self::BELONGS_TO, 'CmsPage', 'parentId'),
-            'children'=>array(self::HAS_MANY, 'CmsPage', 'parentId'),
-            'blocks'=>array(self::HAS_MANY, 'CmsBlocks', 'parentId'),
-            'media'=>array(self::MANY_MANY, 'CmsMedia', 'cms_content_media(content_id, media_id)', 'condition' => 'type = "page"'),
+            'parent' => array(self::BELONGS_TO, 'CmsPage', 'parentId'),
+            'children' => array(self::HAS_MANY, 'CmsPage', 'parentId'),
+            'blocks' => array(self::HAS_MANY, 'CmsBlocks', 'parentId'),
+            'media' => array(self::MANY_MANY, 'CmsMedia', 'cms_content_media(content_id, media_id)', 'condition' => 'type = "page"'),
         );
     }
 
@@ -101,9 +101,9 @@ class CmsPage extends CmsActiveRecord
 	public function scopes()
     {
         return array(
-            'published'=>array(
-            	'order'=>'created DESC',
-            	'condition'=>'status = '.self::STATUS_PUBLISHED,
+            'published' => array(
+            	'order' => 'created DESC',
+            	'condition' => 'status = ' . self::STATUS_PUBLISHED . ' AND deleted = "0"',
             ),
         );
     }
@@ -114,18 +114,23 @@ class CmsPage extends CmsActiveRecord
      */
     public function getParentOptionTree()
     {
-        $pages = CmsPage::model()->findAll();
+        $criteria = new CDbCriteria();
+        $criteria->order ='id desc';
+        $criteria->condition = 'deleted = "0"';
+
+        $pages = CmsPage::model()->findAll($criteria);
 
         if (!$this->isNewRecord)
-        { 
+        {
             $children = $this->getChildren($pages, true);
             $exclude = CMap::mergeArray(array($this->id), array_keys($children));
-            $nodes = CmsPage::model()->findAll('id NOT IN (:exclude)', array(':exclude'=>implode(',', $exclude)));
+            $criteria->addNotInCondition('id', $exclude);
+            $pages = CmsPage::model()->findAll($criteria);
         }
 
-        $tree = $this->getTree($pages);
+        $tree = $this->getTree($pages, true);
 
-        $options = array('0' => Yii::t('CmsModule.core', 'No parent'));
+        $options = array('0' => 'No parent');
         foreach ($tree as $branch)
         	$options = CMap::mergeArray($options, $this->getParentOptionBranch($branch));
 
@@ -141,20 +146,19 @@ class CmsPage extends CmsActiveRecord
     protected function getParentOptionBranch($branch, $depth = 0)
     {
         $options = array();
-
-        $options[$branch['model']->id] = str_repeat('...', $depth + 1).' '.$branch['model']->name;
+        $options[$branch['model']->id] = str_repeat('...', $depth + 1) . ' ' . $branch['model']->name;
 
         if (!empty($branch['children']))
-        	foreach ($branch['children'] as $leaf)
-            	$options = CMap::mergeArray($options, $this->getParentOptionBranch($leaf, $depth + 1));
+            foreach ($branch['children'] as $leaf)
+                $options = CMap::mergeArray($options, $this->getParentOptionBranch($leaf, $depth + 1));
 
         return $options;
     }
 
     /**
      * Returns the given pages as a tree.
-     * @param CmsPage[] $nodes the page to process
-     * @param bool $includeOrphans indicated whether to include nodes which parent has been deleted.
+     * @param CmsPage[] $pages the page to process
+     * @param bool $includeOrphans indicated whether to include pages which parent has been deleted.
      * @return array the tree
      */
     public function getTree($pages, $includeOrphans = false)
@@ -162,30 +166,34 @@ class CmsPage extends CmsActiveRecord
         $tree = $this->getBranch($pages);
 
         // Get the orphan nodes as well (i.e. those which parent has been deleted) if necessary.
-        if ($includeOrphans)
-        	foreach($pages as $page)
-            	$tree[$page->id] = array('model'=>$page, 'children'=>$this->getBranch($pages, $page->id));
+        if ($includeOrphans) {
+            foreach ($pages as $page) {
+                $tree[$page->id] = array('model' => $page, 'children' => $this->getBranch($pages, $page->id));
+            }
+        }
 
         return $tree;
     }
 
     /**
      * Returns the given pages as a branch.
-     * @param CmsPage[]$nodes the nodes to process
+     * @param CmsPage[]$pages the pages to process
      * @param int $parentId the parent id
      * @return array the branch
      */
-    protected function getBranch(&$nodes, $parentId = 0)
+    protected function getBranch(&$pages, $parentId = 0)
     {
         $children = array();
-        /** @var CmsPage $node */
-        foreach ($nodes as $idx => $node)
-        {
-            if ((int) $node->parentId === (int) $parentId)
-            {
-                $children[$node->id] = array('model'=>$node, 'children'=>$this->getBranch($nodes, $node->id));
-                unset($nodes[$idx]);
+        /** @var CmsPage $page */
+        foreach ($pages as $idx => $page) {
+
+            if ($page->parentId == $parentId) { //if a parent
+
+                $children[$page->id] = array('model' => $page, 'children' => $this->getBranch($pages, $page->id));
+                unset($pages[$idx]);
+
             }
+
         }
 
         return $children;
@@ -193,24 +201,22 @@ class CmsPage extends CmsActiveRecord
 
     /**
      * Returns the children for this page.
-     * @param CmsPage[] $nodes the nodes to process
+     * @param CmsPage[] $pages the pages to process
      * @param bool $recursive indicates whether to include grandchildren
      * @return CmsPage[] the children
      */
-    protected function getChildren(&$nodes, $recursive = false)
+    protected function getChildren(&$pages, $recursive = false)
     {
         $children = array();
 
-        /** @var CmsPage $node */
-        foreach ($nodes as $idx => $node)
-        {
-            if ((int) $node->parentId === (int) $this->id)
-            {
-                $children[$node->id] = $node;
-                unset($nodes[$idx]);
+        /** @var CmsPage $page */
+        foreach ($pages as $idx => $page) {
+            if ((int) $page->parentId === (int) $this->id) {
+                $children[$page->id] = $page;
+                unset($pages[$idx]);
 
                 if ($recursive)
-                	$children = CMap::mergeArray($children, $node->getChildren($nodes, $recursive));
+                	$children = CMap::mergeArray($children, $page->getChildren($pages, $recursive));
             }
         }
 
@@ -223,17 +229,18 @@ class CmsPage extends CmsActiveRecord
     public function renderTree()
     {
     	$criteria = new CDbCriteria();
+        $criteria->order ='id desc';
         $criteria->condition='deleted = "0"';
 
     	if(isset($_GET['CmsPage']))
 			$criteria->addSearchCondition('heading',$_GET['CmsPage']['heading']);
 			
         $pages = CmsPage::model()->findAll($criteria);
-        $tree = $this->getTree($pages, true);
 
         if(count($pages)<=0) {
 	        echo 'No pages to display.';
         } else {
+            $tree = $this->getTree($pages, true);
         	foreach ($tree as $branch)
         		$this->renderBranch($branch);
         }
@@ -245,26 +252,25 @@ class CmsPage extends CmsActiveRecord
      */
     protected function renderBranch($branch)
     {
-    	//$model = $branch['model'];
-        echo '<li class="'.$branch["model"]->getPriorityClass().'" style="height: 50px;">';
-        //echo CHtml::link($branch['model']->name, array('node/update','id'=>$branch['model']->id));
-        echo '<a href="'.url('/cms/pages/update', array('id'=>$branch["model"]->id)).'">';
+        echo '<li class="' . $branch["model"]->getPriorityClass() . '" style="height: 50px;">';
+
+        echo '<a href="' . url('/cms/pages/update', array('id'=>$branch["model"]->id)) . '">';
         
         	echo '<div class="content">';
 	        	echo '<h5>'.$branch["model"]->heading.' ('.$branch["model"]->name.')</h5>';
-	        	if($branch["model"]->status==self::TYPE_NON_CMS) echo '<span>'.CmsLookup::item("PageStatus", $branch["model"]->status).' - </span>';
+	        	if($branch["model"]->status==self::TYPE_NON_CMS)
+                    echo '<span>'.CmsLookup::item("PageStatus", $branch["model"]->status).' - </span>';
 	        	echo '<span><em>'.CmsLookup::item("PageType", $branch["model"]->type).'</em></span>';
 	        echo '</div>';
 	        echo '<ul class="rightboxes">';
-	        	echo '<li style="width: 100%;">'.$branch["model"]->adminActions().'</li>';
+	        	echo '<li style="width: 100%;">' . $branch["model"]->adminActions() . '</li>';
 	        echo '</ul>';
 	        
 	        
 	    echo '</a>';
         echo '</li>';
         
-        if (!empty($branch['children']))
-        {
+        if (!empty($branch['children'])) {
             echo CHtml::openTag('ul', array('style'=>'margin-left:20px;'));
 
             foreach ($branch['children'] as $leaf)
@@ -275,18 +281,18 @@ class CmsPage extends CmsActiveRecord
     }
 
     /**
-     * Creates content for this node.
+     * Creates content for this page.
      * @param string $locale the locale id, e.g. 'en_us'
      * @return CmsContent the content model
      */
-    public function createContent($locale)
+    /*public function createContent($locale)
     {
         $content = new CmsContent();
-        $content->nodeId = $this->id;
+        $content->pageId = $this->id;
         $content->locale = $locale;
         $content->save();
         return $content;
-    }
+    }*/
 
     /**
      * Returns the breadcrumb text for this page.
@@ -372,7 +378,7 @@ class CmsPage extends CmsActiveRecord
     }
 
     /**
-     * Returns the page title for this node.
+     * Returns the page title for this page.
      * @return string the page title
      */
     public function getPageTitle()
