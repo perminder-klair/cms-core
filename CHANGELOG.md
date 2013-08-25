@@ -13,3 +13,4 @@ Please update this document each time you close an issue by your commit.
 - **(fix)** cms pages parent branch not displaying issue
 - **(fix)** media upload ajax view render issue fixed
 - **(fix)** yii path in crop.php updated
+- **(enh)** extended clientscript located in cms components
