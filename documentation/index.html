@@ -82,6 +82,9 @@
 
             <li>
                 <a href="#download">Installation</a>
+                <ul class="nav">
+                    <li><a href="#get-updates">Get Updates</a></li>
+                </ul>
             </li>
             <li>
                 <a href="#pages">Pages</a>
@@ -178,6 +181,16 @@
 
     <p>Login to Admin Panel by visiting: www.yoursite.com/admin/login
     Login using: `admin / admin`</p>
+
+
+    <h3 id="get-updates">Get Updates</h3>
+    <p>To Get updates using GitHub of CMS</p>
+    <div class="highlight"><pre><code class="php">
+git remote set-url master {Your Git URL} //Optional
+git remote add cms git@github.com:perminder-klair/cms-core.git
+git pull cms master
+git push
+    </code></pre></div>
 
 
 </div>
