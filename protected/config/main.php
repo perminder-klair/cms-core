@@ -1,4 +1,5 @@
 <?php
+
 require(dirname(__FILE__).'/../modules/cms/helpers/globals.php');
 require(dirname(__FILE__).'/../modules/cms/helpers/cms.php');
 require(dirname(__FILE__).'/../modules/cms/helpers/CArray.php');
@@ -29,7 +30,8 @@ return array(
 	),
 	
 	'aliases' => array(
-        'bootstrap' => dirname(__FILE__).'/../extensions/bootstrap',
+        'bootstrap' => dirname(__FILE__) . '/../extensions/bootstrap',
+        'vendor' => dirname(__FILE__) . '/../../vendor',
     ),
     
     /*

@@ -119,4 +119,12 @@ class CmsActiveRecord extends ManyManyActiveRecord
             else
                 throw new CDbException('The active record cannot be deleted because it is new.');
         }
+
+        /**
+         * Return basic select options for the record.
+         * @return array the options.
+         */
+        public static function getSelectOptions() {
+            return CHtml::listData(static::model()->findAll(), 'id', 'title');
+        }
 }

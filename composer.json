@@ -1,14 +1,14 @@
 {
-    "name": "TBL-CMS/Core",
+    "name": "perminder-klair/cms-core",
     "description": "TBL CMS Based on Yii",
     "homepage": "http://tblmarketing.com/",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Parminder Klair",
-            "email": "parminder@tblmarketing.com"
-        }
-    ],
+    "version": "1.0.0",
+    "author": "Parminder Klair <perminder.klair@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/perminder-klair/cms-core"
+    },
     "repositories": [
         {
             "packagist": false
