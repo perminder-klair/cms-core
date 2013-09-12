@@ -9,10 +9,10 @@ return CMap::mergeArray(
 				'class'=>'system.test.CDbFixtureManager',
 			),
 			'db'=>array(
-				'connectionString' => 'mysql:host=localhost;dbname=yeptap',
+				'connectionString' => 'mysql:host=127.0.0.1;dbname=yeptap',
 				'emulatePrepare' => true,
 				'username' => 'root',
-				'password' => '',
+				'password' => 'root',
 				'charset' => 'utf8',
 				'enableProfiling'=>true,
 				'enableParamLogging'=>true,

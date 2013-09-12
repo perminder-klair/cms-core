@@ -14,3 +14,4 @@ Please update this document each time you close an issue by your commit.
 - **(fix)** media upload ajax view render issue fixed
 - **(fix)** yii path in crop.php updated
 - **(enh)** extended clientscript located in cms components
+- **(enh)** removed beta env

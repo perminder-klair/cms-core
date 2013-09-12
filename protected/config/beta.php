@@ -9,10 +9,10 @@ return CMap::mergeArray(
                 'class'=>'system.test.CDbFixtureManager',
             ),
             'db'=>array(
-                'connectionString' => 'mysql:host=tbl-cms.mysql.eu1.frbit.com;dbname=tbl-cms',
+                'connectionString' => 'mysql:host=;dbname=',
                 'emulatePrepare' => true,
-                'username' => 'tbl-cms',
-                'password' => 'xfMZyoRyg54jWPHa',
+                'username' => '',
+                'password' => '',
                 'charset' => 'utf8',
                 'enableProfiling'=>true,
                 'enableParamLogging'=>true,

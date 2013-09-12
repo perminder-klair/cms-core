@@ -40,12 +40,12 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('admin', 'create', 'update', 'delete'),
+				'actions'=>array('admin', 'create', 'update', 'delete', 'toggleActive'),
 				'expression'=>'$user->isAdmin()',
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
-				'actions'=>array('admin', 'create', 'update', 'delete'),
+				'actions'=>array('admin', 'create', 'update', 'delete', 'toggleActive'),
 			),
 		);
 	}

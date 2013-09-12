@@ -1,17 +1,6 @@
 <?php
 date_default_timezone_set('UTC');
 
-function get_domain($url)
-{
-    $pieces = parse_url($url);
-    $domain = isset($pieces['host']) ? $pieces['host'] : '';
-    if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
-        return $regs['domain'];
-    }
-    return false;
-}
-$domainName = get_domain('http://'.$_SERVER['HTTP_HOST']);
-
 $extension = pathinfo($_SERVER['SERVER_NAME'], PATHINFO_EXTENSION);
 
 $yii=dirname(__FILE__).'/vendor/yiisoft/yii/framework/yii.php';
@@ -20,12 +9,6 @@ $yii=dirname(__FILE__).'/vendor/yiisoft/yii/framework/yii.php';
 if(($extension == "dev") || (!$extension)) {
 
     $config=dirname(__FILE__).'/protected/config/dev.php';
-    defined('YII_DEBUG') or define('YII_DEBUG',true);
-    defined('YII_ENV') or define('YII_ENV', 'dev');
-
-} elseif($domainName == "frbit.net") {
-
-    $config=dirname(__FILE__).'/protected/config/beta.php';
     defined('YII_DEBUG') or define('YII_DEBUG',true);
     defined('YII_ENV') or define('YII_ENV', 'dev');
 
