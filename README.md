@@ -1,5 +1,11 @@
 # YepTap CMS
 
+## DECRYPTED! No more updates!
+
+Use Kato CMS instead [https://github.com/perminder-klair/kato](https://github.com/perminder-klair/kato)
+
+--------------
+
 YepTap Cms based on Yii Framework
 
 Read the `/documentation/index.html` for more information
